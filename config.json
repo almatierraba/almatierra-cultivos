@@ -1,0 +1,22 @@
+{
+  "whatsapp": "5491136169725",
+  "currency": { "locale": "es-AR", "code": "ARS" },
+  "labels": {
+    "allCategories": "Todos",
+    "quotePrice": "A coordinar",
+    "quoteNote": "El precio de este producto se coordina por WhatsApp al hacer el pedido.",
+    "quoteCapReached": "Máximo 1 unidad en productos a coordinar",
+    "variantGroupFallback": "Presentación",
+    "emptyCart": "La lista de consulta está vacía.",
+    "loadError": "No se pudo cargar el catálogo. Refrescá la página o escribinos por WhatsApp."
+  },
+  "order": {
+    "title": "Pedido para Almatierra Cultivos",
+    "buyerHeading": "DATOS DEL COMPRADOR",
+    "itemsHeading": "PEDIDO",
+    "quoteHeading": "A COORDINAR",
+    "commentsHeading": "COMENTARIOS",
+    "inquiryTitle": "Consulta para Almatierra Cultivos",
+    "inquiryHeading": "CONSULTA"
+  }
+}
