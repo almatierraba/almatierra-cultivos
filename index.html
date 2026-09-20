@@ -385,6 +385,7 @@
     .category-button[aria-pressed="true"] { border-color: var(--brand); color: #fff; background: var(--brand); }
 
     .search-form { position: relative; }
+
     .search-form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
     .search-form input {
       width: 100%;
@@ -495,10 +496,11 @@
 
     .product-description { margin: 12px 0 14px; color: var(--muted); }
 
+    .product-specs,
     .product-variants {
       display: grid;
       gap: 4px;
-      margin: 0 0 var(--space-4);
+      margin: 0;
       padding: 0;
       color: var(--ink);
       font-family: var(--mono);
@@ -506,26 +508,49 @@
       list-style: none;
     }
 
-    .product-variants li {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding-block: 5px;
-      border-bottom: 1px solid var(--warm-gray);
-    }
+    .product-specs { margin-bottom: var(--space-4); }
+    .product-variants { margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--warm-gray); }
 
-    .product-footer {
+    .product-specs li,
+    .variant-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-top: auto;
-      padding-top: var(--space-3);
-      border-top: 1px solid var(--warm-gray);
+      min-height: 52px;
+      border-bottom: 1px solid var(--warm-gray);
     }
 
-    .price { font-weight: 600; color: var(--brand); }
-    .price-consult { color: var(--ink); font-size: .9rem; }
+    .variant-information { display: grid; gap: 3px; }
+    .variant-price { color: var(--brand); }
+    .variant-control {
+      display: grid;
+      grid-template-columns: 44px minmax(32px, auto) 44px;
+      align-items: center;
+      border: 1px solid var(--brand);
+      color: var(--brand);
+      background: var(--surface);
+    }
+
+    .quantity-button,
+    .product-inquiry {
+      display: inline-grid;
+      min-width: 44px;
+      min-height: 44px;
+      place-items: center;
+      border: 0;
+      color: #fff;
+      background: var(--brand);
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .quantity-button:disabled { cursor: not-allowed; color: var(--muted); background: var(--warm-gray); }
+    .quantity-button:not(:disabled):hover,
+    .product-inquiry:hover { background: var(--brand-hover); }
+    .variant-quantity { min-width: 32px; text-align: center; font-weight: 700; }
+    .product-inquiry { justify-self: end; margin-top: var(--space-3); border: 1px solid var(--brand); }
 
     .product-specimen::before,
     .product-specimen::after { display: none; }
@@ -536,20 +561,6 @@
       object-fit: contain;
       background: var(--surface);
     }
-
-    .add-button {
-      min-height: 44px;
-      padding: 9px 13px;
-      border: 1px solid var(--brand);
-      border-radius: var(--radius);
-      color: #fff;
-      background: var(--brand);
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .add-button:hover { border-color: var(--brand-hover); background: var(--brand-hover); }
-    .add-button:active { border-color: var(--brand-active); background: var(--brand-active); }
 
     .empty-state {
       padding: var(--space-6);
@@ -565,6 +576,8 @@
       grid-template-columns: 4fr 8fr;
       border-block: 1px solid var(--ink);
     }
+
+    .editorial-block[hidden] { display: none; }
 
     .editorial-index {
       padding: var(--space-7) var(--space-5);
@@ -591,6 +604,18 @@
       line-height: 1.45;
     }
     .editorial-copy cite { display: block; margin-top: var(--space-4); font-family: var(--mono); font-size: 12px; font-style: normal; text-transform: uppercase; }
+
+    .contact-section { border-top: 1px solid var(--ink); background: var(--surface); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(320px, 7fr);
+      gap: var(--space-7);
+    }
+    .contact-copy h2 { font-size: clamp(2.5rem, 5vw, 4.8rem); text-transform: uppercase; }
+    .contact-copy p { max-width: 520px; color: var(--muted); }
+    .contact-form { display: grid; gap: var(--space-4); }
+    .contact-submit { justify-self: start; }
+    .icon-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 
     .site-footer {
       padding-block: var(--space-7) var(--space-5);
@@ -656,6 +681,7 @@
     .order-form { display: flex; min-height: 0; flex: 1 1 auto; flex-direction: column; }
     .cart-dialog-body { padding: var(--space-5); overflow-y: auto; }
     .cart-summary { margin: 0; font-weight: 600; }
+    .cart-total { margin: var(--space-4) 0 0; color: var(--brand); font-size: 1.125rem; font-weight: 700; text-align: right; }
 
     .cart-items {
       display: grid;
@@ -803,6 +829,8 @@
       .editorial-index strong { font-size: 5rem; }
       .editorial-copy { padding: var(--space-7) 20px; }
       .footer-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+      .contact-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+      .contact-submit { width: 100%; }
       .cart-dialog-header, .cart-dialog-body { padding: var(--space-4); }
       .cart-dialog-actions { display: grid; grid-template-columns: 1fr; padding: var(--space-4); }
       .cart-dialog-actions button { width: 100%; }
@@ -839,7 +867,7 @@
         <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
           <ul>
             <li><a href="#catalogo">Productos</a></li>
-            <li><a href="#cuaderno">Cuaderno</a></li>
+            <li hidden><a href="#cuaderno">Cuaderno</a></li>
             <li><a href="#manifiesto">Manifiesto</a></li>
             <li><a href="#contacto">Contacto</a></li>
           </ul>
@@ -919,80 +947,20 @@
           <span>Imágenes y contenido provistos por Almatierra</span>
         </div>
 
-        <div class="product-grid" aria-live="polite">
-          <article class="product-card" data-category="bienestar" data-name="melena de león tintura extracto hongo funcional adaptógeno modulador">
+        <div class="product-grid" id="product-grid" aria-live="polite" aria-busy="true"></div>
+
+        <template id="product-card-template">
+          <article class="product-card">
             <figure class="product-media">
-              <img src="assets/products/melena-de-leon.png" alt="Frascos de tintura de Melena de León en presentaciones de 60 y 100 cc" width="1080" height="1350" loading="lazy">
-              <figcaption>Melena de León</figcaption>
+              <figcaption></figcaption>
             </figure>
-            <p class="product-meta">Bienestar / Hongo funcional</p>
-            <h3>Melena de León</h3>
-            <p class="product-description">Tintura tradicionalmente utilizada como complemento para el bienestar cognitivo y el equilibrio general del organismo. Funciona como adaptógeno o modulador.</p>
-            <ul class="product-variants" aria-label="Presentaciones de Melena de León"><li><span>60 cc</span><strong>$35.000</strong></li><li><span>100 cc</span><strong>$60.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $35.000</span><button class="add-button" type="button" data-product="Melena de León" data-price="Desde $35.000">Agregar a lista</button></div>
+            <p class="product-meta"></p>
+            <h3>Producto</h3>
+            <p class="product-description"></p>
+            <ul class="product-specs"></ul>
+            <div class="product-variants"></div>
           </article>
-
-          <article class="product-card" data-category="bienestar" data-name="óleo aceite concentrado cbd bienestar cuidado 15 cc">
-            <figure class="product-media">
-              <img src="assets/products/oleo-concentrado-cbd.png" alt="Frasco de óleo concentrado de CBD de 15 cc" width="1080" height="1350" loading="lazy">
-              <figcaption>Óleo concentrado de CBD</figcaption>
-            </figure>
-            <p class="product-meta">Bienestar / CBD</p>
-            <h3>Óleo concentrado CBD</h3>
-            <p class="product-description">Óleo formulado para acompañar rutinas de cuidado y bienestar.</p>
-            <ul class="product-variants" aria-label="Presentación del óleo concentrado"><li><span>15 cc</span><strong>Desde $25.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $25.000</span><button class="add-button" type="button" data-product="Óleo concentrado CBD" data-price="Desde $25.000">Agregar a lista</button></div>
-          </article>
-
-          <article class="product-card" data-category="bienestar" data-name="óleo aceite extra concentrado cbd bienestar cuidado 15 cc">
-            <figure class="product-media">
-              <img src="assets/products/oleo-extra-concentrado-cbd.png" alt="Frasco de óleo extra concentrado de CBD de 15 cc" width="1080" height="1350" loading="lazy">
-              <figcaption>Óleo extra concentrado de CBD</figcaption>
-            </figure>
-            <p class="product-meta">Bienestar / CBD</p>
-            <h3>Óleo extra concentrado CBD</h3>
-            <p class="product-description">Óleo de mayor concentración formulado para acompañar rutinas de cuidado y bienestar.</p>
-            <ul class="product-variants" aria-label="Presentación del óleo extra concentrado"><li><span>15 cc</span><strong>Desde $30.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $30.000</span><button class="add-button" type="button" data-product="Óleo extra concentrado CBD" data-price="Desde $30.000">Agregar a lista</button></div>
-          </article>
-
-          <article class="product-card" data-category="bienestar" data-name="pomada cbd jarilla dolores contracturas afecciones cutáneas 60 120 cc">
-            <figure class="product-media">
-              <img src="assets/products/pomada.png" alt="Frasco de pomada de CBD y jarilla mendocina" width="1080" height="1350" loading="lazy">
-              <figcaption>Pomada de CBD y jarilla</figcaption>
-            </figure>
-            <p class="product-meta">Bienestar / Cuidado tópico</p>
-            <h3>Pomada</h3>
-            <p class="product-description">Pomada para dolores, contracturas y afecciones cutáneas, elaborada con aceite de CBD y jarilla mendocina.</p>
-            <ul class="product-variants" aria-label="Presentaciones de la pomada"><li><span>60 cc</span><strong>$8.000</strong></li><li><span>120 cc</span><strong>$15.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $8.000</span><button class="add-button" type="button" data-product="Pomada" data-price="Desde $8.000">Agregar a lista</button></div>
-          </article>
-
-          <article class="product-card" data-category="parafernalia" data-name="grinder metálico strass molinillo cuatro capas piezas rosca">
-            <figure class="product-media product-media-pair">
-              <img src="assets/products/grinder-con-strass-1.png" alt="Grinder metálico con strass cerrado y medidas" width="1080" height="1350" loading="lazy">
-              <img src="assets/products/grinder-con-strass-2.png" alt="Grinder metálico con strass abierto en sus cuatro piezas" width="1080" height="1350" loading="lazy">
-              <figcaption>Dos vistas del grinder metálico con strass</figcaption>
-            </figure>
-            <p class="product-meta">Parafernalia / Accesorios</p>
-            <h3>Grinder metálico con strass</h3>
-            <p class="product-description">Molinillo de metal de cuatro capas con rosca y strass. Cuatro piezas; la parte inferior no lleva strass.</p>
-            <div class="product-footer"><span class="price price-consult">Consultar precio</span><button class="add-button" type="button" data-product="Grinder metálico con strass" data-price="Consultar precio">Agregar a lista</button></div>
-          </article>
-
-          <article class="product-card" data-category="parafernalia" data-name="mars orbiter 80w panel led cultivo iluminación dos ciclos">
-            <figure class="product-media product-media-pair">
-              <img src="assets/products/mars-orbiter-80w-1.png" alt="Vista inferior del panel LED Mars Orbiter 80W" width="1080" height="1350" loading="lazy">
-              <img src="assets/products/mars-orbiter-80w-2.png" alt="Vista lateral del panel LED Mars Orbiter 80W encendido" width="1080" height="1350" loading="lazy">
-              <figcaption>Dos vistas del panel LED Mars Orbiter 80W</figcaption>
-            </figure>
-            <p class="product-meta">Parafernalia / Iluminación</p>
-            <h3>Mars Orbiter 80W</h3>
-            <p class="product-description">Panel LED de dos ciclos de uso, diseñado para una iluminación uniforme y eficiente en espacios de cultivo pequeños y medianos.</p>
-            <ul class="product-variants" aria-label="Datos del panel Mars Orbiter"><li><span>Potencia</span><strong>80 W</strong></li><li><span>Uso</span><strong>2 ciclos</strong></li></ul>
-            <div class="product-footer"><span class="price">$160.000</span><button class="add-button" type="button" data-product="Mars Orbiter 80W" data-price="$160.000">Agregar a lista</button></div>
-          </article>
-        </div>
+        </template>
 
         <div class="empty-state" id="empty-state" hidden>
           <h3>No hay coincidencias</h3>
@@ -1001,7 +969,7 @@
       </div>
     </section>
 
-    <section class="editorial-block" id="cuaderno" aria-labelledby="editorial-title">
+    <section class="editorial-block" id="cuaderno" aria-labelledby="editorial-title" hidden>
       <div class="editorial-index">
         <strong>02</strong>
         <span>Cuaderno / Ciencia y cultura</span>
@@ -1023,9 +991,33 @@
         <p>Oswald construye la voz editorial. Inter sostiene la lectura. IBM Plex Mono ordena referencias y datos. El verde señala; nunca invade.</p>
       </div>
     </section>
+  <section class="section contact-section" id="contacto" aria-labelledby="contact-title">
+    <div class="container contact-grid">
+      <div class="contact-copy">
+        <p class="eyebrow">Contacto directo</p>
+        <h2 id="contact-title">Hablemos por WhatsApp.</h2>
+        <p>Dejanos tu consulta y abriremos una conversación con el vendedor. El sitio no almacena estos datos.</p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <div class="form-field">
+          <label for="contact-name">Tu nombre <span aria-hidden="true">*</span></label>
+          <input id="contact-name" name="contactName" type="text" autocomplete="name" required maxlength="80">
+        </div>
+        <div class="form-field">
+          <label for="contact-message">Consulta <span aria-hidden="true">*</span></label>
+          <textarea id="contact-message" name="contactMessage" required maxlength="700" rows="5"></textarea>
+        </div>
+        <button class="button button-primary icon-action contact-submit" type="submit" aria-label="Enviar consulta por WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h14v10H9l-4 4v-4H3V3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span>WhatsApp</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
   </main>
 
-  <footer class="site-footer" id="contacto">
+  <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-mark">Almatierra<br>Cultivos</div>
@@ -1039,7 +1031,7 @@
     <div class="cart-dialog-header">
       <div>
         <p class="eyebrow">Selección personal</p>
-        <h2 id="cart-title">Lista de consulta</h2>
+        <h2 id="cart-title">Carrito</h2>
       </div>
       <button class="cart-close cart-close-icon" type="button" aria-label="Cerrar lista de consulta">
         <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4 4 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -1049,6 +1041,7 @@
       <div class="cart-dialog-body">
         <p class="cart-summary" id="cart-summary" tabindex="-1">La lista de consulta está vacía.</p>
         <ul class="cart-items" id="cart-items"></ul>
+        <p class="cart-total" id="cart-total">Total: $0</p>
         <p class="cart-disclaimer" id="cart-disclaimer">La presentación, disponibilidad, entrega y forma de pago se coordinan por WhatsApp.</p>
 
         <div class="order-fields">
@@ -1070,8 +1063,14 @@
         </div>
       </div>
       <div class="cart-dialog-actions">
-        <button class="button button-secondary cart-close" type="button">Seguir explorando</button>
-        <button class="button button-primary whatsapp-submit" type="submit" disabled>Enviar pedido por WhatsApp</button>
+        <button class="button button-secondary icon-action cart-close" type="button" aria-label="Seguir explorando">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m12.5 4-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Seguir</span>
+        </button>
+        <button class="button button-primary icon-action whatsapp-submit" type="submit" disabled aria-label="Enviar pedido por WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h14v10H9l-4 4v-4H3V3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span>WhatsApp</span>
+        </button>
       </div>
     </form>
   </dialog>
@@ -1079,7 +1078,113 @@
   <div class="status-message" id="status-message" role="status" aria-live="polite"></div>
 
   <script>
-    (() => {
+    (async () => {
+      const productGrid = document.querySelector('#product-grid');
+      const productTemplate = document.querySelector('#product-card-template');
+      const formatCurrency = (value) => new Intl.NumberFormat('es-AR', {
+        style: 'currency',
+        currency: 'ARS',
+        maximumFractionDigits: 0,
+      }).format(value);
+      const response = await fetch('products.json');
+      if (!response.ok) throw new Error('No se pudo cargar el catálogo.');
+      const products = await response.json();
+      const variantItems = new Map();
+
+      products.forEach((product) => {
+        const card = productTemplate.content.firstElementChild.cloneNode(true);
+        const media = card.querySelector('.product-media');
+        card.dataset.category = product.category;
+        card.dataset.name = `${product.name} ${product.searchTerms}`;
+        card.dataset.productId = product.id;
+        if (product.images.length > 1) media.classList.add('product-media-pair');
+        product.images.forEach((image) => {
+          const element = document.createElement('img');
+          element.src = image.src;
+          element.alt = image.alt;
+          element.width = 1080;
+          element.height = 1350;
+          element.loading = 'lazy';
+          media.insertBefore(element, media.lastElementChild);
+        });
+        media.querySelector('figcaption').textContent = product.caption;
+        card.querySelector('.product-meta').textContent = `${product.categoryLabel} / ${product.type}`;
+        card.querySelector('h3').textContent = product.name;
+        card.querySelector('.product-description').textContent = product.description;
+
+        const specs = card.querySelector('.product-specs');
+        (product.specs || []).forEach((spec) => {
+          const item = document.createElement('li');
+          const label = document.createElement('span');
+          const value = document.createElement('strong');
+          label.textContent = spec.label;
+          value.textContent = spec.value;
+          item.append(label, value);
+          specs.append(item);
+        });
+        specs.hidden = specs.children.length === 0;
+
+        const variants = card.querySelector('.product-variants');
+        variants.setAttribute('aria-label', `Variedades de ${product.name}`);
+        product.variants.forEach((variant) => {
+          const row = document.createElement('div');
+          const information = document.createElement('span');
+          const label = document.createElement('span');
+          const price = document.createElement('strong');
+          const control = document.createElement('span');
+          const decrease = document.createElement('button');
+          const quantity = document.createElement('output');
+          const increase = document.createElement('button');
+          const itemId = `${product.id}--${variant.id}`;
+          variantItems.set(itemId, {
+            id: itemId,
+            productName: product.name,
+            variantLabel: variant.label,
+            unitPrice: variant.price,
+          });
+          row.className = 'variant-row';
+          information.className = 'variant-information';
+          label.className = 'variant-label';
+          price.className = 'variant-price';
+          control.className = 'variant-control';
+          control.dataset.itemId = itemId;
+          label.textContent = variant.label;
+          price.textContent = formatCurrency(variant.price);
+          decrease.type = 'button';
+          decrease.className = 'quantity-button variant-decrease';
+          decrease.disabled = true;
+          decrease.setAttribute('aria-label', `Quitar ${product.name}, ${variant.label}`);
+          decrease.textContent = '−';
+          quantity.className = 'variant-quantity';
+          quantity.value = '0';
+          quantity.textContent = '0';
+          quantity.setAttribute('aria-label', `Cantidad de ${product.name}, ${variant.label}`);
+          increase.type = 'button';
+          increase.className = 'quantity-button variant-increase';
+          increase.setAttribute('aria-label', `Agregar ${product.name}, ${variant.label}`);
+          increase.dataset.itemId = itemId;
+          increase.textContent = '+';
+          control.append(decrease, quantity, increase);
+          information.append(label, price);
+          row.append(information, control);
+          variants.append(row);
+        });
+
+        if (product.variants.length === 0) {
+          const inquiry = document.createElement('button');
+          inquiry.type = 'button';
+          inquiry.className = 'product-inquiry';
+          inquiry.dataset.product = product.name;
+          inquiry.setAttribute('aria-label', `Consultar por ${product.name}`);
+          inquiry.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h14v10H9l-4 4v-4H3V3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+          variants.append(inquiry);
+        }
+
+        productGrid.append(card);
+      });
+      productGrid.dataset.rendered = 'true';
+      productGrid.setAttribute('aria-busy', 'false');
+
       const menuButton = document.querySelector('.menu-button');
       const navigation = document.querySelector('.primary-nav');
       const firstNavLink = navigation.querySelector('a');
@@ -1089,14 +1194,18 @@
       const search = document.querySelector('#product-search');
       const resultCount = document.querySelector('#result-count');
       const emptyState = document.querySelector('#empty-state');
-      const addButtons = [...document.querySelectorAll('.add-button')];
+      const variantIncreaseButtons = [...document.querySelectorAll('.variant-increase')];
+      const variantDecreaseButtons = [...document.querySelectorAll('.variant-decrease')];
+      const inquiryButtons = [...document.querySelectorAll('.product-inquiry')];
       const cartButton = document.querySelector('.icon-button[aria-label^="Abrir lista de consulta"]');
       const cartCount = document.querySelector('.cart-count');
       const cartDialog = document.querySelector('#cart-dialog');
       const cartSummary = document.querySelector('#cart-summary');
+      const cartTotal = document.querySelector('#cart-total');
       const cartItemsList = document.querySelector('#cart-items');
       const cartCloseButtons = [...document.querySelectorAll('.cart-close')];
       const orderForm = document.querySelector('#whatsapp-order-form');
+      const contactForm = document.querySelector('#contact-form');
       const whatsappSubmit = document.querySelector('.whatsapp-submit');
       const status = document.querySelector('#status-message');
       const sellerWhatsApp = '5491136169725';
@@ -1110,6 +1219,31 @@
 
       const getTotalUnits = () => [...cartItems.values()]
         .reduce((total, item) => total + item.quantity, 0);
+      const getTotalPrice = () => [...cartItems.values()]
+        .reduce((total, item) => total + (item.unitPrice * item.quantity), 0);
+
+      const updateVariantControl = (itemId) => {
+        const control = document.querySelector(`.variant-control[data-item-id="${itemId}"]`);
+        const quantity = cartItems.get(itemId)?.quantity || 0;
+        control.querySelector('.variant-quantity').value = String(quantity);
+        control.querySelector('.variant-quantity').textContent = String(quantity);
+        control.querySelector('.variant-decrease').disabled = quantity === 0;
+      };
+
+      const adjustItem = (itemId, change, restoreCartFocus = false) => {
+        const catalogItem = variantItems.get(itemId);
+        const currentItem = cartItems.get(itemId);
+        const nextQuantity = Math.max(0, (currentItem?.quantity || 0) + change);
+        if (nextQuantity === 0) cartItems.delete(itemId);
+        else cartItems.set(itemId, { ...catalogItem, quantity: nextQuantity });
+        updateVariantControl(itemId);
+        renderCart();
+        if (restoreCartFocus) {
+          const replacement = [...cartItemsList.querySelectorAll('.cart-item-remove')]
+            .find((button) => button.dataset.itemId === itemId);
+          (replacement || cartSummary).focus();
+        }
+      };
 
       const renderCart = () => {
         const count = getTotalUnits();
@@ -1117,7 +1251,8 @@
         cartButton.setAttribute('aria-label', `Abrir lista de consulta; ${count} ${count === 1 ? 'unidad' : 'unidades'}`);
         cartSummary.textContent = count === 0
           ? 'La lista de consulta está vacía.'
-          : `${count} ${count === 1 ? 'unidad agregada' : 'unidades agregadas'} a la lista.`;
+          : `${count} ${count === 1 ? 'unidad agregada' : 'unidades agregadas'} al carrito.`;
+        cartTotal.textContent = `Total: ${formatCurrency(getTotalPrice())}`;
         whatsappSubmit.disabled = count === 0;
         cartItemsList.replaceChildren(...[...cartItems.values()].map((cartItem) => {
           const item = document.createElement('li');
@@ -1129,21 +1264,13 @@
           productName.className = 'cart-item-name';
           productMeta.className = 'cart-item-meta';
           removeButton.className = 'cart-item-remove';
-          productName.textContent = cartItem.name;
-          productMeta.textContent = `Cantidad: ${cartItem.quantity} · ${cartItem.price}`;
+          productName.textContent = `${cartItem.productName} · ${cartItem.variantLabel}`;
+          productMeta.textContent = `${cartItem.quantity} × ${formatCurrency(cartItem.unitPrice)} · ${formatCurrency(cartItem.unitPrice * cartItem.quantity)}`;
           removeButton.type = 'button';
-          removeButton.dataset.product = cartItem.name;
-          removeButton.setAttribute('aria-label', `Quitar una unidad de ${cartItem.name}`);
-          removeButton.textContent = 'Quitar';
-          removeButton.addEventListener('click', () => {
-            const currentItem = cartItems.get(cartItem.name);
-            if (currentItem.quantity === 1) cartItems.delete(cartItem.name);
-            else currentItem.quantity -= 1;
-            renderCart();
-            const replacement = [...cartItemsList.querySelectorAll('.cart-item-remove')]
-              .find((button) => button.dataset.product === cartItem.name);
-            (replacement || cartSummary).focus();
-          });
+          removeButton.dataset.itemId = cartItem.id;
+          removeButton.setAttribute('aria-label', `Quitar una unidad de ${cartItem.productName}, ${cartItem.variantLabel}`);
+          removeButton.textContent = '−';
+          removeButton.addEventListener('click', () => adjustItem(cartItem.id, -1, true));
           copy.append(productName, productMeta);
           item.append(copy, removeButton);
           return item;
@@ -1207,48 +1334,65 @@
       cartButton.addEventListener('click', () => cartDialog.showModal());
       cartCloseButtons.forEach((button) => button.addEventListener('click', () => cartDialog.close()));
 
-      addButtons.forEach((button) => {
+      variantIncreaseButtons.forEach((button) => {
         button.addEventListener('click', () => {
-          const currentItem = cartItems.get(button.dataset.product);
-          if (currentItem) currentItem.quantity += 1;
-          else {
-            cartItems.set(button.dataset.product, {
-              name: button.dataset.product,
-              price: button.dataset.price,
-              quantity: 1,
-            });
-          }
-          renderCart();
-          status.textContent = `${button.dataset.product} se agregó a la lista de consulta.`;
+          const item = variantItems.get(button.dataset.itemId);
+          adjustItem(button.dataset.itemId, 1);
+          status.textContent = `${item.productName}, ${item.variantLabel}, se agregó al carrito.`;
           status.classList.add('is-visible');
           clearTimeout(statusTimer);
           statusTimer = setTimeout(() => status.classList.remove('is-visible'), 2600);
         });
       });
 
-      orderForm.elements.buyerName.addEventListener('input', (event) => {
-        event.currentTarget.setCustomValidity('');
+      variantDecreaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const itemId = button.closest('.variant-control').dataset.itemId;
+          adjustItem(itemId, -1);
+        });
       });
+
+      inquiryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          contactForm.elements.contactMessage.value = `Quiero consultar el precio de ${button.dataset.product}.`;
+          document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+          contactForm.elements.contactName.focus({ preventScroll: true });
+        });
+      });
+
+      const openWhatsApp = (message) => {
+        const url = `https://wa.me/${sellerWhatsApp}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      };
+      const clearValidation = (input) => input.addEventListener('input', () => input.setCustomValidity(''));
+      const trimmedValue = (input, validationMessage) => {
+        const value = input.value.trim();
+        input.setCustomValidity(value ? '' : validationMessage);
+        if (!value) {
+          input.reportValidity();
+          input.focus();
+          return null;
+        }
+        return value;
+      };
+
+      clearValidation(orderForm.elements.buyerName);
+      clearValidation(contactForm.elements.contactName);
+      clearValidation(contactForm.elements.contactMessage);
 
       orderForm.addEventListener('submit', (event) => {
         event.preventDefault();
         if (cartItems.size === 0) return;
 
-        const buyerNameInput = orderForm.elements.buyerName;
-        const buyerName = buyerNameInput.value.trim();
-        if (!buyerName) {
-          buyerNameInput.setCustomValidity('Ingresá tu nombre.');
-          buyerNameInput.reportValidity();
-          buyerNameInput.focus();
-          return;
-        }
-        buyerNameInput.setCustomValidity('');
+        const buyerName = trimmedValue(orderForm.elements.buyerName, 'Ingresá tu nombre.');
+        if (!buyerName) return;
         const buyerLocality = orderForm.elements.buyerLocality.value.trim();
         const buyerComments = orderForm.elements.buyerComments.value.trim();
         const productLines = [...cartItems.values()].map((item, index) => [
-          `${index + 1}. ${item.name}`,
+          `${index + 1}. ${item.productName} — ${item.variantLabel}`,
           `   Cantidad: ${item.quantity}`,
-          `   Precio publicado: ${item.price}`,
+          `   Precio unitario: ${formatCurrency(item.unitPrice)}`,
+          `   Subtotal: ${formatCurrency(item.unitPrice * item.quantity)}`,
         ].join('\n'));
         const messageParts = [
           'Pedido para Almatierra Cultivos',
@@ -1258,12 +1402,32 @@
         ];
 
         if (buyerLocality) messageParts.push(`Localidad o barrio: ${buyerLocality}`);
-        messageParts.push('', 'PEDIDO', ...productLines, '', `Total de unidades: ${getTotalUnits()}`);
+        messageParts.push(
+          '',
+          'PEDIDO',
+          ...productLines,
+          '',
+          `Total de unidades: ${getTotalUnits()}`,
+          `Total: ${formatCurrency(getTotalPrice())}`,
+        );
         if (buyerComments) messageParts.push('', 'COMENTARIOS', buyerComments);
-        messageParts.push('', 'La presentación, disponibilidad, entrega y forma de pago se coordinan por WhatsApp.');
+        openWhatsApp(messageParts.join('\n'));
+      });
 
-        const whatsappUrl = `https://wa.me/${sellerWhatsApp}?text=${encodeURIComponent(messageParts.join('\n'))}`;
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const contactName = trimmedValue(contactForm.elements.contactName, 'Ingresá tu nombre.');
+        if (!contactName) return;
+        const contactMessage = trimmedValue(contactForm.elements.contactMessage, 'Ingresá tu consulta.');
+        if (!contactMessage) return;
+        openWhatsApp([
+          'Consulta para Almatierra Cultivos',
+          '',
+          `Nombre: ${contactName}`,
+          '',
+          'CONSULTA',
+          contactMessage,
+        ].join('\n'));
       });
     })();
   </script>
