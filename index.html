@@ -613,6 +613,36 @@
       text-align: center;
     }
 
+    /* Restriccion de disponibilidad: va en la tarjeta, no solo en la ficha,
+       porque condiciona la compra y no puede descubrirse al final. */
+    .product-availability {
+      display: inline-flex;
+      align-self: flex-start;
+      margin: 0;
+      padding: 2px 6px;
+      border: 1px solid var(--brand);
+      border-radius: var(--radius);
+      color: var(--brand);
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .product-availability-note {
+      margin: 0 0 var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      border-left: 2px solid var(--brand);
+      background: var(--paper);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .cart-item-availability {
+      color: var(--brand);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
     .product-quote-note {
       margin: 0;
       color: var(--muted);
@@ -1315,6 +1345,7 @@
               <figcaption></figcaption>
             </figure>
             <p class="product-meta"></p>
+            <p class="product-availability" hidden></p>
             <h3 class="product-name">Producto</h3>
             <button class="product-open" type="button" aria-label="Ver detalle del producto"></button>
             <ul class="product-variants"></ul>
@@ -1496,6 +1527,7 @@
         <ul class="product-includes" id="product-dialog-includes"></ul>
       </section>
       <ul class="product-notes" id="product-dialog-notes" hidden></ul>
+      <p class="product-availability-note" id="product-dialog-availability" hidden></p>
       <p class="product-quote-note" id="product-dialog-quote-note" hidden></p>
       <section aria-labelledby="product-dialog-variants-title">
         <h3 class="product-dialog-subtitle" id="product-dialog-variants-title">Presentación</h3>
@@ -1574,6 +1606,7 @@
             productName: product.name,
             variantLabel: variant.label,
             unitPrice: variant.price ?? null,
+            availability: product.availability?.label || null,
           });
         });
       });
@@ -1732,6 +1765,8 @@
           product.brand,
           product.categoryLabel,
           product.type,
+          product.availability?.label,
+          product.availability?.detail,
         ].filter(Boolean).join(' ');
 
         const image = document.createElement('img');
@@ -1746,6 +1781,11 @@
           ? `${product.categoryLabel} / ${product.brand}`
           : `${product.categoryLabel} / ${product.type}`;
         card.querySelector('.product-name').textContent = product.name;
+
+        const availability = card.querySelector('.product-availability');
+        availability.textContent = product.availability?.label || '';
+        availability.title = product.availability?.detail || '';
+        availability.hidden = !product.availability;
 
         open.setAttribute('aria-label', `Ver detalle de ${product.name}`);
         open.dataset.productId = product.id;
@@ -1816,6 +1856,7 @@
       const productDialogIncludes = document.querySelector('#product-dialog-includes');
       const productDialogIncludesGroup = document.querySelector('#product-dialog-includes-group');
       const productDialogNotes = document.querySelector('#product-dialog-notes');
+      const productDialogAvailability = document.querySelector('#product-dialog-availability');
       const productDialogQuoteNote = document.querySelector('#product-dialog-quote-note');
       const productDialogVariants = document.querySelector('#product-dialog-variants');
       const productDialogVariantsTitle = document.querySelector('#product-dialog-variants-title');
@@ -1845,6 +1886,13 @@
         productMeta.className = 'cart-item-meta';
 
         productName.textContent = `${cartItem.productName} · ${cartItem.variantLabel}`;
+        if (cartItem.availability) {
+          const flag = document.createElement('span');
+          flag.className = 'cart-item-availability';
+          flag.textContent = cartItem.availability;
+          copy.append(flag);
+        }
+
         productMeta.textContent = cartItem.unitPrice == null
           ? `${cartItem.quantity} ${cartItem.quantity === 1 ? 'unidad' : 'unidades'} · ${labels.quotePrice}`
           : `${cartItem.quantity} × ${formatCurrency(cartItem.unitPrice)} · ${formatCurrency(cartItem.unitPrice * cartItem.quantity)}`;
@@ -2065,6 +2113,9 @@
         fillList(productDialogIncludes, product.includes, productDialogIncludesGroup);
         fillList(productDialogNotes, product.notes);
 
+        productDialogAvailability.textContent = product.availability?.detail || '';
+        productDialogAvailability.hidden = !product.availability;
+
         const hasQuote = product.variants.some((variant) => variant.price == null);
         productDialogQuoteNote.textContent = labels.quoteNote;
         productDialogQuoteNote.hidden = !hasQuote;
@@ -2270,6 +2321,7 @@
             `   Cantidad: ${item.quantity}`,
             `   Precio unitario: ${formatCurrency(item.unitPrice)}`,
             `   Subtotal: ${formatCurrency(item.unitPrice * item.quantity)}`,
+            ...(item.availability ? [`   Disponibilidad: ${item.availability}`] : []),
           ].join('\n')));
           messageParts.push('', `Total de unidades: ${getPricedUnits()}`, `Total: ${formatCurrency(getTotalPrice())}`);
         }
@@ -2279,6 +2331,7 @@
             `${index + 1}. ${item.productName} — ${item.variantLabel}`,
             `   Cantidad: ${item.quantity}`,
             `   Precio: ${labels.quotePrice}`,
+            ...(item.availability ? [`   Disponibilidad: ${item.availability}`] : []),
           ].join('\n')));
         }
 
