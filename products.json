@@ -16,8 +16,16 @@
     "caption": "Melena de León",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "60-cc", "label": "60 cc", "price": 35000 },
-      { "id": "100-cc", "label": "100 cc", "price": 60000 }
+      {
+        "id": "60-cc",
+        "label": "60 cc",
+        "price": 35000
+      },
+      {
+        "id": "100-cc",
+        "label": "100 cc",
+        "price": 60000
+      }
     ]
   },
   {
@@ -37,7 +45,11 @@
     "caption": "Óleo concentrado de CBD",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "15-cc", "label": "15 cc", "price": 25000 }
+      {
+        "id": "15-cc",
+        "label": "15 cc",
+        "price": 25000
+      }
     ]
   },
   {
@@ -57,7 +69,11 @@
     "caption": "Óleo extra concentrado de CBD",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "15-cc", "label": "15 cc", "price": 30000 }
+      {
+        "id": "15-cc",
+        "label": "15 cc",
+        "price": 30000
+      }
     ]
   },
   {
@@ -77,8 +93,68 @@
     "caption": "Pomada de CBD y jarilla",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "60-cc", "label": "60 cc", "price": 8000 },
-      { "id": "120-cc", "label": "120 cc", "price": 15000 }
+      {
+        "id": "60-cc",
+        "label": "60 cc",
+        "price": 8000
+      },
+      {
+        "id": "120-cc",
+        "label": "120 cc",
+        "price": 15000
+      }
+    ]
+  },
+  {
+    "id": "masoterapia",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "type": "Masoterapia",
+    "name": "Masoterapia",
+    "searchTerms": "masoterapia masaje sesion bienestar relajacion tensiones contracturas mendoza presencial",
+    "description": "Un espacio de bienestar y relajación a través de técnicas de masoterapia adaptadas a las necesidades de cada persona. Ideal para aliviar tensiones, favorecer la relajación y recuperar el bienestar corporal.",
+    "availability": {
+      "label": "Solo en Mendoza",
+      "detail": "Servicio presencial disponible únicamente para clientes de Mendoza, Argentina."
+    },
+    "images": [
+      {
+        "src": "assets/products/masoterapia.jpg",
+        "alt": "Ilustración de una sesión de masoterapia: una masajista trabaja la espalda de una persona recostada, entre plantas de cannabis y una figura de Buda"
+      }
+    ],
+    "caption": "Sesión de masoterapia",
+    "variantGroupLabel": "Sesión",
+    "variants": [
+      {
+        "id": "hora",
+        "label": "1 hora",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "brownies-de-chocolate",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "type": "Repostería",
+    "name": "Brownies de chocolate",
+    "searchTerms": "brownie brownies chocolate aromaticas humedo dulce reposteria comestible",
+    "description": "Brownies de chocolate, con aromáticas húmedos y de sabor intenso, elaborados para disfrutar un momento dulce y especial.",
+    "images": [
+      {
+        "src": "assets/products/brownies-de-chocolate.jpg",
+        "alt": "Tres brownies de chocolate apilados, con trozos de chocolate en la superficie y migas alrededor"
+      }
+    ],
+    "caption": "Brownies de chocolate",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": 5000
+      }
     ]
   },
   {
@@ -102,7 +178,11 @@
     "caption": "Dos vistas del grinder metálico con strass",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -125,12 +205,22 @@
     ],
     "caption": "Dos vistas del panel LED Mars Orbiter 80W",
     "specs": [
-      { "label": "Potencia", "value": "80 W" },
-      { "label": "Uso", "value": "2 ciclos" }
+      {
+        "label": "Potencia",
+        "value": "80 W"
+      },
+      {
+        "label": "Uso",
+        "value": "2 ciclos"
+      }
     ],
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": 160000 }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": 160000
+      }
     ]
   },
   {
@@ -166,9 +256,21 @@
     "caption": "Cuatro vistas del vaporizador Puffco Peak",
     "variantGroupLabel": "Acabado",
     "variants": [
-      { "id": "onix", "label": "Ónix", "price": null },
-      { "id": "zest", "label": "Zest", "price": null },
-      { "id": "zafiro", "label": "Zafiro", "price": null }
+      {
+        "id": "onix",
+        "label": "Ónix",
+        "price": null
+      },
+      {
+        "id": "zest",
+        "label": "Zest",
+        "price": null
+      },
+      {
+        "id": "zafiro",
+        "label": "Zafiro",
+        "price": null
+      }
     ]
   },
   {
@@ -226,7 +328,11 @@
     "caption": "Diez vistas de la Puffco Peak Pro 3DXL",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -262,8 +368,16 @@
     "caption": "Cuatro vistas del vaporizador Pivot",
     "variantGroupLabel": "Acabado",
     "variants": [
-      { "id": "onix", "label": "Ónix", "price": null },
-      { "id": "zafiro", "label": "Zafiro", "price": null }
+      {
+        "id": "onix",
+        "label": "Ónix",
+        "price": null
+      },
+      {
+        "id": "zafiro",
+        "label": "Zafiro",
+        "price": null
+      }
     ]
   },
   {
@@ -327,7 +441,11 @@
     "caption": "Diez vistas del Proxy Core",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -374,7 +492,11 @@
     "caption": "Seis vistas del Proxy Pipe Kit",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -412,7 +534,11 @@
     "caption": "Cinco vistas del Hot Knife",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -427,8 +553,14 @@
     "taglineEn": "The best just got bigger.",
     "description": "Cazuela un 78% más grande. 2 veces más vapor. El Peak Pro 3DXL es la primera cámara de e-rig de alta capacidad del mundo. Ofreciendo el mismo sabor y consistencia increíbles por los que nuestra tecnología 3D patentada es conocida, la cámara más profunda del 3DXL y el Joystick XL te permiten cargar más y vaporizar más fuerte, con menos residuos. El 3DXL también desbloquea un nuevo nivel de control de vapor en la app Puffco Connect.",
     "descriptionEn": "78% larger bowl. 2x more vapor. The Peak Pro 3DXL is the world’s first high capacity e-rig chamber. Delivering the same incredible flavor and consistency our patented 3D technology is known for, the 3DXL’s deeper chamber and XL Joystick let you load fuller and rip harder—with less reclaim. The 3DXL also unlocks a new level of vapor control in the Puffco Connect app.",
-    "includes": ["Cámara Peak Pro 3DXL", "Tapa con Joystick XL"],
-    "includesEn": ["Peak Pro 3DXL Chamber", "XL Joystick Cap"],
+    "includes": [
+      "Cámara Peak Pro 3DXL",
+      "Tapa con Joystick XL"
+    ],
+    "includesEn": [
+      "Peak Pro 3DXL Chamber",
+      "XL Joystick Cap"
+    ],
     "images": [
       {
         "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/01-interior.webp",
@@ -462,7 +594,11 @@
     "caption": "Siete vistas de la Chamber 3DXL",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -493,7 +629,11 @@
     "caption": "Dos vistas de la Cámara 3D Chamber",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -537,7 +677,11 @@
     "caption": "Seis vistas del Travel Glass",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   },
   {
@@ -590,9 +734,21 @@
     "caption": "Ocho vistas del Travel Case",
     "variantGroupLabel": "Acabado",
     "variants": [
-      { "id": "perla", "label": "Perla", "price": null },
-      { "id": "amanecer", "label": "Amanecer", "price": null },
-      { "id": "zafiro", "label": "Zafiro", "price": null }
+      {
+        "id": "perla",
+        "label": "Perla",
+        "price": null
+      },
+      {
+        "id": "amanecer",
+        "label": "Amanecer",
+        "price": null
+      },
+      {
+        "id": "zafiro",
+        "label": "Zafiro",
+        "price": null
+      }
     ]
   },
   {
@@ -628,7 +784,11 @@
     "caption": "Cuatro vistas de la Joystick Cap",
     "variantGroupLabel": "Presentación",
     "variants": [
-      { "id": "unidad", "label": "Unidad", "price": null }
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": null
+      }
     ]
   }
 ]
