@@ -286,7 +286,13 @@
     }
 
     .specimen {
+      /* Flex para centrar: con display:block el height:100% de la imagen no
+         resuelve contra un alto que sale de min-height y la foto quedaba
+         pegada arriba con un hueco debajo. */
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       align-self: center;
       min-height: 350px;
       border: 1px solid var(--ink);
@@ -655,6 +661,7 @@
 
     .product-specimen img {
       width: 100%;
+      max-height: 100%;
       height: 100%;
       object-fit: contain;
       background: var(--surface);
@@ -1300,13 +1307,12 @@
         </div>
       </div>
 
-      <aside class="manifesto-plate" aria-label="Producto destacado">
-        <span class="plate-index">Selección 01 / Bienestar</span>
+      <aside class="manifesto-plate" aria-label="Ilustración de portada">
+        <span class="plate-index">Edición 01 / Ilustración</span>
         <div class="specimen product-specimen">
-          <img src="assets/products/melena-de-leon.png" alt="Dos presentaciones de tintura de Melena de León de Almatierra" width="1080" height="1350">
-          <p class="specimen-label">Melena de León<br>60 cc y 100 cc</p>
+          <img src="assets/ilustracion-portada.jpg" alt="Ilustración en estilo grabado japonés de una mujer con kimono verde estampado con hojas de cannabis, apoyando el rostro en la mano" width="1080" height="1350">
         </div>
-        <span class="plate-caption">Extracto de hongo funcional</span>
+        <span class="plate-caption">Cannabis, cultura y bienestar consciente</span>
       </aside>
     </section>
 
