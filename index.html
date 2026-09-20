@@ -423,42 +423,54 @@
       font-size: 12px;
     }
 
+    [hidden] { display: none !important; }
+
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-top: 1px solid var(--ink);
-      border-left: 1px solid var(--ink);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 1360px) {
+      .product-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     }
 
     .product-card {
+      position: relative;
       display: flex;
       flex-direction: column;
+      gap: var(--space-2);
       min-width: 0;
-      padding: var(--space-4);
-      border-right: 1px solid var(--ink);
-      border-bottom: 1px solid var(--ink);
+      padding: var(--space-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       background: var(--surface);
-      transition: transform 160ms ease;
+      transition: transform 160ms ease, border-color 160ms ease;
     }
 
-    .product-card:hover { transform: translateY(-2px); }
-    .product-card[hidden] { display: none; }
+    .product-card:hover { transform: translateY(-2px); border-color: var(--ink); }
+    .product-card:focus-within { border-color: var(--ink); }
+
+    /* Disparador estirado: cubre la tarjeta por debajo de los steppers,
+       asi no hay interactivos anidados y el HTML sigue siendo valido. */
+    .product-open {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border: 0;
+      border-radius: var(--radius);
+      background: transparent;
+      cursor: pointer;
+    }
 
     .product-media {
       position: relative;
       display: grid;
       place-items: center;
-      aspect-ratio: 4 / 5;
-      margin: 0 0 var(--space-4);
-      border: 1px solid var(--warm-gray);
+      aspect-ratio: 1 / 1;
+      margin: 0;
       background: var(--surface);
       overflow: hidden;
-    }
-
-    .product-media.product-media-pair {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1px;
-      background: var(--warm-gray);
     }
 
     .product-media img {
@@ -479,40 +491,46 @@
     }
 
     .product-meta {
-      margin: 0 0 8px;
+      margin: 0;
       color: var(--brand);
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: .05em;
       text-transform: uppercase;
     }
 
-    .product-card h3 {
-      font-size: clamp(1.45rem, 2.2vw, 2rem);
-      line-height: 1.12;
-      text-transform: uppercase;
+    .product-name {
+      display: -webkit-box;
+      margin: 0;
+      overflow: hidden;
+      font-size: 1.0625rem;
+      line-height: 1.18;
+      text-transform: none;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
     }
-
-    .product-description { margin: 12px 0 14px; color: var(--muted); }
 
     .product-specs,
     .product-variants {
       display: grid;
-      gap: 4px;
       margin: 0;
       padding: 0;
       color: var(--ink);
-      font-family: var(--mono);
-      font-size: 12px;
       list-style: none;
     }
 
-    .product-specs { margin-bottom: var(--space-4); }
-    .product-variants { margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--warm-gray); }
+    .product-specs {
+      gap: 4px;
+      margin-bottom: var(--space-4);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
 
-    .product-specs li,
-    .variant-row {
+    .product-variants { position: relative; z-index: 1; margin-top: auto; }
+
+    .product-specs li {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -521,36 +539,86 @@
       border-bottom: 1px solid var(--warm-gray);
     }
 
-    .variant-information { display: grid; gap: 3px; }
-    .variant-price { color: var(--brand); }
-    .variant-control {
-      display: grid;
-      grid-template-columns: 44px minmax(32px, auto) 44px;
+    .variant-row {
+      display: flex;
       align-items: center;
-      border: 1px solid var(--brand);
-      color: var(--brand);
-      background: var(--surface);
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 44px;
+      border-top: 1px solid var(--warm-gray);
     }
 
-    .quantity-button,
-    .product-inquiry {
+    .variant-information { display: grid; gap: 2px; min-width: 0; }
+
+    .variant-label {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .variant-price {
+      color: var(--brand);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .variant-price.is-quote { color: var(--muted); }
+
+    .variant-control {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 28px a la vista, 44px de area tactil via ::before. */
+    .quantity-button {
+      position: relative;
       display: inline-grid;
-      min-width: 44px;
-      min-height: 44px;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
       place-items: center;
-      border: 0;
+      border: 1px solid var(--brand);
+      border-radius: 50%;
       color: #fff;
       background: var(--brand);
-      font-size: 1.25rem;
+      font-family: var(--body);
+      font-size: 15px;
       font-weight: 700;
+      line-height: 1;
       cursor: pointer;
     }
 
-    .quantity-button:disabled { cursor: not-allowed; color: var(--muted); background: var(--warm-gray); }
-    .quantity-button:not(:disabled):hover,
-    .product-inquiry:hover { background: var(--brand-hover); }
-    .variant-quantity { min-width: 32px; text-align: center; font-weight: 700; }
-    .product-inquiry { justify-self: end; margin-top: var(--space-3); border: 1px solid var(--brand); }
+    .quantity-button::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+    }
+
+    .quantity-button:disabled {
+      border-color: var(--warm-gray);
+      color: var(--muted);
+      background: var(--warm-gray);
+      cursor: not-allowed;
+    }
+
+    .quantity-button:not(:disabled):hover { border-color: var(--brand-hover); background: var(--brand-hover); }
+
+    .variant-quantity {
+      min-width: 18px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .product-quote-note {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
 
     .product-specimen::before,
     .product-specimen::after { display: none; }
@@ -569,15 +637,11 @@
       text-align: center;
     }
 
-    .empty-state[hidden] { display: none; }
-
     .editorial-block {
       display: grid;
       grid-template-columns: 4fr 8fr;
       border-block: 1px solid var(--ink);
     }
-
-    .editorial-block[hidden] { display: none; }
 
     .editorial-index {
       padding: var(--space-7) var(--space-5);
@@ -651,7 +715,241 @@
     }
 
     .cart-dialog[open] { display: flex; flex-direction: column; }
-    .cart-dialog::backdrop { background: rgb(17 17 17 / 72%); }
+    .cart-dialog::backdrop { background: rgb(17 17 17 / 52%); }
+    .cart-dialog { box-shadow: 0 24px 60px rgb(17 17 17 / 22%); }
+
+    .cart-group { margin-bottom: var(--space-4); }
+    .cart-group:last-of-type { margin-bottom: 0; }
+
+    .cart-group-title {
+      margin: 0 0 var(--space-2);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .cart-quote-total {
+      margin: var(--space-2) 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* ---------- modal de detalle ---------- */
+
+    .product-dialog {
+      width: min(760px, calc(100% - 40px));
+      /* Altura fija: el modal mide igual para todos los productos, no salta
+         entre uno de dos lineas y otro con notas y lista de incluye. */
+      height: min(760px, calc(100dvh - 40px));
+    }
+
+    /* El h2 recibe el foco al abrir para que un lector de pantalla anuncie
+       el producto; es tabindex=-1, no se alcanza con Tab, y el anillo verde
+       sobre el titulo solo confunde. */
+    #product-dialog-title:focus { outline: none; }
+
+    /* Ninguna barra horizontal: lo que no entra se parte o se recorta. */
+    .product-dialog .cart-dialog-body { overflow-x: hidden; }
+    .product-dialog .cart-dialog-body * { overflow-wrap: anywhere; }
+    .product-dialog-tagline {
+      margin: 0 0 var(--space-3);
+      color: var(--brand);
+      font-size: 1.0625rem;
+      font-weight: 600;
+    }
+
+    .product-dialog-description { margin: 0 0 var(--space-4); color: var(--muted); }
+
+    .product-dialog-subtitle {
+      margin: 0 0 var(--space-2);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .product-includes,
+    .product-notes {
+      display: grid;
+      gap: 6px;
+      margin: 0 0 var(--space-4);
+      padding-left: 18px;
+    }
+
+    .product-notes { color: var(--muted); font-size: 15px; }
+
+    .product-dialog .product-quote-note {
+      margin: 0 0 var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      border-left: 2px solid var(--brand);
+      background: var(--paper);
+      font-size: 15px;
+    }
+
+    .product-dialog .product-variants { margin-bottom: 0; }
+
+    /* ---------- carrusel ---------- */
+
+    .product-gallery { display: grid; gap: var(--space-2); margin-bottom: var(--space-4); }
+
+    .gallery-single,
+    .gallery-track {
+      /* Alto acotado: con aspect-ratio 1/1 la galeria crecia hasta el ancho
+         del modal y se comia la pantalla. */
+      height: 320px;
+      margin: 0;
+      border: 1px solid var(--warm-gray);
+      background: var(--surface);
+    }
+
+    /* Flex, no grid: en grid la fila implicita se dimensiona con el alto
+       natural de la imagen, el height:100% resolvia contra esa fila y la
+       foto desbordaba la caja pisando el texto de abajo. Mismo motivo que
+       en .gallery-track > li. */
+    .gallery-single {
+      display: flex;
+      min-height: 0;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .gallery-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      /* Sin esto la fila implicita se dimensiona con el alto natural de la
+         imagen y el height del track queda ignorado. */
+      grid-auto-rows: 100%;
+      padding: 0;
+      overflow-x: auto;
+      /* overflow-x:auto arrastra overflow-y a auto y aparece una barra vertical. */
+      overflow-y: hidden;
+      list-style: none;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .gallery-track > li {
+      /* Sin height:100% la imagen se dimensiona sola y desborda el track. */
+      /* Flex y no grid: aca el height:100% de la imagen resuelve contra el
+         alto definido del li. En grid resolvia contra la fila implicita,
+         que se dimensiona con la imagen y volvia a desbordar. */
+      display: flex;
+      height: 100%;
+      min-height: 0;
+      min-width: 0;
+      align-items: center;
+      justify-content: center;
+      scroll-snap-align: center;
+    }
+
+    /* La navegacion son los botones y los puntos; la barra sobra. */
+    .gallery-track { scrollbar-width: none; }
+    .gallery-track::-webkit-scrollbar { display: none; }
+
+    .gallery-single img,
+    .gallery-track img {
+      width: 100%;
+      max-height: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: var(--surface);
+    }
+
+    .gallery-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+    .gallery-button {
+      display: inline-grid;
+      min-width: 44px;
+      min-height: 44px;
+      place-items: center;
+      border: 1px solid var(--brand);
+      border-radius: var(--radius);
+      color: var(--brand);
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .gallery-button:hover { color: #fff; background: var(--brand); }
+
+    .gallery-counter {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .gallery-dots { display: flex; flex-wrap: wrap; justify-content: center; }
+
+    .gallery-dot {
+      display: inline-grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .gallery-dot::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--brand);
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .gallery-dot.is-active::after { background: var(--brand); }
+
+    /* ---------- manifiesto ---------- */
+
+    .manifesto-section .container { max-width: 62ch; }
+    .manifesto-section h2 { margin-bottom: var(--space-5); text-transform: uppercase; }
+
+    .manifesto-text {
+      display: grid;
+      gap: var(--space-3);
+      overflow: hidden;
+      transition: max-height 240ms ease;
+    }
+
+    /* El corte cae en la decima linea renderizada. El JS mide las cajas de
+       linea reales (los espacios entre parrafos tambien ocupan) y escribe
+       --manifesto-collapsed; esto es el respaldo sin JS. */
+    .manifesto-section:not(.is-expanded) .manifesto-text {
+      max-height: 256px;
+      max-height: var(--manifesto-collapsed, calc(10 * 1lh));
+      -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    }
+
+    .manifesto-section.is-expanded .manifesto-text { max-height: none; }
+
+    .manifesto-text p { margin: 0; text-wrap: pretty; }
+
+    .manifesto-sign {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .manifesto-sign span {
+      color: var(--muted);
+      font-family: var(--body);
+      font-size: 15px;
+      letter-spacing: normal;
+      text-transform: none;
+    }
+
+    .manifesto-toggle { margin-top: var(--space-4); }
 
     .cart-dialog-header {
       display: grid;
@@ -663,8 +961,11 @@
     }
 
     .cart-dialog-header h2 {
+      /* Escala con el viewport: a 42px fijos un nombre largo se comia un
+         tercio del modal en el telefono. */
       margin-top: 4px;
-      font-size: 2.625rem;
+      font-size: clamp(1.375rem, 5.5vw, 2.625rem);
+      line-height: 1.1;
       text-transform: uppercase;
     }
 
@@ -705,16 +1006,25 @@
     .cart-item-copy { display: grid; gap: 4px; }
     .cart-item-name { font-weight: 700; }
     .cart-item-meta { color: var(--muted); font-size: .875rem; }
-    .cart-item-remove {
-      min-width: 72px;
+    .cart-clear-row { display: flex; justify-content: flex-end; margin-bottom: var(--space-4); }
+
+    .cart-clear {
       min-height: 44px;
-      padding: 8px 12px;
-      border: 1px solid var(--ink);
-      color: var(--ink);
-      background: var(--paper);
-      font: 600 .75rem/1 var(--mono);
-      text-transform: uppercase;
+      padding: 0 var(--space-2);
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+      font-family: var(--mono);
+      font-size: 13px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
     }
+
+    .cart-clear:hover { color: var(--ink); }
+
+    /* El carrito usa el mismo control que el catalogo y la ficha. */
+    .cart-items .variant-control { flex: 0 0 auto; }
 
     .cart-disclaimer { margin: var(--space-4) 0 0; color: var(--muted); font-size: .875rem; }
 
@@ -756,6 +1066,48 @@
 
     .cart-dialog-actions button { min-height: 44px; }
     .cart-dialog-actions button:disabled { cursor: not-allowed; color: var(--muted); background: var(--warm-gray); }
+
+    /* Acceso al carrito siempre a mano: el del encabezado se va con el
+       scroll y el catalogo es largo. Solo aparece con algo adentro. */
+    .cart-fab {
+      position: fixed;
+      z-index: 60;
+      right: 24px;
+      bottom: 24px;
+      display: inline-grid;
+      width: 56px;
+      height: 56px;
+      place-items: center;
+      border: 1px solid var(--brand);
+      border-radius: 50%;
+      color: #fff;
+      background: var(--brand);
+      box-shadow: 0 12px 28px rgb(17 17 17 / 14%);
+      cursor: pointer;
+    }
+
+    .cart-fab:hover { border-color: var(--brand-hover); background: var(--brand-hover); }
+
+    .cart-fab-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      display: inline-grid;
+      min-width: 22px;
+      height: 22px;
+      place-items: center;
+      padding-inline: 5px;
+      border: 1px solid var(--surface);
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--surface);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    /* El aviso de "se agrego al carrito" comparte esquina con el boton. */
+    body.has-cart-fab .status-message { bottom: 96px; }
 
     .status-message {
       position: fixed;
@@ -803,7 +1155,7 @@
       .manifesto-copy { padding: var(--space-7) 32px; }
       .manifesto-plate { grid-template-columns: auto 1fr auto; grid-template-rows: none; align-items: center; gap: var(--space-4); border-top: 1px solid var(--ink); border-left: 0; }
       .specimen { width: min(100%, 440px); min-height: 320px; justify-self: center; }
-      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     @media (max-width: 767px) {
@@ -823,7 +1175,7 @@
       .categories { flex-wrap: nowrap; overflow-x: auto; padding: 3px 3px 8px; }
       .category-button { width: auto; flex: 0 0 auto; }
       .catalog-note { flex-direction: column; gap: 4px; }
-      .product-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
       .editorial-block { grid-template-columns: 1fr; }
       .editorial-index { padding: var(--space-5) 20px; border-right: 0; border-bottom: 1px solid var(--ink); }
       .editorial-index strong { font-size: 5rem; }
@@ -832,25 +1184,37 @@
       .contact-grid { grid-template-columns: 1fr; gap: var(--space-5); }
       .contact-submit { width: 100%; }
       .cart-dialog-header, .cart-dialog-body { padding: var(--space-4); }
+      .cart-dialog-header { gap: var(--space-3); }
       .cart-dialog-actions { display: grid; grid-template-columns: 1fr; padding: var(--space-4); }
       .cart-dialog-actions button { width: 100%; }
+
+      /* En el telefono la ficha se queda con una sola accion. "Seguir" sobra:
+         la X del encabezado, Escape y el clic afuera ya cierran. El carrito
+         queda como icono; el nombre accesible lo da su aria-label. */
+      .product-dialog .cart-dialog-actions { grid-template-columns: auto; justify-content: end; }
+      .product-dialog .cart-dialog-actions .product-dialog-close { display: none; }
+      .product-dialog .cart-dialog-actions #product-dialog-cart { width: auto; min-width: 44px; min-height: 44px; padding: 0 var(--space-3); }
+      .product-dialog .cart-dialog-actions #product-dialog-cart span { display: none; }
       .status-message { right: 20px; bottom: 20px; max-width: calc(100vw - 40px); }
+      body.has-cart-fab .status-message { bottom: 92px; }
+      .cart-fab { right: 20px; bottom: 20px; }
     }
 
-    @media (max-width: 419px) {
+    @media (max-width: 359px) {
       .header-main { grid-template-columns: 76px 1fr auto; }
       .brand { width: 76px; height: 76px; }
       .header-actions { gap: 4px; }
       .icon-button, .menu-button { min-width: 44px; padding: 0; }
       .manifesto-actions .button { width: 100%; }
-      .product-footer { align-items: stretch; flex-direction: column; }
-      .add-button { width: 100%; }
+      .product-grid { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
       .product-card:hover { transform: none; }
+      .gallery-track { scroll-behavior: auto; }
+      .manifesto-text { transition: none; }
     }
   </style>
 </head>
@@ -927,11 +1291,7 @@
         </div>
 
         <div class="catalog-toolbar">
-          <div class="categories" role="group" aria-label="Filtrar por categoría">
-            <button class="category-button" type="button" data-filter="all" aria-pressed="true">Todos</button>
-            <button class="category-button" type="button" data-filter="bienestar" aria-pressed="false">Bienestar</button>
-            <button class="category-button" type="button" data-filter="parafernalia" aria-pressed="false">Parafernalia</button>
-          </div>
+          <div class="categories" id="categories" role="group" aria-label="Filtrar por categoría"></div>
 
           <form class="search-form" role="search">
             <label for="product-search">Buscar en el catálogo</label>
@@ -943,7 +1303,7 @@
         </div>
 
         <div class="catalog-note">
-          <span id="result-count">6 resultados</span>
+          <span id="result-count"></span>
           <span>Imágenes y contenido provistos por Almatierra</span>
         </div>
 
@@ -955,11 +1315,24 @@
               <figcaption></figcaption>
             </figure>
             <p class="product-meta"></p>
-            <h3>Producto</h3>
-            <p class="product-description"></p>
-            <ul class="product-specs"></ul>
-            <div class="product-variants"></div>
+            <h3 class="product-name">Producto</h3>
+            <button class="product-open" type="button" aria-label="Ver detalle del producto"></button>
+            <ul class="product-variants"></ul>
           </article>
+        </template>
+
+        <template id="variant-row-template">
+          <li class="variant-row">
+            <span class="variant-information">
+              <span class="variant-label"></span>
+              <strong class="variant-price"></strong>
+            </span>
+            <span class="variant-control">
+              <button class="quantity-button variant-decrease" type="button" hidden>−</button>
+              <output class="variant-quantity" hidden>0</output>
+              <button class="quantity-button variant-increase" type="button">+</button>
+            </span>
+          </li>
         </template>
 
         <div class="empty-state" id="empty-state" hidden>
@@ -982,13 +1355,27 @@
       </div>
     </section>
 
-    <section class="section" id="manifiesto" aria-labelledby="manifesto-section-title">
-      <div class="container section-heading">
-        <div>
-          <p class="eyebrow">Identidad en uso</p>
-          <h2 id="manifesto-section-title">Blanco, tinta y verde.</h2>
+    <section class="section manifesto-section" id="manifiesto" aria-labelledby="manifesto-section-title">
+      <div class="container">
+        <p class="eyebrow">Manifiesto</p>
+        <h2 id="manifesto-section-title">Almatierra</h2>
+
+        <div class="manifesto-text" id="manifesto-text">
+          <p>Nacimos de una planta.<br>Crecimos alrededor de una comunidad.</p>
+          <p>Desde Mendoza, en 2011, empezamos a abrir una conversación que durante mucho tiempo estuvo llena de prejuicios, miedo y silencio.</p>
+          <p>Elegimos aprender.<br>Elegimos compartir.<br>Elegimos acompañar.</p>
+          <p>Creemos en el cannabis como herramienta terapéutica y en el conocimiento como una forma de libertad.</p>
+          <p>Pero también creemos en algo más grande: que nadie debería transitar solo aquello que puede transformar su bienestar.</p>
+          <p>Por eso hacemos comunidad.<br>Educamos.<br>Investigamos.<br>Escuchamos.<br>Aprendemos.</p>
+          <p>Sin milagros. Sin recetas mágicas. Sin humo.</p>
+          <p>Con información, experiencia y respeto por cada historia.</p>
+          <p>Almatierra es una forma de mirar la planta, pero también una forma de mirar a las personas.</p>
+          <p>Porque el bienestar no es una fórmula.<br>Es un camino.</p>
+          <p>Y queremos recorrerlo juntos.</p>
+          <p class="manifesto-sign">Almatierra<br><span>Cannabis, cultura y bienestar consciente.</span></p>
         </div>
-        <p>Oswald construye la voz editorial. Inter sostiene la lectura. IBM Plex Mono ordena referencias y datos. El verde señala; nunca invade.</p>
+
+        <button class="button button-secondary manifesto-toggle" id="manifesto-toggle" type="button" aria-expanded="false" aria-controls="manifesto-text">Leer el manifiesto completo</button>
       </div>
     </section>
   <section class="section contact-section" id="contacto" aria-labelledby="contact-title">
@@ -1040,8 +1427,22 @@
     <form class="order-form" id="whatsapp-order-form">
       <div class="cart-dialog-body">
         <p class="cart-summary" id="cart-summary" tabindex="-1">La lista de consulta está vacía.</p>
-        <ul class="cart-items" id="cart-items"></ul>
-        <p class="cart-total" id="cart-total">Total: $0</p>
+
+        <section class="cart-group" id="cart-priced-group" hidden aria-labelledby="cart-priced-title">
+          <h3 class="cart-group-title" id="cart-priced-title">Con precio</h3>
+          <ul class="cart-items" id="cart-items"></ul>
+          <p class="cart-total" id="cart-total">Total: $0</p>
+        </section>
+
+        <section class="cart-group" id="cart-quote-group" hidden aria-labelledby="cart-quote-title">
+          <h3 class="cart-group-title" id="cart-quote-title">A coordinar por WhatsApp</h3>
+          <ul class="cart-items" id="cart-quote-items"></ul>
+          <p class="cart-quote-total" id="cart-quote-total"></p>
+        </section>
+
+        <div class="cart-clear-row" id="cart-clear-row" hidden>
+          <button class="cart-clear" id="cart-clear" type="button">Vaciar carrito</button>
+        </div>
         <p class="cart-disclaimer" id="cart-disclaimer">La presentación, disponibilidad, entrega y forma de pago se coordinan por WhatsApp.</p>
 
         <div class="order-fields">
@@ -1075,115 +1476,309 @@
     </form>
   </dialog>
 
+  <dialog class="cart-dialog product-dialog" id="product-dialog" aria-labelledby="product-dialog-title">
+    <div class="cart-dialog-header">
+      <div>
+        <p class="eyebrow" id="product-dialog-eyebrow"></p>
+        <h2 id="product-dialog-title" tabindex="-1">Detalle del producto</h2>
+      </div>
+      <button class="product-dialog-close cart-close-icon" type="button" aria-label="Cerrar detalle del producto">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4 4 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="cart-dialog-body" id="product-dialog-body">
+      <div class="product-gallery" id="product-gallery"></div>
+      <p class="product-dialog-tagline" id="product-dialog-tagline" hidden></p>
+      <p class="product-dialog-description" id="product-dialog-description"></p>
+      <ul class="product-specs" id="product-dialog-specs" hidden></ul>
+      <section id="product-dialog-includes-group" hidden aria-labelledby="product-dialog-includes-title">
+        <h3 class="product-dialog-subtitle" id="product-dialog-includes-title">Incluye</h3>
+        <ul class="product-includes" id="product-dialog-includes"></ul>
+      </section>
+      <ul class="product-notes" id="product-dialog-notes" hidden></ul>
+      <p class="product-quote-note" id="product-dialog-quote-note" hidden></p>
+      <section aria-labelledby="product-dialog-variants-title">
+        <h3 class="product-dialog-subtitle" id="product-dialog-variants-title">Presentación</h3>
+        <ul class="product-variants" id="product-dialog-variants"></ul>
+      </section>
+    </div>
+    <div class="cart-dialog-actions">
+      <button class="button button-secondary icon-action product-dialog-close" type="button" aria-label="Seguir explorando">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m12.5 4-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Seguir</span>
+      </button>
+      <button class="button button-primary icon-action" id="product-dialog-cart" type="button" aria-label="Ver el carrito">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4h2l2 9h8l2-6H6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="16" r="1.2" fill="currentColor"/><circle cx="14.5" cy="16" r="1.2" fill="currentColor"/></svg>
+        <span>Ver carrito</span>
+      </button>
+    </div>
+  </dialog>
+
+  <button class="cart-fab" id="cart-fab" type="button" hidden>
+    <svg width="24" height="24" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4h2l2 9h8l2-6H6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="16" r="1.2" fill="currentColor"/><circle cx="14.5" cy="16" r="1.2" fill="currentColor"/></svg>
+    <span class="cart-fab-count" id="cart-fab-count" aria-hidden="true">0</span>
+  </button>
+
   <div class="status-message" id="status-message" role="status" aria-live="polite"></div>
 
   <script>
     (async () => {
+      const CART_STORAGE_KEY = 'almatierra-cart-v1';
+
       const productGrid = document.querySelector('#product-grid');
       const productTemplate = document.querySelector('#product-card-template');
-      const formatCurrency = (value) => new Intl.NumberFormat('es-AR', {
+      const variantRowTemplate = document.querySelector('#variant-row-template');
+      const categoriesGroup = document.querySelector('#categories');
+      const emptyState = document.querySelector('#empty-state');
+      const resultCount = document.querySelector('#result-count');
+
+      /* ---------- datos ---------- */
+
+      const loadJson = async (path) => {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`No se pudo cargar ${path}.`);
+        return response.json();
+      };
+
+      let config;
+      let products;
+      try {
+        [config, products] = await Promise.all([loadJson('config.json'), loadJson('products.json')]);
+      } catch (error) {
+        productGrid.setAttribute('aria-busy', 'false');
+        emptyState.hidden = false;
+        emptyState.querySelector('h3').textContent = 'No se pudo cargar el catálogo';
+        emptyState.querySelector('p').textContent = 'Refrescá la página o escribinos por WhatsApp.';
+        console.error(error);
+        return;
+      }
+
+      const labels = config.labels;
+      const orderCopy = config.order;
+      const sellerWhatsApp = config.whatsapp;
+
+      const formatCurrency = (value) => new Intl.NumberFormat(config.currency.locale, {
         style: 'currency',
-        currency: 'ARS',
+        currency: config.currency.code,
         maximumFractionDigits: 0,
       }).format(value);
-      const response = await fetch('products.json');
-      if (!response.ok) throw new Error('No se pudo cargar el catálogo.');
-      const products = await response.json();
+
+      const productsById = new Map(products.map((product) => [product.id, product]));
       const variantItems = new Map();
+      products.forEach((product) => {
+        product.variants.forEach((variant) => {
+          const itemId = `${product.id}--${variant.id}`;
+          variantItems.set(itemId, {
+            id: itemId,
+            productId: product.id,
+            productName: product.name,
+            variantLabel: variant.label,
+            unitPrice: variant.price ?? null,
+          });
+        });
+      });
+
+      /* ---------- carrito ---------- */
+
+      const cartItems = new Map();
+
+      const readStoredCart = () => {
+        try {
+          const raw = window.localStorage.getItem(CART_STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (error) {
+          return [];
+        }
+      };
+
+      const writeStoredCart = () => {
+        try {
+          const payload = [...cartItems.values()].map((item) => ({ id: item.id, quantity: item.quantity }));
+          window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(payload));
+        } catch (error) {
+          /* almacenamiento bloqueado: el carrito sigue vivo solo en memoria */
+        }
+      };
+
+      /* El precio nunca se toma de lo guardado: se rehidrata del catálogo,
+         si no un carrito viejo cotizaría a precio viejo. */
+      const restoreCart = () => {
+        readStoredCart().forEach((entry) => {
+          const catalogItem = variantItems.get(entry?.id);
+          if (!catalogItem) return;
+          const cap = catalogItem.unitPrice == null ? 1 : Infinity;
+          const quantity = Math.min(cap, Math.max(0, Math.floor(Number(entry.quantity) || 0)));
+          if (quantity > 0) cartItems.set(catalogItem.id, { ...catalogItem, quantity });
+        });
+      };
+
+      const getPricedUnits = () => [...cartItems.values()]
+        .filter((item) => item.unitPrice != null)
+        .reduce((total, item) => total + item.quantity, 0);
+      const getQuoteUnits = () => [...cartItems.values()]
+        .filter((item) => item.unitPrice == null)
+        .reduce((total, item) => total + item.quantity, 0);
+      const getTotalUnits = () => getPricedUnits() + getQuoteUnits();
+      const getTotalPrice = () => [...cartItems.values()]
+        .reduce((total, item) => total + ((item.unitPrice ?? 0) * item.quantity), 0);
+
+      /* ---------- variedades ---------- */
+
+      /* Un unico constructor del control: catalogo, ficha y carrito usan el
+         mismo marcado y el mismo data-item-id, asi updateVariantControl los
+         sincroniza a los tres sin codigo extra. */
+      const buildVariantControl = (itemId, productName, variantLabel) => {
+        const row = variantRowTemplate.content.firstElementChild.cloneNode(true);
+        const control = row.querySelector('.variant-control');
+        control.dataset.itemId = itemId;
+        control.querySelector('.variant-decrease').setAttribute('aria-label', `Quitar una unidad de ${productName}, ${variantLabel}`);
+        control.querySelector('.variant-quantity').setAttribute('aria-label', `Cantidad de ${productName}, ${variantLabel}`);
+        control.querySelector('.variant-increase').setAttribute('aria-label', `Agregar ${productName}, ${variantLabel}`);
+        return control;
+      };
+
+      const buildVariantRow = (product, variant) => {
+        const itemId = `${product.id}--${variant.id}`;
+        const row = variantRowTemplate.content.firstElementChild.cloneNode(true);
+        const label = row.querySelector('.variant-label');
+        const price = row.querySelector('.variant-price');
+        const control = row.querySelector('.variant-control');
+        const decrease = row.querySelector('.variant-decrease');
+        const quantity = row.querySelector('.variant-quantity');
+        const increase = row.querySelector('.variant-increase');
+
+        control.dataset.itemId = itemId;
+        label.textContent = variant.label;
+
+        if (variant.price == null) {
+          price.textContent = labels.quotePrice;
+          price.classList.add('is-quote');
+          price.title = labels.quoteNote;
+        } else {
+          price.textContent = formatCurrency(variant.price);
+        }
+
+        decrease.setAttribute('aria-label', `Quitar ${product.name}, ${variant.label}`);
+        quantity.setAttribute('aria-label', `Cantidad de ${product.name}, ${variant.label}`);
+        increase.setAttribute('aria-label', `Agregar ${product.name}, ${variant.label}`);
+        return row;
+      };
+
+      /* Recorre TODAS las instancias del mismo itemId: así la tarjeta y el
+         modal quedan sincronizados sin código extra. */
+      const updateVariantControl = (itemId) => {
+        const catalogItem = variantItems.get(itemId);
+        const quantity = cartItems.get(itemId)?.quantity || 0;
+        const isQuote = catalogItem?.unitPrice == null;
+
+        document.querySelectorAll(`.variant-control[data-item-id="${itemId}"]`).forEach((control) => {
+          const decrease = control.querySelector('.variant-decrease');
+          const output = control.querySelector('.variant-quantity');
+          const increase = control.querySelector('.variant-increase');
+
+          /* El foco vive en el "−" que está por ocultarse: moverlo antes,
+             si no cae al body y el teclado pierde el lugar. */
+          if (quantity === 0 && document.activeElement === decrease) increase.focus();
+
+          output.value = String(quantity);
+          output.textContent = String(quantity);
+          decrease.hidden = quantity === 0;
+          output.hidden = quantity === 0;
+          increase.disabled = isQuote && quantity >= 1;
+          increase.title = increase.disabled ? labels.quoteCapReached : '';
+        });
+      };
+
+      const adjustItem = (itemId, change, restoreCartFocus = false) => {
+        const catalogItem = variantItems.get(itemId);
+        if (!catalogItem) return;
+        const currentItem = cartItems.get(itemId);
+        const cap = catalogItem.unitPrice == null ? 1 : Infinity;
+        const nextQuantity = Math.min(cap, Math.max(0, (currentItem?.quantity || 0) + change));
+
+        if (nextQuantity === 0) cartItems.delete(itemId);
+        else cartItems.set(itemId, { ...catalogItem, quantity: nextQuantity });
+
+        updateVariantControl(itemId);
+        renderCart();
+
+        if (restoreCartFocus) {
+          /* La linea pudo desaparecer del listado: si ya no esta, el foco va
+             al resumen en vez de caer al body. */
+          const replacement = cartDialog
+            .querySelector(`.variant-control[data-item-id="${itemId}"] .variant-decrease:not([hidden])`);
+          (replacement || cartSummary).focus();
+        }
+      };
+
+      /* ---------- tarjetas ---------- */
 
       products.forEach((product) => {
         const card = productTemplate.content.firstElementChild.cloneNode(true);
         const media = card.querySelector('.product-media');
-        card.dataset.category = product.category;
-        card.dataset.name = `${product.name} ${product.searchTerms}`;
-        card.dataset.productId = product.id;
-        if (product.images.length > 1) media.classList.add('product-media-pair');
-        product.images.forEach((image) => {
-          const element = document.createElement('img');
-          element.src = image.src;
-          element.alt = image.alt;
-          element.width = 1080;
-          element.height = 1350;
-          element.loading = 'lazy';
-          media.insertBefore(element, media.lastElementChild);
-        });
-        media.querySelector('figcaption').textContent = product.caption;
-        card.querySelector('.product-meta').textContent = `${product.categoryLabel} / ${product.type}`;
-        card.querySelector('h3').textContent = product.name;
-        card.querySelector('.product-description').textContent = product.description;
-
-        const specs = card.querySelector('.product-specs');
-        (product.specs || []).forEach((spec) => {
-          const item = document.createElement('li');
-          const label = document.createElement('span');
-          const value = document.createElement('strong');
-          label.textContent = spec.label;
-          value.textContent = spec.value;
-          item.append(label, value);
-          specs.append(item);
-        });
-        specs.hidden = specs.children.length === 0;
-
         const variants = card.querySelector('.product-variants');
-        variants.setAttribute('aria-label', `Variedades de ${product.name}`);
-        product.variants.forEach((variant) => {
-          const row = document.createElement('div');
-          const information = document.createElement('span');
-          const label = document.createElement('span');
-          const price = document.createElement('strong');
-          const control = document.createElement('span');
-          const decrease = document.createElement('button');
-          const quantity = document.createElement('output');
-          const increase = document.createElement('button');
-          const itemId = `${product.id}--${variant.id}`;
-          variantItems.set(itemId, {
-            id: itemId,
-            productName: product.name,
-            variantLabel: variant.label,
-            unitPrice: variant.price,
-          });
-          row.className = 'variant-row';
-          information.className = 'variant-information';
-          label.className = 'variant-label';
-          price.className = 'variant-price';
-          control.className = 'variant-control';
-          control.dataset.itemId = itemId;
-          label.textContent = variant.label;
-          price.textContent = formatCurrency(variant.price);
-          decrease.type = 'button';
-          decrease.className = 'quantity-button variant-decrease';
-          decrease.disabled = true;
-          decrease.setAttribute('aria-label', `Quitar ${product.name}, ${variant.label}`);
-          decrease.textContent = '−';
-          quantity.className = 'variant-quantity';
-          quantity.value = '0';
-          quantity.textContent = '0';
-          quantity.setAttribute('aria-label', `Cantidad de ${product.name}, ${variant.label}`);
-          increase.type = 'button';
-          increase.className = 'quantity-button variant-increase';
-          increase.setAttribute('aria-label', `Agregar ${product.name}, ${variant.label}`);
-          increase.dataset.itemId = itemId;
-          increase.textContent = '+';
-          control.append(decrease, quantity, increase);
-          information.append(label, price);
-          row.append(information, control);
-          variants.append(row);
-        });
+        const open = card.querySelector('.product-open');
+        const [cover] = product.images;
 
-        if (product.variants.length === 0) {
-          const inquiry = document.createElement('button');
-          inquiry.type = 'button';
-          inquiry.className = 'product-inquiry';
-          inquiry.dataset.product = product.name;
-          inquiry.setAttribute('aria-label', `Consultar por ${product.name}`);
-          inquiry.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h14v10H9l-4 4v-4H3V3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
-          variants.append(inquiry);
-        }
+        card.dataset.category = product.category;
+        card.dataset.productId = product.id;
+        /* La descripción ya no vive en la tarjeta: sin esto la búsqueda se
+           degrada en silencio al dejar de matchear contra textContent. */
+        card.dataset.search = [
+          product.name,
+          product.searchTerms,
+          product.tagline,
+          product.description,
+          product.brand,
+          product.categoryLabel,
+          product.type,
+        ].filter(Boolean).join(' ');
+
+        const image = document.createElement('img');
+        image.src = cover.src;
+        image.alt = cover.alt;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        media.insertBefore(image, media.lastElementChild);
+        media.querySelector('figcaption').textContent = product.caption || product.name;
+
+        card.querySelector('.product-meta').textContent = product.brand
+          ? `${product.categoryLabel} / ${product.brand}`
+          : `${product.categoryLabel} / ${product.type}`;
+        card.querySelector('.product-name').textContent = product.name;
+
+        open.setAttribute('aria-label', `Ver detalle de ${product.name}`);
+        open.dataset.productId = product.id;
+
+        variants.setAttribute('aria-label', `${product.variantGroupLabel || labels.variantGroupFallback} de ${product.name}`);
+        product.variants.forEach((variant) => variants.append(buildVariantRow(product, variant)));
 
         productGrid.append(card);
       });
+
       productGrid.dataset.rendered = 'true';
       productGrid.setAttribute('aria-busy', 'false');
+
+      /* ---------- filtros derivados de los datos ---------- */
+
+      const categories = [];
+      products.forEach((product) => {
+        if (!categories.some((entry) => entry.id === product.category)) {
+          categories.push({ id: product.category, label: product.categoryLabel });
+        }
+      });
+
+      [{ id: 'all', label: labels.allCategories }, ...categories].forEach((category, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'category-button';
+        button.dataset.filter = category.id;
+        button.setAttribute('aria-pressed', String(index === 0));
+        button.textContent = category.label;
+        categoriesGroup.append(button);
+      });
+
+      /* ---------- referencias del resto de la página ---------- */
 
       const menuButton = document.querySelector('.menu-button');
       const navigation = document.querySelector('.primary-nav');
@@ -1192,90 +1787,110 @@
       const productCards = [...document.querySelectorAll('.product-card')];
       const searchForm = document.querySelector('.search-form');
       const search = document.querySelector('#product-search');
-      const resultCount = document.querySelector('#result-count');
-      const emptyState = document.querySelector('#empty-state');
-      const variantIncreaseButtons = [...document.querySelectorAll('.variant-increase')];
-      const variantDecreaseButtons = [...document.querySelectorAll('.variant-decrease')];
-      const inquiryButtons = [...document.querySelectorAll('.product-inquiry')];
       const cartButton = document.querySelector('.icon-button[aria-label^="Abrir lista de consulta"]');
       const cartCount = document.querySelector('.cart-count');
       const cartDialog = document.querySelector('#cart-dialog');
       const cartSummary = document.querySelector('#cart-summary');
       const cartTotal = document.querySelector('#cart-total');
       const cartItemsList = document.querySelector('#cart-items');
+      const cartQuoteList = document.querySelector('#cart-quote-items');
+      const cartQuoteTotal = document.querySelector('#cart-quote-total');
+      const cartPricedGroup = document.querySelector('#cart-priced-group');
+      const cartQuoteGroup = document.querySelector('#cart-quote-group');
+      const cartFab = document.querySelector('#cart-fab');
+      const cartFabCount = document.querySelector('#cart-fab-count');
+      const cartClear = document.querySelector('#cart-clear');
+      const cartClearRow = document.querySelector('#cart-clear-row');
       const cartCloseButtons = [...document.querySelectorAll('.cart-close')];
       const orderForm = document.querySelector('#whatsapp-order-form');
       const contactForm = document.querySelector('#contact-form');
       const whatsappSubmit = document.querySelector('.whatsapp-submit');
       const status = document.querySelector('#status-message');
-      const sellerWhatsApp = '5491136169725';
+
+      const productDialog = document.querySelector('#product-dialog');
+      const productDialogTitle = document.querySelector('#product-dialog-title');
+      const productDialogEyebrow = document.querySelector('#product-dialog-eyebrow');
+      const productDialogTagline = document.querySelector('#product-dialog-tagline');
+      const productDialogDescription = document.querySelector('#product-dialog-description');
+      const productDialogSpecs = document.querySelector('#product-dialog-specs');
+      const productDialogIncludes = document.querySelector('#product-dialog-includes');
+      const productDialogIncludesGroup = document.querySelector('#product-dialog-includes-group');
+      const productDialogNotes = document.querySelector('#product-dialog-notes');
+      const productDialogQuoteNote = document.querySelector('#product-dialog-quote-note');
+      const productDialogVariants = document.querySelector('#product-dialog-variants');
+      const productDialogVariantsTitle = document.querySelector('#product-dialog-variants-title');
+      const productDialogCart = document.querySelector('#product-dialog-cart');
+      const productGallery = document.querySelector('#product-gallery');
+
       let activeCategory = 'all';
-      const cartItems = new Map();
       let statusTimer;
+      let galleryObserver;
+
       const normalizeSearch = (value) => value
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[̀-ͯ]/g, '')
         .toLocaleLowerCase('es');
 
-      const getTotalUnits = () => [...cartItems.values()]
-        .reduce((total, item) => total + item.quantity, 0);
-      const getTotalPrice = () => [...cartItems.values()]
-        .reduce((total, item) => total + (item.unitPrice * item.quantity), 0);
+      const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const updateVariantControl = (itemId) => {
-        const control = document.querySelector(`.variant-control[data-item-id="${itemId}"]`);
-        const quantity = cartItems.get(itemId)?.quantity || 0;
-        control.querySelector('.variant-quantity').value = String(quantity);
-        control.querySelector('.variant-quantity').textContent = String(quantity);
-        control.querySelector('.variant-decrease').disabled = quantity === 0;
-      };
+      /* ---------- render del carrito ---------- */
 
-      const adjustItem = (itemId, change, restoreCartFocus = false) => {
-        const catalogItem = variantItems.get(itemId);
-        const currentItem = cartItems.get(itemId);
-        const nextQuantity = Math.max(0, (currentItem?.quantity || 0) + change);
-        if (nextQuantity === 0) cartItems.delete(itemId);
-        else cartItems.set(itemId, { ...catalogItem, quantity: nextQuantity });
-        updateVariantControl(itemId);
-        renderCart();
-        if (restoreCartFocus) {
-          const replacement = [...cartItemsList.querySelectorAll('.cart-item-remove')]
-            .find((button) => button.dataset.itemId === itemId);
-          (replacement || cartSummary).focus();
-        }
+      const buildCartItem = (cartItem) => {
+        const item = document.createElement('li');
+        const copy = document.createElement('span');
+        const productName = document.createElement('strong');
+        const productMeta = document.createElement('span');
+        copy.className = 'cart-item-copy';
+        productName.className = 'cart-item-name';
+        productMeta.className = 'cart-item-meta';
+
+        productName.textContent = `${cartItem.productName} · ${cartItem.variantLabel}`;
+        productMeta.textContent = cartItem.unitPrice == null
+          ? `${cartItem.quantity} ${cartItem.quantity === 1 ? 'unidad' : 'unidades'} · ${labels.quotePrice}`
+          : `${cartItem.quantity} × ${formatCurrency(cartItem.unitPrice)} · ${formatCurrency(cartItem.unitPrice * cartItem.quantity)}`;
+
+        copy.append(productName, productMeta);
+        item.append(copy, buildVariantControl(cartItem.id, cartItem.productName, cartItem.variantLabel));
+        return item;
       };
 
       const renderCart = () => {
+        const priced = [...cartItems.values()].filter((item) => item.unitPrice != null);
+        const quoted = [...cartItems.values()].filter((item) => item.unitPrice == null);
+        const pricedUnits = getPricedUnits();
+        const quoteUnits = getQuoteUnits();
         const count = getTotalUnits();
+
         cartCount.textContent = String(count);
         cartButton.setAttribute('aria-label', `Abrir lista de consulta; ${count} ${count === 1 ? 'unidad' : 'unidades'}`);
         cartSummary.textContent = count === 0
-          ? 'La lista de consulta está vacía.'
+          ? labels.emptyCart
           : `${count} ${count === 1 ? 'unidad agregada' : 'unidades agregadas'} al carrito.`;
-        cartTotal.textContent = `Total: ${formatCurrency(getTotalPrice())}`;
+
+        cartFab.hidden = count === 0;
+        cartFabCount.textContent = String(count);
+        cartFab.setAttribute('aria-label', `Abrir el carrito; ${count} ${count === 1 ? 'unidad' : 'unidades'}`);
+        document.body.classList.toggle('has-cart-fab', count > 0);
+
+        cartClearRow.hidden = count === 0;
+        cartPricedGroup.hidden = priced.length === 0;
+        cartQuoteGroup.hidden = quoted.length === 0;
+
+        cartItemsList.replaceChildren(...priced.map(buildCartItem));
+        cartQuoteList.replaceChildren(...quoted.map(buildCartItem));
+
+        /* Los controles del carrito se recrean en cada render: hay que
+           devolverles el estado. */
+        cartItems.forEach((item) => updateVariantControl(item.id));
+
+        cartTotal.textContent = `${pricedUnits} ${pricedUnits === 1 ? 'unidad' : 'unidades'} · Total: ${formatCurrency(getTotalPrice())}`;
+        cartQuoteTotal.textContent = `${quoteUnits} ${quoteUnits === 1 ? 'unidad' : 'unidades'} sin precio. ${labels.quoteNote}`;
+
         whatsappSubmit.disabled = count === 0;
-        cartItemsList.replaceChildren(...[...cartItems.values()].map((cartItem) => {
-          const item = document.createElement('li');
-          const copy = document.createElement('span');
-          const productName = document.createElement('strong');
-          const productMeta = document.createElement('span');
-          const removeButton = document.createElement('button');
-          copy.className = 'cart-item-copy';
-          productName.className = 'cart-item-name';
-          productMeta.className = 'cart-item-meta';
-          removeButton.className = 'cart-item-remove';
-          productName.textContent = `${cartItem.productName} · ${cartItem.variantLabel}`;
-          productMeta.textContent = `${cartItem.quantity} × ${formatCurrency(cartItem.unitPrice)} · ${formatCurrency(cartItem.unitPrice * cartItem.quantity)}`;
-          removeButton.type = 'button';
-          removeButton.dataset.itemId = cartItem.id;
-          removeButton.setAttribute('aria-label', `Quitar una unidad de ${cartItem.productName}, ${cartItem.variantLabel}`);
-          removeButton.textContent = '−';
-          removeButton.addEventListener('click', () => adjustItem(cartItem.id, -1, true));
-          copy.append(productName, productMeta);
-          item.append(copy, removeButton);
-          return item;
-        }));
+        writeStoredCart();
       };
+
+      /* ---------- filtros ---------- */
 
       const applyFilters = () => {
         const query = normalizeSearch(search.value.trim());
@@ -1283,8 +1898,7 @@
 
         productCards.forEach((card) => {
           const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
-          const searchableText = normalizeSearch(`${card.dataset.name} ${card.textContent}`);
-          const matchesSearch = !query || searchableText.includes(query);
+          const matchesSearch = !query || normalizeSearch(card.dataset.search).includes(query);
           const shouldShow = matchesCategory && matchesSearch;
           card.hidden = !shouldShow;
           if (shouldShow) visible += 1;
@@ -1293,6 +1907,202 @@
         resultCount.textContent = `${visible} ${visible === 1 ? 'resultado' : 'resultados'}`;
         emptyState.hidden = visible !== 0;
       };
+
+      /* ---------- carrusel del modal ---------- */
+
+      const clearGallery = () => {
+        if (galleryObserver) {
+          galleryObserver.disconnect();
+          galleryObserver = undefined;
+        }
+        productGallery.replaceChildren();
+      };
+
+      const buildGallery = (product) => {
+        clearGallery();
+        const images = product.images;
+
+        if (images.length === 1) {
+          const figure = document.createElement('figure');
+          const image = document.createElement('img');
+          figure.className = 'gallery-single';
+          image.src = images[0].src;
+          image.alt = images[0].alt;
+          image.loading = 'eager';
+          image.decoding = 'async';
+          figure.append(image);
+          productGallery.append(figure);
+          return;
+        }
+
+        const track = document.createElement('ul');
+        track.className = 'gallery-track';
+        track.tabIndex = 0;
+        track.setAttribute('role', 'group');
+        track.setAttribute('aria-roledescription', 'carrusel');
+        track.setAttribute('aria-label', `Imágenes de ${product.name}`);
+
+        images.forEach((image, index) => {
+          const slide = document.createElement('li');
+          const element = document.createElement('img');
+          element.src = image.src;
+          element.alt = image.alt;
+          element.loading = index === 0 ? 'eager' : 'lazy';
+          element.decoding = 'async';
+          if (index === 0) element.fetchPriority = 'high';
+          slide.append(element);
+          track.append(slide);
+        });
+
+        const nav = document.createElement('div');
+        nav.className = 'gallery-nav';
+
+        const previous = document.createElement('button');
+        const next = document.createElement('button');
+        const counter = document.createElement('p');
+        const dots = document.createElement('div');
+
+        previous.type = 'button';
+        previous.className = 'gallery-button';
+        previous.setAttribute('aria-label', 'Imagen anterior');
+        previous.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m12.5 4-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+        next.type = 'button';
+        next.className = 'gallery-button';
+        next.setAttribute('aria-label', 'Imagen siguiente');
+        next.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 4 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+        counter.className = 'gallery-counter';
+        counter.setAttribute('aria-live', 'polite');
+        counter.textContent = `1 / ${images.length}`;
+
+        dots.className = 'gallery-dots';
+        const dotButtons = [];
+        if (images.length <= 8) {
+          images.forEach((image, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'gallery-dot';
+            dot.setAttribute('aria-label', `Ver imagen ${index + 1} de ${images.length}`);
+            dot.addEventListener('click', () => {
+              track.children[index].scrollIntoView({
+                behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+                inline: 'center',
+                block: 'nearest',
+              });
+            });
+            dotButtons.push(dot);
+            dots.append(dot);
+          });
+        }
+
+        const step = (direction) => track.scrollBy({
+          left: direction * track.clientWidth,
+          behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+        });
+        previous.addEventListener('click', () => step(-1));
+        next.addEventListener('click', () => step(1));
+
+        nav.append(previous, counter, next);
+        productGallery.append(track, nav);
+        if (dotButtons.length) productGallery.append(dots);
+
+        galleryObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const index = [...track.children].indexOf(entry.target);
+            if (index < 0) return;
+            counter.textContent = `${index + 1} / ${images.length}`;
+            dotButtons.forEach((dot, dotIndex) => {
+              dot.classList.toggle('is-active', dotIndex === index);
+              dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+            });
+          });
+        }, { root: track, threshold: 0.6 });
+        [...track.children].forEach((slide) => galleryObserver.observe(slide));
+        dotButtons.forEach((dot, index) => {
+          dot.classList.toggle('is-active', index === 0);
+          dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
+        });
+      };
+
+      /* ---------- modal de producto ---------- */
+
+      const fillList = (list, values, group) => {
+        const entries = values || [];
+        list.replaceChildren(...entries.map((value) => {
+          const item = document.createElement('li');
+          item.textContent = value;
+          return item;
+        }));
+        (group || list).hidden = entries.length === 0;
+      };
+
+      const openProductDialog = (productId) => {
+        const product = productsById.get(productId);
+        if (!product) return;
+
+        productDialogEyebrow.textContent = product.brand
+          ? `${product.categoryLabel} / ${product.brand}`
+          : `${product.categoryLabel} / ${product.type}`;
+        productDialogTitle.textContent = product.name;
+
+        productDialogTagline.textContent = product.tagline || '';
+        productDialogTagline.hidden = !product.tagline;
+        productDialogDescription.textContent = product.description;
+
+        productDialogSpecs.replaceChildren(...(product.specs || []).map((spec) => {
+          const item = document.createElement('li');
+          const label = document.createElement('span');
+          const value = document.createElement('strong');
+          label.textContent = spec.label;
+          value.textContent = spec.value;
+          item.append(label, value);
+          return item;
+        }));
+        productDialogSpecs.hidden = !(product.specs || []).length;
+
+        fillList(productDialogIncludes, product.includes, productDialogIncludesGroup);
+        fillList(productDialogNotes, product.notes);
+
+        const hasQuote = product.variants.some((variant) => variant.price == null);
+        productDialogQuoteNote.textContent = labels.quoteNote;
+        productDialogQuoteNote.hidden = !hasQuote;
+
+        productDialogVariantsTitle.textContent = product.variantGroupLabel || labels.variantGroupFallback;
+        productDialogVariants.replaceChildren(...product.variants.map((variant) => buildVariantRow(product, variant)));
+
+        buildGallery(product);
+        productDialog.showModal();
+        product.variants.forEach((variant) => updateVariantControl(`${product.id}--${variant.id}`));
+        productDialogTitle.focus();
+      };
+
+      /* Clic en el backdrop. Se compara contra mousedown para que un arrastre
+         iniciado adentro y soltado afuera no cierre el diálogo. */
+      const closeOnBackdrop = (dialog) => {
+        let pressedOutside = false;
+        dialog.addEventListener('mousedown', (event) => {
+          pressedOutside = event.target === dialog;
+        });
+        dialog.addEventListener('click', (event) => {
+          if (pressedOutside && event.target === dialog) dialog.close();
+          pressedOutside = false;
+        });
+      };
+      closeOnBackdrop(cartDialog);
+      closeOnBackdrop(productDialog);
+
+      productDialog.addEventListener('close', clearGallery);
+      document.querySelectorAll('.product-dialog-close').forEach((button) => {
+        button.addEventListener('click', () => productDialog.close());
+      });
+      productDialogCart.addEventListener('click', () => {
+        productDialog.close();
+        cartDialog.showModal();
+      });
+
+      /* ---------- navegación y filtros ---------- */
 
       menuButton.addEventListener('click', () => {
         const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
@@ -1331,34 +2141,93 @@
         applyFilters();
       });
 
+      cartClear.addEventListener('click', () => {
+        /* Hay que capturar los ids antes de vaciar: despues no queda de donde
+           sacar que controles volver a cero. */
+        const affected = [...cartItems.keys()];
+        cartItems.clear();
+        affected.forEach(updateVariantControl);
+        renderCart();
+        cartSummary.focus();
+      });
+
       cartButton.addEventListener('click', () => cartDialog.showModal());
+      cartFab.addEventListener('click', () => cartDialog.showModal());
       cartCloseButtons.forEach((button) => button.addEventListener('click', () => cartDialog.close()));
 
-      variantIncreaseButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          const item = variantItems.get(button.dataset.itemId);
-          adjustItem(button.dataset.itemId, 1);
+      /* Un solo listener delegado: los controles del modal no existen al cargar. */
+      document.addEventListener('click', (event) => {
+        const increase = event.target.closest('.variant-increase');
+        if (increase) {
+          const itemId = increase.closest('.variant-control').dataset.itemId;
+          const item = variantItems.get(itemId);
+          adjustItem(itemId, 1);
           status.textContent = `${item.productName}, ${item.variantLabel}, se agregó al carrito.`;
           status.classList.add('is-visible');
           clearTimeout(statusTimer);
           statusTimer = setTimeout(() => status.classList.remove('is-visible'), 2600);
-        });
+          return;
+        }
+
+        const decrease = event.target.closest('.variant-decrease');
+        if (decrease) {
+          adjustItem(decrease.closest('.variant-control').dataset.itemId, -1, Boolean(decrease.closest('#cart-dialog')));
+          return;
+        }
+
+        const open = event.target.closest('.product-open');
+        if (open) openProductDialog(open.dataset.productId);
       });
 
-      variantDecreaseButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          const itemId = button.closest('.variant-control').dataset.itemId;
-          adjustItem(itemId, -1);
+      /* ---------- manifiesto ---------- */
+
+      const manifestoSection = document.querySelector('#manifiesto');
+      const manifestoToggle = document.querySelector('#manifesto-toggle');
+      const manifestoText = document.querySelector('#manifesto-text');
+
+      /* Mide donde termina la decima caja de linea y fija ahi el recorte.
+         Se recalcula por evento (resize/fuentes), nunca por temporizador. */
+      const measureManifestoCut = () => {
+        const lines = [];
+        manifestoText.querySelectorAll('p').forEach((paragraph) => {
+          const range = document.createRange();
+          range.selectNodeContents(paragraph);
+          lines.push(...range.getClientRects());
         });
+        if (lines.length < 10) {
+          manifestoText.style.removeProperty('--manifesto-collapsed');
+          manifestoToggle.hidden = true;
+          return;
+        }
+        manifestoToggle.hidden = false;
+        const top = manifestoText.getBoundingClientRect().top;
+        manifestoText.style.setProperty('--manifesto-collapsed', `${Math.round(lines[9].bottom - top)}px`);
+      };
+
+      const setManifestoExpanded = (expanded) => {
+        manifestoSection.classList.toggle('is-expanded', expanded);
+        manifestoToggle.setAttribute('aria-expanded', String(expanded));
+        manifestoToggle.textContent = expanded ? 'Contraer el manifiesto' : 'Leer el manifiesto completo';
+      };
+
+      manifestoToggle.addEventListener('click', () => {
+        setManifestoExpanded(manifestoToggle.getAttribute('aria-expanded') !== 'true');
       });
 
-      inquiryButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          contactForm.elements.contactMessage.value = `Quiero consultar el precio de ${button.dataset.product}.`;
-          document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
-          contactForm.elements.contactName.focus({ preventScroll: true });
-        });
+      /* Llegar por enlace a una sección recortada no sirve de nada. */
+      const expandManifestoFromHash = () => {
+        if (window.location.hash === '#manifiesto') setManifestoExpanded(true);
+      };
+      window.addEventListener('hashchange', expandManifestoFromHash);
+      document.querySelectorAll('a[href="#manifiesto"]').forEach((link) => {
+        link.addEventListener('click', () => setManifestoExpanded(true));
       });
+      expandManifestoFromHash();
+      measureManifestoCut();
+      new ResizeObserver(measureManifestoCut).observe(manifestoText);
+      if (document.fonts) document.fonts.ready.then(measureManifestoCut);
+
+      /* ---------- WhatsApp ---------- */
 
       const openWhatsApp = (message) => {
         const url = `https://wa.me/${sellerWhatsApp}?text=${encodeURIComponent(message)}`;
@@ -1388,29 +2257,32 @@
         if (!buyerName) return;
         const buyerLocality = orderForm.elements.buyerLocality.value.trim();
         const buyerComments = orderForm.elements.buyerComments.value.trim();
-        const productLines = [...cartItems.values()].map((item, index) => [
-          `${index + 1}. ${item.productName} — ${item.variantLabel}`,
-          `   Cantidad: ${item.quantity}`,
-          `   Precio unitario: ${formatCurrency(item.unitPrice)}`,
-          `   Subtotal: ${formatCurrency(item.unitPrice * item.quantity)}`,
-        ].join('\n'));
-        const messageParts = [
-          'Pedido para Almatierra Cultivos',
-          '',
-          'DATOS DEL COMPRADOR',
-          `Nombre: ${buyerName}`,
-        ];
 
+        const priced = [...cartItems.values()].filter((item) => item.unitPrice != null);
+        const quoted = [...cartItems.values()].filter((item) => item.unitPrice == null);
+
+        const messageParts = [orderCopy.title, '', orderCopy.buyerHeading, `Nombre: ${buyerName}`];
         if (buyerLocality) messageParts.push(`Localidad o barrio: ${buyerLocality}`);
-        messageParts.push(
-          '',
-          'PEDIDO',
-          ...productLines,
-          '',
-          `Total de unidades: ${getTotalUnits()}`,
-          `Total: ${formatCurrency(getTotalPrice())}`,
-        );
-        if (buyerComments) messageParts.push('', 'COMENTARIOS', buyerComments);
+
+        if (priced.length) {
+          messageParts.push('', orderCopy.itemsHeading, ...priced.map((item, index) => [
+            `${index + 1}. ${item.productName} — ${item.variantLabel}`,
+            `   Cantidad: ${item.quantity}`,
+            `   Precio unitario: ${formatCurrency(item.unitPrice)}`,
+            `   Subtotal: ${formatCurrency(item.unitPrice * item.quantity)}`,
+          ].join('\n')));
+          messageParts.push('', `Total de unidades: ${getPricedUnits()}`, `Total: ${formatCurrency(getTotalPrice())}`);
+        }
+
+        if (quoted.length) {
+          messageParts.push('', orderCopy.quoteHeading, ...quoted.map((item, index) => [
+            `${index + 1}. ${item.productName} — ${item.variantLabel}`,
+            `   Cantidad: ${item.quantity}`,
+            `   Precio: ${labels.quotePrice}`,
+          ].join('\n')));
+        }
+
+        if (buyerComments) messageParts.push('', orderCopy.commentsHeading, buyerComments);
         openWhatsApp(messageParts.join('\n'));
       });
 
@@ -1421,14 +2293,21 @@
         const contactMessage = trimmedValue(contactForm.elements.contactMessage, 'Ingresá tu consulta.');
         if (!contactMessage) return;
         openWhatsApp([
-          'Consulta para Almatierra Cultivos',
+          orderCopy.inquiryTitle,
           '',
           `Nombre: ${contactName}`,
           '',
-          'CONSULTA',
+          orderCopy.inquiryHeading,
           contactMessage,
         ].join('\n'));
       });
+
+      /* ---------- arranque ---------- */
+
+      restoreCart();
+      cartItems.forEach((item) => updateVariantControl(item.id));
+      renderCart();
+      applyFilters();
     })();
   </script>
 </body>

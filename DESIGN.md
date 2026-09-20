@@ -376,11 +376,11 @@ La escala usa múltiplos de 4 px y enfatiza 8, 16, 24, 32, 48, 64 y 96 px. El es
 
 Comportamiento responsive:
 
-- **Menos de 420 px:** una columna de producto, navegación condensada y filtros apilables; nunca desplazamiento horizontal de página.
-- **Desde 420 px:** dos columnas solo si cada tarjeta conserva al menos 176 px.
+- **Menos de 360 px:** una columna de producto, navegación condensada y filtros apilables; nunca desplazamiento horizontal de página.
+- **Desde 360 px:** dos columnas. A 375 px cada tarjeta queda en 160 px y es la densidad buscada: el catálogo prioriza que entren dos productos por pantalla antes que el ancho individual de la tarjeta.
 - **Desde 768 px:** tres columnas o una composición editorial de 4 + 8 columnas.
 - **Desde 1024 px:** retícula de 12 columnas; catálogo de cuatro columnas y módulos editoriales asimétricos.
-- **Desde 1280 px:** cinco columnas únicamente si cada producto conserva 216 px mínimos.
+- **Desde 1360 px:** cinco columnas. El corte no es 1280: ahí el contenedor da 1152 px y cinco tarjetas caerían en 211 px.
 
 La arquitectura recomendada es: portada/manifiesto → productos → fichas → ciencia/educación → historia/cultura → sobre Almatierra → contacto/compra. Búsqueda y filtros pueden ser persistentes, pero no dominan la marca.
 
@@ -394,6 +394,8 @@ El sistema es plano y editorial. La profundidad se expresa con espacio, reglas d
 - Hover de tarjeta: desplazamiento máximo de 2 px y borde en tinta; no agregar sombra obligatoria.
 - Menús y popovers: borde de 1 px en tinta y sombra sobria `0 12px 28px rgba(17, 17, 17, 0.14)`.
 - Modal: sombra `0 24px 60px rgba(17, 17, 17, 0.22)` sobre velo negro al 52 %.
+
+Regla transversal: `[hidden]` se declara con `!important`. Cualquier `display` de componente empata en especificidad con la regla del navegador y, al declararse después, la gana; eso ya dejó visible una sección marcada como oculta y los botones `−` de los steppers.
 
 No usar sombras fuertes, glassmorphism, degradados llamativos, parallax ni capas decorativas. El foco nunca se comunica con sombra. Con `prefers-reduced-motion: reduce`, eliminar traslaciones y transiciones no esenciales.
 
@@ -440,7 +442,33 @@ Orden recomendado:
 5. Precio.
 6. Acción de compra en verde principal.
 
-Las tarjetas no dependen de sombra ni esconden precio o disponibilidad en hover. Toda la tarjeta puede enlazar a la ficha, pero el botón de compra conserva acción independiente y marcado HTML válido. El contenido demostrativo debe identificarse como tal.
+Las tarjetas no dependen de sombra ni esconden precio o disponibilidad en hover. Toda la tarjeta abre la ficha mediante un botón estirado por debajo de los controles de cantidad, de modo que no hay interactivos anidados y el marcado sigue siendo válido. El contenido demostrativo debe identificarse como tal.
+
+**Densidad compacta.** La tarjeta del catálogo es compacta y muestra una sola imagen, aunque el producto tenga varias: el resto vive en la ficha. Medidas: imagen cuadrada con `object-fit: contain`, padding de 8 px, borde de 1 px, nombre en Oswald 17 px recortado a dos líneas, referencia en mono 13 px y precio en Inter 600 de 15 px. El nombre a 17 px es una excepción deliberada a la escala de `h3` (24–30 px): la densidad manda en el catálogo y el encabezado se conserva por estructura, no por tamaño.
+
+**Una fila por variedad.** Cada variedad muestra su propio precio con su control de cantidad. No se resume con "desde $X".
+
+### Control de cantidad
+
+Con cantidad en cero se muestra **solo el `+`**. El `−` y el contador aparecen recién a partir de una unidad y desaparecen al volver a cero. Nunca se muestra un stepper completo sobre un producto que no está en el carrito.
+
+El botón mide 28 px a la vista y alcanza los 44 × 44 px de área táctil con un `::before` de `inset: -8px`; la huella visual se mantiene discreta sin incumplir el mínimo de objetivo interactivo. Al ocultarse el `−`, si tenía el foco, este pasa al `+` hermano: de lo contrario el teclado pierde el lugar.
+
+### Productos sin precio
+
+Un producto puede no tener precio publicado. En ese caso se muestra **A coordinar** en `muted` donde iría el precio, se admite **una sola unidad** por variedad y el `+` queda deshabilitado con explicación al llegar al tope. En el carrito van en un bloque separado que no altera la suma de unidades ni el total en pesos de los productos con precio. El mensaje de pedido los lista en su propia sección.
+
+### Ficha de producto (modal)
+
+La ficha es un `dialog` nativo de **altura fija** — igual para todos los productos, para que no salte entre uno breve y otro con notas y lista de contenido — y ancho máximo de 760 px. Nunca aparece una barra de desplazamiento horizontal: lo que no entra se parte o se recorta.
+
+Contiene todo lo que la tarjeta no muestra: galería, tagline, descripción, especificaciones, "Incluye", notas legales y el mismo control de cantidad por variedad que el catálogo, sincronizado con él. Se cierra con la X, con el botón secundario, con `Escape` y **haciendo clic fuera**; un arrastre iniciado dentro y soltado fuera no cierra. Nunca hay dos diálogos abiertos a la vez.
+
+**Galería.** Con una sola imagen se muestra la imagen y nada más: ni flechas, ni puntos, ni contador. Con más de una se arma un carrusel de `scroll-snap` sin librerías, con una imagen a la vez, flechas de 44 px, contador en región `aria-live` y puntos cuando hay ocho imágenes o menos. El track es enfocable, así las flechas del teclado funcionan sin código. La barra de desplazamiento del track se oculta: la navegación son los botones y los puntos.
+
+### Sección expansible
+
+Un bloque de texto largo puede mostrarse recortado en la **décima línea renderizada**, con degradado por `mask-image` y un botón `aria-expanded` que lo despliega. El recorte se mide sobre las cajas de línea reales, no con una altura en píxeles: los espacios entre párrafos también ocupan y el ancho cambia el plegado. El texto completo siempre está en el DOM. Si se llega por enlace al ancla, la sección se abre sola.
 
 ### Botones y estados
 

@@ -14,6 +14,7 @@
       }
     ],
     "caption": "Melena de León",
+    "variantGroupLabel": "Presentación",
     "variants": [
       { "id": "60-cc", "label": "60 cc", "price": 35000 },
       { "id": "100-cc", "label": "100 cc", "price": 60000 }
@@ -34,6 +35,7 @@
       }
     ],
     "caption": "Óleo concentrado de CBD",
+    "variantGroupLabel": "Presentación",
     "variants": [
       { "id": "15-cc", "label": "15 cc", "price": 25000 }
     ]
@@ -53,6 +55,7 @@
       }
     ],
     "caption": "Óleo extra concentrado de CBD",
+    "variantGroupLabel": "Presentación",
     "variants": [
       { "id": "15-cc", "label": "15 cc", "price": 30000 }
     ]
@@ -72,6 +75,7 @@
       }
     ],
     "caption": "Pomada de CBD y jarilla",
+    "variantGroupLabel": "Presentación",
     "variants": [
       { "id": "60-cc", "label": "60 cc", "price": 8000 },
       { "id": "120-cc", "label": "120 cc", "price": 15000 }
@@ -96,8 +100,10 @@
       }
     ],
     "caption": "Dos vistas del grinder metálico con strass",
-    "variants": [],
-    "inquiryLabel": "Consultar precio"
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
   },
   {
     "id": "mars-orbiter-80w",
@@ -122,8 +128,507 @@
       { "label": "Potencia", "value": "80 W" },
       { "label": "Uso", "value": "2 ciclos" }
     ],
+    "variantGroupLabel": "Presentación",
     "variants": [
       { "id": "unidad", "label": "Unidad", "price": 160000 }
+    ]
+  },
+  {
+    "id": "peak",
+    "category": "vaporizadores",
+    "categoryLabel": "Vaporizadores",
+    "type": "Vaporizador inteligente",
+    "brand": "Puffco",
+    "name": "Puffco Peak",
+    "searchTerms": "puffco peak vaporizador inteligente dab concentrado cámara 3d joystick filtración agua",
+    "tagline": "Simplemente perfecto.",
+    "taglineEn": "Simply perfect.",
+    "description": "El Peak es la experiencia de dab más sencilla de la historia. Más inteligente, sencillo y cómodo en la mano, nuestro vaporizador inteligente original ahora cuenta con una cámara 3D, una tapa de joystick y control de temperatura en tiempo real. Con su interfaz de un solo botón sin interrupciones, filtración premium de agua y cuatro preajustes de calefacción ajustados, el Peak hace que disfrutar el concentrado sea fácil — siempre.",
+    "descriptionEn": "The Peak is the simplest dab experience ever. Smarter, simpler, and comfortable in your hand, our original smart vaporizer now features a 3D chamber, a joystick lid, and real-time temperature control. With its seamless one-button interface, premium water filtration, and four tuned heat presets, the Peak makes enjoying hash easy — every time.",
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak/onyx-front.webp",
+        "alt": "Puffco Peak en acabado ónix, vista frontal"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak/onyx-3quarters-left.webp",
+        "alt": "Puffco Peak en acabado ónix, vista de tres cuartos desde la izquierda"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak/onyx-left.webp",
+        "alt": "Puffco Peak en acabado ónix, vista lateral izquierda"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak/onyx-back.webp",
+        "alt": "Puffco Peak en acabado ónix, vista posterior"
+      }
+    ],
+    "caption": "Cuatro vistas del vaporizador Puffco Peak",
+    "variantGroupLabel": "Acabado",
+    "variants": [
+      { "id": "onix", "label": "Ónix", "price": null },
+      { "id": "zest", "label": "Zest", "price": null },
+      { "id": "zafiro", "label": "Zafiro", "price": null }
+    ]
+  },
+  {
+    "id": "peak-pro-3dxl",
+    "category": "vaporizadores",
+    "categoryLabel": "Vaporizadores",
+    "type": "Vaporizador inteligente",
+    "brand": "Puffco",
+    "name": "Puffco Peak Pro 3DXL",
+    "searchTerms": "puffco peak pro 3dxl vaporizador recámara bol grande carga inalámbrica app connect",
+    "description": "Conocé la nueva Puffco Peak Pro 3DXL, que cuenta con la innovadora recámara 3DXL. Con un bol un 78% más grande y el doble de vapor, este dispositivo proporciona calentamientos más rápidos y un control preciso a través de la app Puffco Connect. Tanto en casa como en cualquier lugar, disfrutá de la carga inalámbrica y de una experiencia inigualable con un vaporizador de concentrados bellamente diseñado que combina funcionalidad y elegancia.",
+    "descriptionEn": "Meet the new Puffco Peak Pro 3DXL from Puffco, featuring the innovative 3DXL chamber. With a bowl 78% bigger and double the vapor, this device delivers faster heats and precise control through the Puffco Connect app. Whether at home or on the go, enjoy wireless charging and an unmatched experience with a beautifully designed concentrate vaporizer that blends functionality and style.",
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/01.webp",
+        "alt": "Puffco Peak Pro 3DXL, vista principal del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/pearl.webp",
+        "alt": "Puffco Peak Pro 3DXL en acabado perla"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/quarter.webp",
+        "alt": "Puffco Peak Pro 3DXL, vista de tres cuartos"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/colores.webp",
+        "alt": "Los distintos acabados disponibles de la Puffco Peak Pro 3DXL"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/02.jpg",
+        "alt": "Puffco Peak Pro 3DXL en ambiente"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/03.jpg",
+        "alt": "Puffco Peak Pro 3DXL en ambiente, segunda toma"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/pearl-joystick-detalle.jpg",
+        "alt": "Detalle de la tapa con joystick de la Peak Pro 3DXL en acabado perla"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/chamber-detalle.jpg",
+        "alt": "Detalle de la recámara 3DXL"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/con-hot-knife.jpg",
+        "alt": "Puffco Peak Pro 3DXL junto a la herramienta Hot Knife"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/peak-pro-3dxl/peak-y-3dxl.webp",
+        "alt": "Comparación de tamaño entre el Peak original y la Peak Pro 3DXL"
+      }
+    ],
+    "caption": "Diez vistas de la Puffco Peak Pro 3DXL",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
+  },
+  {
+    "id": "pivot",
+    "category": "vaporizadores",
+    "categoryLabel": "Vaporizadores",
+    "type": "Vaporizador portátil",
+    "brand": "Puffco",
+    "name": "Pivot",
+    "searchTerms": "puffco pivot vaporizador portátil bolsillo discreto cámara 3d barra de luz háptica",
+    "tagline": "Perfil bajo. Alto rendimiento.",
+    "taglineEn": "Low profile. High performance.",
+    "description": "El Pivot pone toda la experiencia Puffco en tu bolsillo. Del tamaño de un bolígrafo, este vaporizador móvil y discreto cuenta con una cámara 3D de liberación rápida que ofrece sabor premium y control de temperatura en tiempo real. Con una barra de luz que sirve como temporizador visual para dab, retroalimentación háptica, una interfaz de un solo botón y cuatro ajustes de calor predefinidos, el Pivot es un verdadero dab que podés llevar a cualquier lugar.",
+    "descriptionEn": "The Pivot puts the full Puffco experience in your pocket. The same size as a pen, this discreet, mobile vaporizer features a quick-release 3D Chamber that delivers premium flavor and real-time temperature control. With a light bar that serves as a visual dab timer, haptic feedback, a single-button interface, and four dialed heat presets, the Pivot is a true dab you can take anywhere.",
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/pivot/zafiro-front-light-on.webp",
+        "alt": "Pivot en acabado zafiro, vista frontal con la barra de luz encendida"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/pivot/zafiro-floating.webp",
+        "alt": "Pivot en acabado zafiro sobre fondo neutro"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/pivot/zafiro-3dchamber-release.webp",
+        "alt": "Pivot en acabado zafiro con la cámara 3D liberada"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/pivot/zafiro-back.webp",
+        "alt": "Pivot en acabado zafiro, vista posterior"
+      }
+    ],
+    "caption": "Cuatro vistas del vaporizador Pivot",
+    "variantGroupLabel": "Acabado",
+    "variants": [
+      { "id": "onix", "label": "Ónix", "price": null },
+      { "id": "zafiro", "label": "Zafiro", "price": null }
+    ]
+  },
+  {
+    "id": "proxy-core",
+    "category": "vaporizadores",
+    "categoryLabel": "Vaporizadores",
+    "type": "Vaporizador portátil",
+    "brand": "Puffco",
+    "name": "Proxy Core",
+    "searchTerms": "puffco proxy core vaporizador portátil sin vidrio perlas terpenos app connect",
+    "tagline": "Esta no es una experiencia reducida. Es una experiencia concentrada.",
+    "taglineEn": "This isn’t a scaled-down experience. It’s a concentrated one.",
+    "description": "El nuevo Proxy Core está diseñado para la vida diaria: máxima portabilidad, potencia sin compromisos. Impulsado por nuestra cámara 3D patentada y la personalización avanzada de la app Puffco Connect, Core ofrece sabor de espectro completo y nubes impresionantes en un formato sin vidrio y muy fácil de llevar en el bolsillo. Y cuando combinás las perlas de terpenos de cerámica con el diseño de conducto de aire de impacto de Core, obtenés una inhalación directa e íntima que vibra al inhalar.",
+    "descriptionEn": "The new Proxy Core is engineered for daily life – maximum portability, uncompromising power. Driven by our patented 3D Chamber and the Puffco Connect app’s deep customization, Core delivers full spectrum flavor and impressive clouds in a glass-free, highly pocketable form. And when you combine the ceramic terp pearls with Core’s impact airpath design, you’re getting a direct, intimate hit that rumbles as you inhale.",
+    "notes": [
+      "Solo compatible con el nuevo Proxy con Bluetooth.",
+      "Este producto NO es para usar con tabaco, líquidos electrónicos que contengan nicotina, ni con nicotina sintética o sustitutos de la nicotina."
+    ],
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/01.webp",
+        "alt": "Proxy Core, vista principal del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/02.webp",
+        "alt": "Proxy Core, segunda vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/03.webp",
+        "alt": "Proxy Core, tercera vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/04.webp",
+        "alt": "Proxy Core, cuarta vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/05.webp",
+        "alt": "Proxy Core, quinta vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/06.webp",
+        "alt": "Proxy Core, sexta vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/07.webp",
+        "alt": "Proxy Core, séptima vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/08.webp",
+        "alt": "Proxy Core, octava vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/09.webp",
+        "alt": "Proxy Core, novena vista del equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy-core/10.webp",
+        "alt": "Proxy Core, décima vista del equipo"
+      }
+    ],
+    "caption": "Diez vistas del Proxy Core",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
+  },
+  {
+    "id": "proxy",
+    "category": "vaporizadores",
+    "categoryLabel": "Vaporizadores",
+    "type": "Kit vaporizador",
+    "brand": "Puffco",
+    "name": "Proxy Pipe Kit",
+    "searchTerms": "puffco proxy pipe kit vaporizador bluetooth app connect cámara 3d batería",
+    "tagline": "No te limites a experimentar el hash. Exploralo.",
+    "taglineEn": "Don’t just experience hash. Explore it.",
+    "description": "El nuevo Proxy es más inteligente, suave y potente. Una forma refinada ofrece vaporizaciones más grandes y limpias, con una sensación sofisticada en la mano. La cámara 3D mejorada desbloquea dosis más grandes, mejor sabor y reduce el salpicado. El control Bluetooth mediante la app Puffco Connect pone en tus manos el control total de la temperatura, el tiempo de sesión, el nivel de vapor y la iluminación ambiental. Con una mayor duración de la batería y compatibilidad con todas las piezas de Proxy, es el Proxy que conocés, ahora evolucionado para llevarte más lejos.",
+    "descriptionEn": "The new Proxy is smarter, smoother, and more powerful. A refined shape delivers bigger, cleaner hits with a refined feel in your hand. The upgraded 3D Chamber unlocks bigger dabs, better flavor, and reduces splash out. Bluetooth control via the Puffco Connect App puts full control of temp, session time, vapor level, and mood lighting in your hands. With improved battery life and compatibility with all Proxy pieces, it’s the Proxy you know—now evolved to take you further.",
+    "notes": [
+      "Este producto no es para su uso con tabaco, líquidos electrónicos que contengan nicotina, ni con nicotina sintética o sustitutos de la nicotina."
+    ],
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy/onyx-profile-left.webp",
+        "alt": "Proxy Pipe Kit en acabado ónix, perfil izquierdo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy/onyx-chamber-float.webp",
+        "alt": "Proxy Pipe Kit en acabado ónix con la cámara separada del cuerpo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy/onyx-finger-tilted.webp",
+        "alt": "Proxy Pipe Kit en acabado ónix sostenido en la mano"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy/onyx-pull-apart.webp",
+        "alt": "Proxy Pipe Kit en acabado ónix desarmado en sus piezas"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy/onyx-side-by-side.webp",
+        "alt": "Dos unidades del Proxy Pipe Kit en acabado ónix lado a lado"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/proxy/en-caja.webp",
+        "alt": "Proxy Pipe Kit dentro de su caja"
+      }
+    ],
+    "caption": "Seis vistas del Proxy Pipe Kit",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
+  },
+  {
+    "id": "hot-knife",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Herramienta de carga",
+    "brand": "Puffco",
+    "name": "Hot Knife",
+    "searchTerms": "puffco hot knife herramienta carga calentada wax rosin punta cerámica usb-c",
+    "description": "El Hot Knife lleva nuestra herramienta de carga calentada al siguiente nivel. Es una herramienta de carga eléctrica, no un vaporizador: sirve específicamente para transferir concentrados pegajosos (wax, rosin) hacia la cámara del dispositivo (Peak, Peak Pro, Proxy, etc.) de forma limpia, sin tener que raspar con herramientas frías. No vaporiza el concentrado, solo lo derrite lo suficiente para que se desprenda y caiga en la cámara. Un cuerpo mejorado con una conexión de tapa más segura y lista para viajar. Una punta de cerámica remodelada y esmaltada diseñada para dejar más hachís en la cámara. Además, un botón rediseñado con funciones ampliadas. La carga rápida USB-C ofrece una carga completa en solo 25 minutos: triple clic para revisar la batería, mantener presionado para calentar. Y el nuevo lazo para cordón en la tapa hace que cargar sobre la marcha sea más fácil que nunca.",
+    "descriptionEn": "The Hot Knife takes our game-changing heated loading tool to the next level. The Hot Knife is an electrically powered loading tool, not a vaporizer itself — it’s specifically for transferring sticky concentrates (wax, rosin) into the device’s chamber (Peak, Peak Pro, Proxy, etc.) cleanly, without having to scrape with cold tools. It doesn’t vaporize the concentrate, it just melts it enough so it can drop into the chamber. An upgraded body with a more secure, travel-friendly cap connection. A reshaped and glazed ceramic tip designed to leave more hash in the chamber. Plus, a reimagined button with expanded functions. Fast USB-C charging delivers a full charge in just 25 minutes. Triple-click to check battery life, press + hold to heat. And the new lanyard loop on the cap makes loading on-the-go easier than ever.",
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/hot-knife/onyx-cap-off.webp",
+        "alt": "Hot Knife en acabado ónix con la tapa quitada, mostrando la punta de cerámica"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/hot-knife/onyx-cap-on.webp",
+        "alt": "Hot Knife en acabado ónix con la tapa puesta"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/hot-knife/onyx-en-mano.webp",
+        "alt": "Hot Knife en acabado ónix sostenido en la mano"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/hot-knife/onyx-caja-abierta.webp",
+        "alt": "Hot Knife dentro de su caja abierta"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/hot-knife/onyx-caja.webp",
+        "alt": "Caja cerrada del Hot Knife"
+      }
+    ],
+    "caption": "Cinco vistas del Hot Knife",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
+  },
+  {
+    "id": "chamber-3dxl",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Cámara de repuesto",
+    "brand": "Puffco",
+    "name": "Chamber 3DXL",
+    "searchTerms": "puffco chamber 3dxl cámara repuesto peak pro bol grande joystick xl",
+    "tagline": "Lo mejor acaba de hacerse más grande.",
+    "taglineEn": "The best just got bigger.",
+    "description": "Cazuela un 78% más grande. 2 veces más vapor. El Peak Pro 3DXL es la primera cámara de e-rig de alta capacidad del mundo. Ofreciendo el mismo sabor y consistencia increíbles por los que nuestra tecnología 3D patentada es conocida, la cámara más profunda del 3DXL y el Joystick XL te permiten cargar más y vaporizar más fuerte, con menos residuos. El 3DXL también desbloquea un nuevo nivel de control de vapor en la app Puffco Connect.",
+    "descriptionEn": "78% larger bowl. 2x more vapor. The Peak Pro 3DXL is the world’s first high capacity e-rig chamber. Delivering the same incredible flavor and consistency our patented 3D technology is known for, the 3DXL’s deeper chamber and XL Joystick let you load fuller and rip harder—with less reclaim. The 3DXL also unlocks a new level of vapor control in the Puffco Connect app.",
+    "includes": ["Cámara Peak Pro 3DXL", "Tapa con Joystick XL"],
+    "includesEn": ["Peak Pro 3DXL Chamber", "XL Joystick Cap"],
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/01-interior.webp",
+        "alt": "Interior de la cámara Chamber 3DXL"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/02.webp",
+        "alt": "Chamber 3DXL, vista del conjunto"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/04.webp",
+        "alt": "Chamber 3DXL, vista lateral"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/05.webp",
+        "alt": "Chamber 3DXL montada en el equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/06.webp",
+        "alt": "Detalle de la tapa con Joystick XL"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/07.webp",
+        "alt": "Chamber 3DXL en ambiente"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3dxl/03-caja.webp",
+        "alt": "Caja de la Chamber 3DXL"
+      }
+    ],
+    "caption": "Siete vistas de la Chamber 3DXL",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
+  },
+  {
+    "id": "chamber-3d",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Cámara de repuesto",
+    "brand": "Puffco",
+    "name": "Cámara 3D Chamber",
+    "searchTerms": "puffco cámara 3d chamber repuesto sensores control temperatura cerámica terpenos",
+    "tagline": "A menudo imitada, nunca superada.",
+    "taglineEn": "Often imitated, never beaten.",
+    "description": "Nuestra cámara 3D patentada te ofrece mejor sabor y un golpe consistente cada vez. Sensores innovadores proporcionan control de temperatura en tiempo real, mientras que las trazas de calor incrustadas en las paredes de cerámica vaporizan el concentrado desde los lados, no desde el fondo. Esta tecnología de primera protege los terpenos y cannabinoides de degradarse, asegurando que obtengas efectos y sabor óptimos.",
+    "descriptionEn": "Our patented 3D Chamber gives you better flavor and a consistent hit every time. Innovative sensors provide real-time temperature control, while heat traces embedded in the ceramic walls vaporize concentrate from the sides – not the bottom. This top-tier technology protects the terpenes and cannabinoids from degrading, ensuring you get optimal effects and optimal flavor.",
+    "notes": [
+      "Este producto no es apto para usar con tabaco, líquidos con nicotina ni ningún tipo de nicotina sintética o sustituto de nicotina."
+    ],
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3d/01.webp",
+        "alt": "Cámara 3D Chamber, vista del conjunto"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3d/02.webp",
+        "alt": "Cámara 3D Chamber, segunda vista"
+      }
+    ],
+    "caption": "Dos vistas de la Cámara 3D Chamber",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
+  },
+  {
+    "id": "travel-glass",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Accesorio de viaje",
+    "brand": "Puffco",
+    "name": "Travel Glass",
+    "searchTerms": "puffco travel glass tapa patentada peak pro agua boquilla viaje derrames",
+    "tagline": "Hacé un viaje.",
+    "taglineEn": "Take a trip.",
+    "description": "El Puffco Travel Glass es una tapa patentada para el Peak Pro y el Peak que te permite mantener el agua dentro de la cámara girando la boquilla. Menos derrames, mejor portabilidad, ahorra agua. Dabs mientras viajás.",
+    "descriptionEn": "Take a trip. The Puffco Travel Glass is a patented Top for the Peak Pro and Peak that allows you to lock water inside the chamber by twisting the mouthpiece. Less spills, better portability, saves water. Dab on the go.",
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/black-01.webp",
+        "alt": "Travel Glass en negro, vista frontal"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/black-02.webp",
+        "alt": "Travel Glass en negro, vista lateral"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/03.webp",
+        "alt": "Travel Glass montado sobre el equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/04.webp",
+        "alt": "Detalle de la boquilla giratoria del Travel Glass"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/05.webp",
+        "alt": "Travel Glass en ambiente"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/06.webp",
+        "alt": "Travel Glass, vista superior"
+      }
+    ],
+    "caption": "Seis vistas del Travel Glass",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
+    ]
+  },
+  {
+    "id": "travel-case",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Accesorio de viaje",
+    "brand": "Puffco",
+    "name": "Travel Case",
+    "searchTerms": "puffco travel case estuche aluminio cierre magnético silicona pivot hot knife frascos",
+    "description": "El Travel Case mantiene tu equipo organizado. Cuenta con un exterior rígido de aluminio con relieve, una tapa con cierre magnético y un interior de silicona suave para reducir el ruido. Tiene espacio para un Pivot + Hot Knife, hasta 3 frascos, hisopos de algodón, una sección cubierta para basura y cualquier otra cosa que puedas necesitar.",
+    "descriptionEn": "The Travel Case keeps your stash organized. Featuring a ridged hard aluminum exterior with a magnetic lid closure and soft silicone inside to reduce rattling, the Travel Case has room for a Pivot + Hot Knife, up to 3 jars, cotton swabs, a covered section for trash, and anything else you might need.",
+    "notes": [
+      "Los artículos que se muestran en el Travel Case no están incluidos."
+    ],
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/01.webp",
+        "alt": "Travel Case cerrado, vista frontal"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/02.webp",
+        "alt": "Travel Case cerrado, vista lateral"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/03.webp",
+        "alt": "Travel Case abierto con el equipo organizado en su interior"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/04.webp",
+        "alt": "Detalle del interior de silicona del Travel Case"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/06.webp",
+        "alt": "Travel Case en uno de sus acabados disponibles"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/07.webp",
+        "alt": "Travel Case en ambiente"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/08.webp",
+        "alt": "Detalle del cierre magnético del Travel Case"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-case/3dxl.webp",
+        "alt": "Travel Case junto a la Chamber 3DXL"
+      }
+    ],
+    "caption": "Ocho vistas del Travel Case",
+    "variantGroupLabel": "Acabado",
+    "variants": [
+      { "id": "perla", "label": "Perla", "price": null },
+      { "id": "amanecer", "label": "Amanecer", "price": null },
+      { "id": "zafiro", "label": "Zafiro", "price": null }
+    ]
+  },
+  {
+    "id": "joystick-cap",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Tapa de repuesto",
+    "brand": "Puffco",
+    "name": "Joystick Cap",
+    "searchTerms": "puffco joystick cap tapa peak pro flujo aire 360 acero inoxidable silicona",
+    "tagline": "Nunca se atasca. Menos mantenimiento. Siempre divertido.",
+    "taglineEn": "Never stuck. Less maintenance. Always fun.",
+    "description": "La tapa de joystick Peak Pro ofrece un flujo de aire direccional de 360º preciso para una calefacción más consistente, dándote nubes más grandes y mejor sabor. Hecha de acero inoxidable irrompible y silicona, el diseño del joystick es fácil de limpiar y evita que los residuos bloqueen tu flujo.",
+    "descriptionEn": "Never stuck. Less maintenance. Always fun. The Peak Pro Joystick Cap provides precise 360º directional airflow for more consistent heating, giving you bigger clouds and better flavor. Made of shatterproof stainless steel and silicone, the Joystick’s design is easy to clean and prevents reclaim from stopping your flow. And it’s fidget friendly.",
+    "images": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/01.webp",
+        "alt": "Joystick Cap, vista frontal"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/02.webp",
+        "alt": "Joystick Cap, vista lateral"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/03.webp",
+        "alt": "Joystick Cap montada sobre el equipo"
+      },
+      {
+        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/onyx-detalle.webp",
+        "alt": "Detalle de la Joystick Cap en acabado ónix"
+      }
+    ],
+    "caption": "Cuatro vistas de la Joystick Cap",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": null }
     ]
   }
 ]
