@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Muestra visual del sistema de diseño oficial de Almatierra Cultivos.">
+  <title>Almatierra Cultivos — Muestra de identidad web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #2f7d32;
+      --brand-hover: #266729;
+      --brand-active: #1d5220;
+      --brand-light: #7fae3c;
+      --ink: #111111;
+      --paper: #f8f8f8;
+      --surface: #ffffff;
+      --warm-gray: #e8e5de;
+      --muted: #5a5c57;
+      --border: #6b6d67;
+      --focus: #2f7d32;
+      --display: "Oswald", "Arial Narrow", sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --container: 1280px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --space-5: 32px;
+      --space-6: 48px;
+      --space-7: 64px;
+      --space-8: 96px;
+      --radius: 2px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 12px;
+      left: 12px;
+      padding: 10px 14px;
+      color: #fff;
+      background: var(--brand);
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .container {
+      width: min(calc(100% - 128px), var(--container));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 20;
+      border-bottom: 1px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .header-main {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr) auto;
+      align-items: center;
+      min-height: 156px;
+      gap: var(--space-6);
+    }
+
+    .brand {
+      display: block;
+      width: 132px;
+      height: 132px;
+      padding: 10px;
+      background: var(--surface);
+    }
+
+    .brand img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-5);
+      min-width: 0;
+    }
+
+    .primary-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .primary-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      border-bottom: 2px solid transparent;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .primary-nav a:hover { border-bottom-color: var(--brand); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-button, .menu-button {
+      display: inline-grid;
+      place-items: center;
+      min-width: 44px;
+      min-height: 44px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      color: var(--ink);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .icon-button:hover, .menu-button:hover { background: var(--warm-gray); }
+    .menu-button { display: none; border-radius: var(--radius); }
+
+    .cart-count {
+      display: inline-grid;
+      place-items: center;
+      min-width: 22px;
+      height: 22px;
+      margin-left: 4px;
+      padding-inline: 5px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--brand);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .edition-strip {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edition-strip .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 44px;
+      gap: var(--space-3);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .025em;
+      text-transform: uppercase;
+    }
+
+    .edition-mark { color: var(--brand); font-weight: 500; }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(280px, 5fr);
+      min-height: 640px;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .manifesto-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-8) clamp(40px, 6vw, 96px) var(--space-8) max(64px, calc((100vw - var(--container)) / 2));
+    }
+
+    .eyebrow {
+      margin: 0 0 var(--space-4);
+      color: var(--brand);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--display);
+      text-wrap: balance;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-size: clamp(3rem, 6.2vw, 6.6rem);
+      line-height: .98;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+    }
+
+    .manifesto-lead {
+      max-width: 700px;
+      margin: var(--space-5) 0 0;
+      font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    .manifesto-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: var(--space-6);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 11px 20px;
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button-primary {
+      border-color: var(--brand);
+      color: #fff;
+      background: var(--brand);
+    }
+
+    .button-primary:hover { border-color: var(--brand-hover); background: var(--brand-hover); }
+    .button-primary:active { border-color: var(--brand-active); background: var(--brand-active); }
+    .button-secondary { color: var(--ink); background: transparent; }
+    .button-secondary:hover { background: var(--warm-gray); }
+
+    .manifesto-plate {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-width: 0;
+      padding: var(--space-7) clamp(28px, 4vw, 64px);
+      color: var(--ink);
+      background: var(--brand-light);
+      border-left: 1px solid var(--ink);
+    }
+
+    .plate-index, .plate-caption {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .specimen {
+      position: relative;
+      align-self: center;
+      min-height: 350px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .specimen::before, .specimen::after {
+      content: "";
+      position: absolute;
+      inset: 10% 50%;
+      width: 1px;
+      background: var(--ink);
+      transform-origin: bottom;
+    }
+
+    .specimen::before { transform: rotate(28deg); }
+    .specimen::after { transform: rotate(-31deg); }
+
+    .specimen-rings {
+      position: absolute;
+      inset: 16% 12%;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    .specimen-rings::before,
+    .specimen-rings::after {
+      content: "";
+      position: absolute;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    .specimen-rings::before { inset: 14%; }
+    .specimen-rings::after { inset: 31%; }
+
+    .specimen-label {
+      position: absolute;
+      right: 16px;
+      bottom: 14px;
+      max-width: 180px;
+      margin: 0;
+      padding: 6px 8px;
+      color: var(--paper);
+      background: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .section { padding-block: var(--space-8); }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 8fr) minmax(240px, 4fr);
+      align-items: end;
+      gap: var(--space-6);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .section-heading p { margin: 0; color: var(--muted); text-wrap: pretty; }
+
+    .catalog-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+      gap: var(--space-4);
+      margin-block: var(--space-5);
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .category-button {
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: transparent;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .category-button:hover { background: var(--warm-gray); }
+    .category-button[aria-pressed="true"] { border-color: var(--brand); color: #fff; background: var(--brand); }
+
+    .search-form { position: relative; }
+    .search-form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .search-form input {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 48px 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .search-submit {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      color: var(--ink);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .search-submit:hover { background: var(--warm-gray); }
+
+    .catalog-note {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--ink);
+      border-left: 1px solid var(--ink);
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: var(--space-4);
+      border-right: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      background: var(--surface);
+      transition: transform 160ms ease;
+    }
+
+    .product-card:hover { transform: translateY(-2px); }
+    .product-card[hidden] { display: none; }
+
+    .product-media {
+      position: relative;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1 / 1;
+      margin: 0 0 var(--space-4);
+      border: 1px solid var(--warm-gray);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .product-media::before {
+      content: "";
+      width: 44%;
+      aspect-ratio: 1;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      box-shadow: 0 0 0 24px var(--paper), 0 0 0 25px var(--border);
+    }
+
+    .product-media span {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      left: 12px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .product-meta {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .product-card h3 {
+      font-size: clamp(1.45rem, 2.2vw, 2rem);
+      line-height: 1.12;
+      text-transform: uppercase;
+    }
+
+    .product-description { margin: 12px 0 20px; color: var(--muted); }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--warm-gray);
+    }
+
+    .price { font-weight: 600; color: var(--brand); }
+
+    .add-button {
+      min-height: 44px;
+      padding: 9px 13px;
+      border: 1px solid var(--brand);
+      border-radius: var(--radius);
+      color: #fff;
+      background: var(--brand);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .add-button:hover { border-color: var(--brand-hover); background: var(--brand-hover); }
+    .add-button:active { border-color: var(--brand-active); background: var(--brand-active); }
+
+    .empty-state {
+      padding: var(--space-6);
+      border: 1px solid var(--ink);
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .empty-state[hidden] { display: none; }
+
+    .editorial-block {
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      border-block: 1px solid var(--ink);
+    }
+
+    .editorial-index {
+      padding: var(--space-7) var(--space-5);
+      color: var(--ink);
+      background: var(--brand-light);
+      border-right: 1px solid var(--ink);
+    }
+
+    .editorial-index strong {
+      display: block;
+      font-family: var(--display);
+      font-size: clamp(5rem, 10vw, 10rem);
+      line-height: .8;
+    }
+
+    .editorial-index span { font-family: var(--mono); font-size: 12px; text-transform: uppercase; }
+
+    .editorial-copy { padding: var(--space-7) clamp(28px, 6vw, 96px); }
+    .editorial-copy h2 { font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1; text-transform: uppercase; }
+    .editorial-copy blockquote {
+      max-width: 850px;
+      margin: var(--space-5) 0 0;
+      font-size: clamp(1.3rem, 2.1vw, 2rem);
+      line-height: 1.45;
+    }
+    .editorial-copy cite { display: block; margin-top: var(--space-4); font-family: var(--mono); font-size: 12px; font-style: normal; text-transform: uppercase; }
+
+    .site-footer {
+      padding-block: var(--space-7) var(--space-5);
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 4fr) minmax(0, 8fr);
+      gap: var(--space-7);
+    }
+
+    .footer-mark {
+      font-family: var(--display);
+      font-size: 2.3rem;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .footer-copy { max-width: 700px; margin: 0; color: #d8d8d3; }
+    .footer-meta { margin: var(--space-6) 0 0; padding-top: var(--space-4); border-top: 1px solid #777; font-family: var(--mono); font-size: 11px; }
+
+    .status-message {
+      position: fixed;
+      z-index: 50;
+      right: 24px;
+      bottom: 24px;
+      max-width: min(360px, calc(100vw - 48px));
+      padding: 14px 16px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      background: var(--brand-light);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(150%);
+      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+    }
+
+    .status-message.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1023px) {
+      .container { width: min(calc(100% - 64px), var(--container)); }
+      .header-main { grid-template-columns: 104px 1fr auto; min-height: 124px; gap: var(--space-4); }
+      .brand { width: 104px; height: 104px; }
+      .menu-button { display: inline-grid; }
+      .nav-wrap { justify-content: flex-end; }
+      .primary-nav {
+        position: absolute;
+        top: 100%;
+        right: 32px;
+        left: 32px;
+        display: none;
+        padding: var(--space-4);
+        border: 1px solid var(--ink);
+        background: var(--paper);
+      }
+      .primary-nav.is-open { display: block; }
+      .primary-nav ul { display: grid; gap: 4px; }
+      .primary-nav a { width: 100%; }
+      .manifesto { grid-template-columns: 1fr; }
+      .manifesto-copy { padding: var(--space-7) 32px; }
+      .manifesto-plate { grid-template-columns: auto 1fr auto; grid-template-rows: none; align-items: center; gap: var(--space-4); border-top: 1px solid var(--ink); border-left: 0; }
+      .specimen { width: min(100%, 440px); min-height: 320px; justify-self: center; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 767px) {
+      .container { width: min(calc(100% - 40px), var(--container)); }
+      .header-main { grid-template-columns: 84px 1fr auto; min-height: 104px; gap: 12px; }
+      .brand { width: 84px; height: 84px; padding: 6px; }
+      .header-actions .label { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+      .primary-nav { right: 20px; left: 20px; }
+      .edition-strip .container { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 8px; line-height: 1.4; }
+      .manifesto-copy { padding: var(--space-7) 20px; }
+      h1 { font-size: clamp(3rem, 15vw, 4.6rem); }
+      .manifesto-plate { display: block; padding: var(--space-5) 20px; }
+      .specimen { margin-block: var(--space-4); min-height: 280px; }
+      .section { padding-block: var(--space-7); }
+      .section-heading, .catalog-toolbar { grid-template-columns: 1fr; }
+      .section-heading { gap: var(--space-4); }
+      .categories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .category-button { width: 100%; }
+      .catalog-note { flex-direction: column; gap: 4px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .editorial-block { grid-template-columns: 1fr; }
+      .editorial-index { padding: var(--space-5) 20px; border-right: 0; border-bottom: 1px solid var(--ink); }
+      .editorial-index strong { font-size: 5rem; }
+      .editorial-copy { padding: var(--space-7) 20px; }
+      .footer-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+      .status-message { right: 20px; bottom: 20px; max-width: calc(100vw - 40px); }
+    }
+
+    @media (max-width: 419px) {
+      .header-main { grid-template-columns: 76px 1fr auto; }
+      .brand { width: 76px; height: 76px; }
+      .header-actions { gap: 4px; }
+      .icon-button, .menu-button { min-width: 44px; padding: 0; }
+      .manifesto-actions .button { width: 100%; }
+      .categories { grid-template-columns: 1fr; }
+      .product-footer { align-items: stretch; flex-direction: column; }
+      .add-button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+      .product-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container header-main">
+      <a class="brand" href="#inicio" aria-label="Almatierra Cultivos — Inicio">
+        <img src="assets/almatierra-logo.jpg" alt="Almatierra Cultivos">
+      </a>
+
+      <div class="nav-wrap">
+        <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
+          <ul>
+            <li><a href="#catalogo">Productos</a></li>
+            <li><a href="#cuaderno">Cuaderno</a></li>
+            <li><a href="#manifiesto">Manifiesto</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-actions">
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          <span class="label">Menú</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+        <button class="icon-button" type="button" aria-label="Abrir carrito; 0 productos">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 3h2l1.7 9.2h9.5L17 6H5M8 16.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm8 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="cart-count" aria-hidden="true">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="edition-strip">
+      <div class="container">
+        <span class="edition-mark">Botánica · Ciencia · Cultura</span>
+        <span>Muestra de diseño / Edición 01</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="manifesto" id="inicio" aria-labelledby="manifesto-title">
+      <div class="manifesto-copy">
+        <p class="eyebrow">Archivo vivo para cultivar conocimiento</p>
+        <h1 id="manifesto-title">La planta tiene una historia que contar.</h1>
+        <p class="manifesto-lead">Almatierra une cultivo, botánica e investigación en una experiencia editorial donde cada producto abre una puerta al conocimiento.</p>
+        <div class="manifesto-actions">
+          <a class="button button-primary" href="#catalogo">Explorar catálogo</a>
+          <a class="button button-secondary" href="#manifiesto">Leer el manifiesto</a>
+        </div>
+      </div>
+
+      <aside class="manifesto-plate" aria-label="Lámina editorial demostrativa">
+        <span class="plate-index">Lámina 01 / Morfología</span>
+        <div class="specimen" role="img" aria-label="Marcador geométrico para una futura ilustración botánica en blanco y negro">
+          <div class="specimen-rings"></div>
+          <p class="specimen-label">Ilustración demostrativa<br>Reemplazar por grabado oficial</p>
+        </div>
+        <span class="plate-caption">Archivo botánico · Serie A</span>
+      </aside>
+    </section>
+
+    <section class="section" id="catalogo" aria-labelledby="catalog-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selección para cultivar</p>
+            <h2 id="catalog-title">Catálogo editorial</h2>
+          </div>
+          <p>Una composición de ejemplo para mostrar cómo conviven producto, datos y contexto. Los nombres y precios son demostrativos.</p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="categories" role="group" aria-label="Filtrar por categoría">
+            <button class="category-button" type="button" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="category-button" type="button" data-filter="cultivo" aria-pressed="false">Cultivo</button>
+            <button class="category-button" type="button" data-filter="observacion" aria-pressed="false">Observación</button>
+            <button class="category-button" type="button" data-filter="archivo" aria-pressed="false">Archivo</button>
+          </div>
+
+          <form class="search-form" role="search">
+            <label for="product-search">Buscar en el catálogo</label>
+            <input id="product-search" type="search" placeholder="Buscar producto demostrativo" autocomplete="off">
+            <button class="search-submit" type="submit" aria-label="Buscar">
+              <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m13 13 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="catalog-note">
+          <span id="result-count">6 resultados</span>
+          <span>Contenido y valores únicamente demostrativos</span>
+        </div>
+
+        <div class="product-grid" aria-live="polite">
+          <article class="product-card" data-category="cultivo" data-name="sustrato vivo">
+            <figure class="product-media"><span>Imagen de producto · 01</span></figure>
+            <p class="product-meta">Cultivo / Referencia 001</p>
+            <h3>Sustrato vivo</h3>
+            <p class="product-description">Composición de muestra para explicar origen, aplicación y cuidados sin lenguaje promocional excesivo.</p>
+            <div class="product-footer"><span class="price">ARS 12.500</span><button class="add-button" type="button" data-product="Sustrato vivo">Agregar</button></div>
+          </article>
+
+          <article class="product-card" data-category="cultivo" data-name="maceta textil">
+            <figure class="product-media"><span>Imagen de producto · 02</span></figure>
+            <p class="product-meta">Cultivo / Referencia 002</p>
+            <h3>Maceta textil</h3>
+            <p class="product-description">Ficha demostrativa con presentación, disponibilidad y datos de uso integrados al relato editorial.</p>
+            <div class="product-footer"><span class="price">ARS 8.900</span><button class="add-button" type="button" data-product="Maceta textil">Agregar</button></div>
+          </article>
+
+          <article class="product-card" data-category="observacion" data-name="lupa de precisión">
+            <figure class="product-media"><span>Imagen de producto · 03</span></figure>
+            <p class="product-meta">Observación / Referencia 003</p>
+            <h3>Lupa de precisión</h3>
+            <p class="product-description">El nombre, la categoría mono y el precio se leen con rapidez sin perder el carácter de publicación.</p>
+            <div class="product-footer"><span class="price">ARS 17.400</span><button class="add-button" type="button" data-product="Lupa de precisión">Agregar</button></div>
+          </article>
+
+          <article class="product-card" data-category="observacion" data-name="medidor ambiental">
+            <figure class="product-media"><span>Imagen de producto · 04</span></figure>
+            <p class="product-meta">Observación / Referencia 004</p>
+            <h3>Medidor ambiental</h3>
+            <p class="product-description">Una tarjeta puede alojar especificaciones claras sin convertirse en un bloque visual pesado.</p>
+            <div class="product-footer"><span class="price">ARS 24.800</span><button class="add-button" type="button" data-product="Medidor ambiental">Agregar</button></div>
+          </article>
+
+          <article class="product-card" data-category="archivo" data-name="cuaderno de cultivo">
+            <figure class="product-media"><span>Imagen de producto · 05</span></figure>
+            <p class="product-meta">Archivo / Referencia 005</p>
+            <h3>Cuaderno de cultivo</h3>
+            <p class="product-description">Ejemplo de pieza editorial que conecta registro, aprendizaje y práctica cotidiana.</p>
+            <div class="product-footer"><span class="price">ARS 9.600</span><button class="add-button" type="button" data-product="Cuaderno de cultivo">Agregar</button></div>
+          </article>
+
+          <article class="product-card" data-category="archivo" data-name="lámina botánica">
+            <figure class="product-media"><span>Imagen de producto · 06</span></figure>
+            <p class="product-meta">Archivo / Referencia 006</p>
+            <h3>Lámina botánica</h3>
+            <p class="product-description">Demostración de cómo una pieza cultural puede convivir con herramientas y productos de cultivo.</p>
+            <div class="product-footer"><span class="price">ARS 14.200</span><button class="add-button" type="button" data-product="Lámina botánica">Agregar</button></div>
+          </article>
+        </div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <h3>No hay coincidencias</h3>
+          <p>Probá con otro término o elegí “Todos”.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial-block" id="cuaderno" aria-labelledby="editorial-title">
+      <div class="editorial-index">
+        <strong>02</strong>
+        <span>Cuaderno / Ciencia y cultura</span>
+      </div>
+      <div class="editorial-copy">
+        <p class="eyebrow">Conocer también es cuidar</p>
+        <h2 id="editorial-title">Una interfaz para aprender mientras se cultiva.</h2>
+        <blockquote>“La marca aparece como sello editorial, no como publicidad invasiva.”</blockquote>
+        <cite>Manual de identidad digital · Principio rector</cite>
+      </div>
+    </section>
+
+    <section class="section" id="manifiesto" aria-labelledby="manifesto-section-title">
+      <div class="container section-heading">
+        <div>
+          <p class="eyebrow">Identidad en uso</p>
+          <h2 id="manifesto-section-title">Blanco, tinta y verde.</h2>
+        </div>
+        <p>Oswald construye la voz editorial. Inter sostiene la lectura. IBM Plex Mono ordena referencias y datos. El verde señala; nunca invade.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contacto">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-mark">Almatierra<br>Cultivos</div>
+        <p class="footer-copy">Muestra visual del sistema de diseño. No representa un catálogo activo: productos, precios e ilustraciones son contenidos demostrativos para evaluar color, tipografía, composición e interacción.</p>
+      </div>
+      <p class="footer-meta">Diseño editorial botánico-científico · Vista responsive · Identidad 2026</p>
+    </div>
+  </footer>
+
+  <div class="status-message" id="status-message" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const menuButton = document.querySelector('.menu-button');
+      const navigation = document.querySelector('.primary-nav');
+      const categoryButtons = [...document.querySelectorAll('.category-button')];
+      const productCards = [...document.querySelectorAll('.product-card')];
+      const searchForm = document.querySelector('.search-form');
+      const search = document.querySelector('#product-search');
+      const resultCount = document.querySelector('#result-count');
+      const emptyState = document.querySelector('#empty-state');
+      const addButtons = [...document.querySelectorAll('.add-button')];
+      const cartButton = document.querySelector('.icon-button[aria-label^="Abrir carrito"]');
+      const cartCount = document.querySelector('.cart-count');
+      const status = document.querySelector('#status-message');
+      let activeCategory = 'all';
+      let items = 0;
+      let statusTimer;
+
+      const applyFilters = () => {
+        const query = search.value.trim().toLocaleLowerCase('es');
+        let visible = 0;
+
+        productCards.forEach((card) => {
+          const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+          const matchesSearch = !query || card.dataset.name.includes(query);
+          const shouldShow = matchesCategory && matchesSearch;
+          card.hidden = !shouldShow;
+          if (shouldShow) visible += 1;
+        });
+
+        resultCount.textContent = `${visible} ${visible === 1 ? 'resultado' : 'resultados'}`;
+        emptyState.hidden = visible !== 0;
+      };
+
+      menuButton.addEventListener('click', () => {
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        navigation.classList.toggle('is-open', !isOpen);
+      });
+
+      navigation.addEventListener('click', (event) => {
+        if (event.target.matches('a')) {
+          menuButton.setAttribute('aria-expanded', 'false');
+          navigation.classList.remove('is-open');
+        }
+      });
+
+      categoryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          activeCategory = button.dataset.filter;
+          categoryButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+          applyFilters();
+        });
+      });
+
+      search.addEventListener('input', applyFilters);
+      searchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        applyFilters();
+      });
+
+      addButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          items += 1;
+          cartCount.textContent = String(items);
+          cartButton.setAttribute('aria-label', `Abrir carrito; ${items} ${items === 1 ? 'producto' : 'productos'}`);
+          status.textContent = `${button.dataset.product} se agregó al carrito demostrativo.`;
+          status.classList.add('is-visible');
+          clearTimeout(statusTimer);
+          statusTimer = setTimeout(() => status.classList.remove('is-visible'), 2600);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
