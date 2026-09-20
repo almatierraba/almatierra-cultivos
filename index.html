@@ -622,8 +622,10 @@
       border: 1px solid var(--ink);
       color: var(--ink);
       background: var(--surface);
+      overflow: hidden;
     }
 
+    .cart-dialog[open] { display: flex; flex-direction: column; }
     .cart-dialog::backdrop { background: rgb(17 17 17 / 72%); }
 
     .cart-dialog-header {
@@ -651,7 +653,8 @@
       background: var(--paper);
     }
 
-    .cart-dialog-body { padding: var(--space-5); }
+    .order-form { display: flex; min-height: 0; flex: 1 1 auto; flex-direction: column; }
+    .cart-dialog-body { padding: var(--space-5); overflow-y: auto; }
     .cart-summary { margin: 0; font-weight: 600; }
 
     .cart-items {
@@ -665,22 +668,56 @@
     .cart-items:empty { display: none; }
 
     .cart-items li {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
       gap: var(--space-3);
+      align-items: center;
       padding-block: 10px;
       border-bottom: 1px solid var(--warm-gray);
     }
 
-    .cart-items li::before {
-      content: "Producto";
-      color: var(--brand);
-      font-family: var(--mono);
-      font-size: 11px;
+    .cart-item-copy { display: grid; gap: 4px; }
+    .cart-item-name { font-weight: 700; }
+    .cart-item-meta { color: var(--muted); font-size: .875rem; }
+    .cart-item-remove {
+      min-width: 72px;
+      min-height: 44px;
+      padding: 8px 12px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+      font: 600 .75rem/1 var(--mono);
       text-transform: uppercase;
     }
 
     .cart-disclaimer { margin: var(--space-4) 0 0; color: var(--muted); font-size: .875rem; }
+
+    .order-fields {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--ink);
+    }
+
+    .order-fields h3 { font-size: 1.5rem; text-transform: uppercase; }
+
+    .form-field { display: grid; gap: 6px; }
+    .form-field label { font-weight: 600; }
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: var(--surface);
+      font: inherit;
+    }
+
+    .form-field textarea { min-height: 96px; resize: vertical; }
+    .field-hint, .privacy-note { margin: 0; color: var(--muted); font-size: .8125rem; }
 
     .cart-dialog-actions {
       display: flex;
@@ -892,7 +929,7 @@
             <h3>Melena de León</h3>
             <p class="product-description">Tintura tradicionalmente utilizada como complemento para el bienestar cognitivo y el equilibrio general del organismo. Funciona como adaptógeno o modulador.</p>
             <ul class="product-variants" aria-label="Presentaciones de Melena de León"><li><span>60 cc</span><strong>$35.000</strong></li><li><span>100 cc</span><strong>$60.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $35.000</span><button class="add-button" type="button" data-product="Melena de León">Agregar a lista</button></div>
+            <div class="product-footer"><span class="price">Desde $35.000</span><button class="add-button" type="button" data-product="Melena de León" data-price="Desde $35.000">Agregar a lista</button></div>
           </article>
 
           <article class="product-card" data-category="bienestar" data-name="óleo aceite concentrado cbd bienestar cuidado 15 cc">
@@ -904,7 +941,7 @@
             <h3>Óleo concentrado CBD</h3>
             <p class="product-description">Óleo formulado para acompañar rutinas de cuidado y bienestar.</p>
             <ul class="product-variants" aria-label="Presentación del óleo concentrado"><li><span>15 cc</span><strong>Desde $25.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $25.000</span><button class="add-button" type="button" data-product="Óleo concentrado CBD">Agregar a lista</button></div>
+            <div class="product-footer"><span class="price">Desde $25.000</span><button class="add-button" type="button" data-product="Óleo concentrado CBD" data-price="Desde $25.000">Agregar a lista</button></div>
           </article>
 
           <article class="product-card" data-category="bienestar" data-name="óleo aceite extra concentrado cbd bienestar cuidado 15 cc">
@@ -916,7 +953,7 @@
             <h3>Óleo extra concentrado CBD</h3>
             <p class="product-description">Óleo de mayor concentración formulado para acompañar rutinas de cuidado y bienestar.</p>
             <ul class="product-variants" aria-label="Presentación del óleo extra concentrado"><li><span>15 cc</span><strong>Desde $30.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $30.000</span><button class="add-button" type="button" data-product="Óleo extra concentrado CBD">Agregar a lista</button></div>
+            <div class="product-footer"><span class="price">Desde $30.000</span><button class="add-button" type="button" data-product="Óleo extra concentrado CBD" data-price="Desde $30.000">Agregar a lista</button></div>
           </article>
 
           <article class="product-card" data-category="bienestar" data-name="pomada cbd jarilla dolores contracturas afecciones cutáneas 60 120 cc">
@@ -928,7 +965,7 @@
             <h3>Pomada</h3>
             <p class="product-description">Pomada para dolores, contracturas y afecciones cutáneas, elaborada con aceite de CBD y jarilla mendocina.</p>
             <ul class="product-variants" aria-label="Presentaciones de la pomada"><li><span>60 cc</span><strong>$8.000</strong></li><li><span>120 cc</span><strong>$15.000</strong></li></ul>
-            <div class="product-footer"><span class="price">Desde $8.000</span><button class="add-button" type="button" data-product="Pomada">Agregar a lista</button></div>
+            <div class="product-footer"><span class="price">Desde $8.000</span><button class="add-button" type="button" data-product="Pomada" data-price="Desde $8.000">Agregar a lista</button></div>
           </article>
 
           <article class="product-card" data-category="parafernalia" data-name="grinder metálico strass molinillo cuatro capas piezas rosca">
@@ -940,7 +977,7 @@
             <p class="product-meta">Parafernalia / Accesorios</p>
             <h3>Grinder metálico con strass</h3>
             <p class="product-description">Molinillo de metal de cuatro capas con rosca y strass. Cuatro piezas; la parte inferior no lleva strass.</p>
-            <div class="product-footer"><span class="price price-consult">Consultar precio</span><button class="add-button" type="button" data-product="Grinder metálico con strass">Agregar a lista</button></div>
+            <div class="product-footer"><span class="price price-consult">Consultar precio</span><button class="add-button" type="button" data-product="Grinder metálico con strass" data-price="Consultar precio">Agregar a lista</button></div>
           </article>
 
           <article class="product-card" data-category="parafernalia" data-name="mars orbiter 80w panel led cultivo iluminación dos ciclos">
@@ -953,7 +990,7 @@
             <h3>Mars Orbiter 80W</h3>
             <p class="product-description">Panel LED de dos ciclos de uso, diseñado para una iluminación uniforme y eficiente en espacios de cultivo pequeños y medianos.</p>
             <ul class="product-variants" aria-label="Datos del panel Mars Orbiter"><li><span>Potencia</span><strong>80 W</strong></li><li><span>Uso</span><strong>2 ciclos</strong></li></ul>
-            <div class="product-footer"><span class="price">$160.000</span><button class="add-button" type="button" data-product="Mars Orbiter 80W">Agregar a lista</button></div>
+            <div class="product-footer"><span class="price">$160.000</span><button class="add-button" type="button" data-product="Mars Orbiter 80W" data-price="$160.000">Agregar a lista</button></div>
           </article>
         </div>
 
@@ -1008,14 +1045,35 @@
         <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4 4 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
     </div>
-    <div class="cart-dialog-body">
-      <p class="cart-summary" id="cart-summary">La lista de consulta está vacía.</p>
-      <ul class="cart-items" id="cart-items"></ul>
-      <p class="cart-disclaimer" id="cart-disclaimer">Esta versión permite armar una selección, pero todavía no envía pedidos ni procesa pagos.</p>
-    </div>
-    <div class="cart-dialog-actions">
-      <button class="button button-secondary cart-close" type="button">Seguir explorando</button>
-    </div>
+    <form class="order-form" id="whatsapp-order-form">
+      <div class="cart-dialog-body">
+        <p class="cart-summary" id="cart-summary" tabindex="-1">La lista de consulta está vacía.</p>
+        <ul class="cart-items" id="cart-items"></ul>
+        <p class="cart-disclaimer" id="cart-disclaimer">La presentación, disponibilidad, entrega y forma de pago se coordinan por WhatsApp.</p>
+
+        <div class="order-fields">
+          <h3>Datos del comprador</h3>
+          <div class="form-field">
+            <label for="buyer-name">Nombre <span aria-hidden="true">*</span></label>
+            <input id="buyer-name" name="buyerName" type="text" autocomplete="name" required maxlength="80">
+          </div>
+          <div class="form-field">
+            <label for="buyer-locality">Localidad o barrio</label>
+            <input id="buyer-locality" name="buyerLocality" type="text" autocomplete="address-level2" maxlength="100">
+          </div>
+          <div class="form-field">
+            <label for="buyer-comments">Comentarios</label>
+            <textarea id="buyer-comments" name="buyerComments" maxlength="500" rows="3"></textarea>
+            <p class="field-hint">No incluyas información sensible. Los detalles restantes se coordinan por WhatsApp.</p>
+          </div>
+          <p class="privacy-note">Estos datos se usan únicamente para preparar el mensaje en tu navegador; no se almacenan en este sitio.</p>
+        </div>
+      </div>
+      <div class="cart-dialog-actions">
+        <button class="button button-secondary cart-close" type="button">Seguir explorando</button>
+        <button class="button button-primary whatsapp-submit" type="submit" disabled>Enviar pedido por WhatsApp</button>
+      </div>
+    </form>
   </dialog>
 
   <div class="status-message" id="status-message" role="status" aria-live="polite"></div>
@@ -1038,27 +1096,56 @@
       const cartSummary = document.querySelector('#cart-summary');
       const cartItemsList = document.querySelector('#cart-items');
       const cartCloseButtons = [...document.querySelectorAll('.cart-close')];
+      const orderForm = document.querySelector('#whatsapp-order-form');
+      const whatsappSubmit = document.querySelector('.whatsapp-submit');
       const status = document.querySelector('#status-message');
+      const sellerWhatsApp = '5491136169725';
       let activeCategory = 'all';
-      const cartItems = [];
+      const cartItems = new Map();
       let statusTimer;
       const normalizeSearch = (value) => value
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .toLocaleLowerCase('es');
 
+      const getTotalUnits = () => [...cartItems.values()]
+        .reduce((total, item) => total + item.quantity, 0);
+
       const renderCart = () => {
-        const count = cartItems.length;
+        const count = getTotalUnits();
         cartCount.textContent = String(count);
-        cartButton.setAttribute('aria-label', `Abrir lista de consulta; ${count} ${count === 1 ? 'producto' : 'productos'}`);
+        cartButton.setAttribute('aria-label', `Abrir lista de consulta; ${count} ${count === 1 ? 'unidad' : 'unidades'}`);
         cartSummary.textContent = count === 0
           ? 'La lista de consulta está vacía.'
-          : `${count} ${count === 1 ? 'producto agregado' : 'productos agregados'} a la lista.`;
-        cartItemsList.replaceChildren(...cartItems.map((name) => {
+          : `${count} ${count === 1 ? 'unidad agregada' : 'unidades agregadas'} a la lista.`;
+        whatsappSubmit.disabled = count === 0;
+        cartItemsList.replaceChildren(...[...cartItems.values()].map((cartItem) => {
           const item = document.createElement('li');
-          const productName = document.createElement('span');
-          productName.textContent = name;
-          item.append(productName);
+          const copy = document.createElement('span');
+          const productName = document.createElement('strong');
+          const productMeta = document.createElement('span');
+          const removeButton = document.createElement('button');
+          copy.className = 'cart-item-copy';
+          productName.className = 'cart-item-name';
+          productMeta.className = 'cart-item-meta';
+          removeButton.className = 'cart-item-remove';
+          productName.textContent = cartItem.name;
+          productMeta.textContent = `Cantidad: ${cartItem.quantity} · ${cartItem.price}`;
+          removeButton.type = 'button';
+          removeButton.dataset.product = cartItem.name;
+          removeButton.setAttribute('aria-label', `Quitar una unidad de ${cartItem.name}`);
+          removeButton.textContent = 'Quitar';
+          removeButton.addEventListener('click', () => {
+            const currentItem = cartItems.get(cartItem.name);
+            if (currentItem.quantity === 1) cartItems.delete(cartItem.name);
+            else currentItem.quantity -= 1;
+            renderCart();
+            const replacement = [...cartItemsList.querySelectorAll('.cart-item-remove')]
+              .find((button) => button.dataset.product === cartItem.name);
+            (replacement || cartSummary).focus();
+          });
+          copy.append(productName, productMeta);
+          item.append(copy, removeButton);
           return item;
         }));
       };
@@ -1122,13 +1209,49 @@
 
       addButtons.forEach((button) => {
         button.addEventListener('click', () => {
-          cartItems.push(button.dataset.product);
+          const currentItem = cartItems.get(button.dataset.product);
+          if (currentItem) currentItem.quantity += 1;
+          else {
+            cartItems.set(button.dataset.product, {
+              name: button.dataset.product,
+              price: button.dataset.price,
+              quantity: 1,
+            });
+          }
           renderCart();
           status.textContent = `${button.dataset.product} se agregó a la lista de consulta.`;
           status.classList.add('is-visible');
           clearTimeout(statusTimer);
           statusTimer = setTimeout(() => status.classList.remove('is-visible'), 2600);
         });
+      });
+
+      orderForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (cartItems.size === 0) return;
+
+        const buyerName = orderForm.elements.buyerName.value.trim();
+        const buyerLocality = orderForm.elements.buyerLocality.value.trim();
+        const buyerComments = orderForm.elements.buyerComments.value.trim();
+        const productLines = [...cartItems.values()].map((item, index) => [
+          `${index + 1}. ${item.name}`,
+          `   Cantidad: ${item.quantity}`,
+          `   Precio publicado: ${item.price}`,
+        ].join('\n'));
+        const messageParts = [
+          'Pedido para Almatierra Cultivos',
+          '',
+          'DATOS DEL COMPRADOR',
+          `Nombre: ${buyerName}`,
+        ];
+
+        if (buyerLocality) messageParts.push(`Localidad o barrio: ${buyerLocality}`);
+        messageParts.push('', 'PEDIDO', ...productLines, '', `Total de unidades: ${getTotalUnits()}`);
+        if (buyerComments) messageParts.push('', 'COMENTARIOS', buyerComments);
+        messageParts.push('', 'La presentación, disponibilidad, entrega y forma de pago se coordinan por WhatsApp.');
+
+        const whatsappUrl = `https://wa.me/${sellerWhatsApp}?text=${encodeURIComponent(messageParts.join('\n'))}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       });
     })();
   </script>
