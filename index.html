@@ -1226,11 +1226,23 @@
         });
       });
 
+      orderForm.elements.buyerName.addEventListener('input', (event) => {
+        event.currentTarget.setCustomValidity('');
+      });
+
       orderForm.addEventListener('submit', (event) => {
         event.preventDefault();
         if (cartItems.size === 0) return;
 
-        const buyerName = orderForm.elements.buyerName.value.trim();
+        const buyerNameInput = orderForm.elements.buyerName;
+        const buyerName = buyerNameInput.value.trim();
+        if (!buyerName) {
+          buyerNameInput.setCustomValidity('Ingresá tu nombre.');
+          buyerNameInput.reportValidity();
+          buyerNameInput.focus();
+          return;
+        }
+        buyerNameInput.setCustomValidity('');
         const buyerLocality = orderForm.elements.buyerLocality.value.trim();
         const buyerComments = orderForm.elements.buyerComments.value.trim();
         const productLines = [...cartItems.values()].map((item, index) => [
