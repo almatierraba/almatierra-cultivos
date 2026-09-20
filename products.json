@@ -1,0 +1,129 @@
+[
+  {
+    "id": "melena-de-leon",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "type": "Hongo funcional",
+    "name": "Melena de León",
+    "searchTerms": "tintura extracto hongo funcional adaptógeno modulador",
+    "description": "Tintura tradicionalmente utilizada como complemento para el bienestar cognitivo y el equilibrio general del organismo. Funciona como adaptógeno o modulador.",
+    "images": [
+      {
+        "src": "assets/products/melena-de-leon.png",
+        "alt": "Frascos de tintura de Melena de León en presentaciones de 60 y 100 cc"
+      }
+    ],
+    "caption": "Melena de León",
+    "variants": [
+      { "id": "60-cc", "label": "60 cc", "price": 35000 },
+      { "id": "100-cc", "label": "100 cc", "price": 60000 }
+    ]
+  },
+  {
+    "id": "oleo-concentrado-cbd",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "type": "CBD",
+    "name": "Óleo concentrado CBD",
+    "searchTerms": "óleo aceite concentrado cbd bienestar cuidado 15 cc",
+    "description": "Óleo formulado para acompañar rutinas de cuidado y bienestar.",
+    "images": [
+      {
+        "src": "assets/products/oleo-concentrado-cbd.png",
+        "alt": "Frasco de óleo concentrado de CBD de 15 cc"
+      }
+    ],
+    "caption": "Óleo concentrado de CBD",
+    "variants": [
+      { "id": "15-cc", "label": "15 cc", "price": 25000 }
+    ]
+  },
+  {
+    "id": "oleo-extra-concentrado-cbd",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "type": "CBD",
+    "name": "Óleo extra concentrado CBD",
+    "searchTerms": "óleo aceite extra concentrado cbd bienestar cuidado 15 cc",
+    "description": "Óleo de mayor concentración formulado para acompañar rutinas de cuidado y bienestar.",
+    "images": [
+      {
+        "src": "assets/products/oleo-extra-concentrado-cbd.png",
+        "alt": "Frasco de óleo extra concentrado de CBD de 15 cc"
+      }
+    ],
+    "caption": "Óleo extra concentrado de CBD",
+    "variants": [
+      { "id": "15-cc", "label": "15 cc", "price": 30000 }
+    ]
+  },
+  {
+    "id": "pomada",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "type": "Cuidado tópico",
+    "name": "Pomada",
+    "searchTerms": "pomada cbd jarilla dolores contracturas afecciones cutáneas 60 120 cc",
+    "description": "Pomada para dolores, contracturas y afecciones cutáneas, elaborada con aceite de CBD y jarilla mendocina.",
+    "images": [
+      {
+        "src": "assets/products/pomada.png",
+        "alt": "Frasco de pomada de CBD y jarilla mendocina"
+      }
+    ],
+    "caption": "Pomada de CBD y jarilla",
+    "variants": [
+      { "id": "60-cc", "label": "60 cc", "price": 8000 },
+      { "id": "120-cc", "label": "120 cc", "price": 15000 }
+    ]
+  },
+  {
+    "id": "grinder-con-strass",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Accesorios",
+    "name": "Grinder metálico con strass",
+    "searchTerms": "grinder metálico strass molinillo cuatro capas piezas rosca",
+    "description": "Molinillo de metal de cuatro capas con rosca y strass. Cuatro piezas; la parte inferior no lleva strass.",
+    "images": [
+      {
+        "src": "assets/products/grinder-con-strass-1.png",
+        "alt": "Grinder metálico con strass cerrado y medidas"
+      },
+      {
+        "src": "assets/products/grinder-con-strass-2.png",
+        "alt": "Grinder metálico con strass abierto en sus cuatro piezas"
+      }
+    ],
+    "caption": "Dos vistas del grinder metálico con strass",
+    "variants": [],
+    "inquiryLabel": "Consultar precio"
+  },
+  {
+    "id": "mars-orbiter-80w",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Iluminación",
+    "name": "Mars Orbiter 80W",
+    "searchTerms": "mars orbiter 80w panel led cultivo iluminación dos ciclos",
+    "description": "Panel LED de dos ciclos de uso, diseñado para una iluminación uniforme y eficiente en espacios de cultivo pequeños y medianos.",
+    "images": [
+      {
+        "src": "assets/products/mars-orbiter-80w-1.png",
+        "alt": "Vista inferior del panel LED Mars Orbiter 80W"
+      },
+      {
+        "src": "assets/products/mars-orbiter-80w-2.png",
+        "alt": "Vista lateral del panel LED Mars Orbiter 80W encendido"
+      }
+    ],
+    "caption": "Dos vistas del panel LED Mars Orbiter 80W",
+    "specs": [
+      { "label": "Potencia", "value": "80 W" },
+      { "label": "Uso", "value": "2 ciclos" }
+    ],
+    "variants": [
+      { "id": "unidad", "label": "Unidad", "price": 160000 }
+    ]
+  }
+]
