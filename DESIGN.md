@@ -8,6 +8,7 @@ colors:
   primary-active: "#09231D"
   secondary: "#A65032"
   secondary-hover: "#873C27"
+  secondary-active: "#6C2D1E"
   accent: "#E8C96A"
   accent-soft: "#F1EDDF"
   background: "#F7F3E8"
@@ -16,7 +17,7 @@ colors:
   surface-disabled: "#E2E6E3"
   text: "#1B2822"
   text-muted: "#53635C"
-  border: "#B9C2BA"
+  border: "#697970"
   focus: "#236B5A"
   success: "#216E4E"
   warning: "#8A5B00"
@@ -106,6 +107,11 @@ components:
     textColor: "{colors.primary}"
     rounded: "{rounded.md}"
     height: 48px
+  search-field-disabled:
+    backgroundColor: "{colors.surface-disabled}"
+    textColor: "{colors.text-muted}"
+    rounded: "{rounded.md}"
+    height: 48px
   category-chip:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.primary}"
@@ -119,6 +125,18 @@ components:
   category-chip-selected:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
+    rounded: "{rounded.full}"
+  category-chip-active:
+    backgroundColor: "{colors.accent-soft}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.full}"
+  category-chip-focus:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.full}"
+  category-chip-disabled:
+    backgroundColor: "{colors.surface-disabled}"
+    textColor: "{colors.text-muted}"
     rounded: "{rounded.full}"
   button-primary:
     backgroundColor: "{colors.primary}"
@@ -139,6 +157,10 @@ components:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
     rounded: "{rounded.sm}"
+  button-primary-loading:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.sm}"
   button-disabled:
     backgroundColor: "{colors.surface-disabled}"
     textColor: "{colors.text-muted}"
@@ -154,6 +176,22 @@ components:
     backgroundColor: "{colors.accent-soft}"
     textColor: "{colors.primary}"
     rounded: "{rounded.sm}"
+  button-secondary-active:
+    backgroundColor: "{colors.surface-muted}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.sm}"
+  button-secondary-focus:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.sm}"
+  button-secondary-disabled:
+    backgroundColor: "{colors.surface-disabled}"
+    textColor: "{colors.text-muted}"
+    rounded: "{rounded.sm}"
+  button-secondary-loading:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.sm}"
   cart-action:
     backgroundColor: "{colors.secondary}"
     textColor: "{colors.on-secondary}"
@@ -162,6 +200,22 @@ components:
     size: 44px
   cart-action-hover:
     backgroundColor: "{colors.secondary-hover}"
+    textColor: "{colors.on-secondary}"
+    rounded: "{rounded.full}"
+  cart-action-active:
+    backgroundColor: "{colors.secondary-active}"
+    textColor: "{colors.on-secondary}"
+    rounded: "{rounded.full}"
+  cart-action-focus:
+    backgroundColor: "{colors.secondary}"
+    textColor: "{colors.on-secondary}"
+    rounded: "{rounded.full}"
+  cart-action-disabled:
+    backgroundColor: "{colors.surface-disabled}"
+    textColor: "{colors.text-muted}"
+    rounded: "{rounded.full}"
+  cart-action-loading:
+    backgroundColor: "{colors.secondary}"
     textColor: "{colors.on-secondary}"
     rounded: "{rounded.full}"
   product-card:
@@ -203,6 +257,9 @@ components:
     backgroundColor: "{colors.border}"
     height: 1px
     width: 100%
+  control-boundary:
+    backgroundColor: "{colors.border}"
+    size: 1px
   focus-indicator:
     backgroundColor: "{colors.focus}"
     size: 3px
@@ -211,6 +268,26 @@ components:
     textColor: "{colors.primary}"
     rounded: "{rounded.full}"
     size: 44px
+  icon-button-hover:
+    backgroundColor: "{colors.accent-soft}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.full}"
+  icon-button-active:
+    backgroundColor: "{colors.surface-muted}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.full}"
+  icon-button-focus:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.full}"
+  icon-button-disabled:
+    backgroundColor: "{colors.surface-disabled}"
+    textColor: "{colors.text-muted}"
+    rounded: "{rounded.full}"
+  icon-button-loading:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.full}"
 ---
 
 ## Overview
@@ -242,7 +319,7 @@ La paleta surge de materiales vinculados con el cultivo y mantiene una base clar
 - **Surface muted (`#E9E4D6`):** agrupaciones, separadores amplios y zonas informativas.
 - **Text — Tinta (`#1B2822`):** cuerpo y títulos funcionales.
 - **Text muted (`#53635C`):** metadatos y ayudas; no usar para texto esencial por debajo de `body-sm`.
-- **Border (`#B9C2BA`):** contornos de un píxel sobre fondos claros.
+- **Border (`#697970`):** contornos de un píxel sobre fondos claros; mantiene al menos 3:1 frente a `background` y `surface` para que los límites de controles sean perceptibles.
 - **Focus (`#236B5A`):** anillo de foco de tres píxeles con separación de dos píxeles respecto del control.
 - **Success (`#216E4E`), warning (`#8A5B00`) y error (`#A1332B`):** estados semánticos. Siempre acompañar el color con icono y texto.
 
@@ -323,7 +400,7 @@ Los objetivos interactivos deben medir al menos 44 × 44 px. Evitar botones circ
 
 ### Navegación y búsqueda
 
-La cabecera contiene marca, navegación principal, búsqueda y carrito. En móvil, la marca ocupa la primera fila y la búsqueda la segunda. El campo muestra una etiqueta accesible persistente o asociada; el placeholder es ejemplo, no etiqueta. La búsqueda admite borrado, estado cargando, cero resultados y error recuperable.
+La cabecera contiene marca, navegación principal, búsqueda y carrito. En móvil, la marca ocupa la primera fila y la búsqueda la segunda. El campo usa siempre un contorno de un píxel en `border`, incluso sobre `background` o `surface`; no depende solo de una diferencia de relleno para ser reconocible. También muestra una etiqueta accesible persistente o asociada; el placeholder es ejemplo, no etiqueta. La búsqueda admite borrado, estado cargando, cero resultados y error recuperable.
 
 ### Categorías, filtros y ordenamiento
 
@@ -350,7 +427,7 @@ Si el producto no tiene stock, reemplazar agregar por “Sin stock” en un cont
 
 Usar un solo `button-primary` por región de decisión. `button-secondary` acompaña o cancela. `cart-action` en arcilla se limita a la acción transaccional de agregar; una vez agregado puede mostrar cantidad con controles de sumar y restar.
 
-Estados requeridos para todo control: default, hover cuando exista puntero, active, `focus-visible`, disabled y loading. El estado loading conserva el ancho del botón, incluye texto (“Agregando…”) y no elimina el nombre accesible.
+Estados requeridos para todo control: default, hover cuando exista puntero, active, `focus-visible`, disabled y loading. Los tokens hermanos con sufijos `-hover`, `-active`, `-focus`, `-disabled` y `-loading` son normativos para botones primarios, botones secundarios, acciones de carrito e icon buttons. Los chips no realizan operaciones asíncronas, por lo que no usan loading; sí definen hover, active, focus y disabled además de selected. El estado loading conserva el ancho del botón, incluye texto (“Agregando…”) y no elimina el nombre accesible.
 
 ### Feedback y carrito
 
