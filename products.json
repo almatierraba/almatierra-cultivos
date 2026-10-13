@@ -178,6 +178,44 @@
     ]
   },
   {
+    "id": "bandeja-blunt-rey",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Bandejas",
+    "name": "Bandeja metálica Blunt Rey",
+    "searchTerms": "bandeja metálica blunt rey armado 12 cm 17 cm accesorios",
+    "description": "Bandeja metálica con detalles en color para armado, fácil de limpiar y de transportar. Medidas 12 cm x 17 cm.",
+    "images": [
+      {
+        "src": "assets/products/35.png",
+        "alt": "Bandeja metálica Blunt Rey azul, vista completa vertical"
+      },
+      {
+        "src": "assets/products/36.png",
+        "alt": "Detalle de la ilustración de la bandeja Blunt Rey"
+      },
+      {
+        "src": "assets/products/37.png",
+        "alt": "Bandeja metálica Blunt Rey azul, vista completa horizontal"
+      }
+    ],
+    "caption": "Tres vistas de la bandeja metálica Blunt Rey",
+    "specs": [
+      {
+        "label": "Medidas",
+        "value": "12 × 17 cm"
+      }
+    ],
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": 10000
+      }
+    ]
+  },
+  {
     "id": "grinder-con-strass",
     "category": "parafernalia",
     "categoryLabel": "Parafernalia",
