@@ -34,21 +34,26 @@
     "categoryLabel": "Bienestar",
     "type": "CBD",
     "name": "Óleo concentrado CBD",
-    "searchTerms": "óleo aceite concentrado cbd bienestar cuidado 15 cc",
+    "searchTerms": "óleo aceite concentrado cbd bienestar cuidado 30 cc 50 cc",
     "description": "Óleo formulado para acompañar rutinas de cuidado y bienestar.",
     "images": [
       {
         "src": "assets/products/oleo-concentrado-cbd.png",
-        "alt": "Frasco de óleo concentrado de CBD de 15 cc"
+        "alt": "Frasco de óleo concentrado de CBD"
       }
     ],
     "caption": "Óleo concentrado de CBD",
     "variantGroupLabel": "Presentación",
     "variants": [
       {
-        "id": "15-cc",
-        "label": "15 cc",
-        "price": 25000
+        "id": "30-cc",
+        "label": "30 cc",
+        "price": 50000
+      },
+      {
+        "id": "50-cc",
+        "label": "50 cc",
+        "price": 80000
       }
     ]
   },
@@ -58,21 +63,26 @@
     "categoryLabel": "Bienestar",
     "type": "CBD",
     "name": "Óleo extra concentrado CBD",
-    "searchTerms": "óleo aceite extra concentrado cbd bienestar cuidado 15 cc",
+    "searchTerms": "óleo aceite extra concentrado cbd bienestar cuidado 30 cc 50 cc",
     "description": "Óleo de mayor concentración formulado para acompañar rutinas de cuidado y bienestar.",
     "images": [
       {
         "src": "assets/products/oleo-extra-concentrado-cbd.png",
-        "alt": "Frasco de óleo extra concentrado de CBD de 15 cc"
+        "alt": "Frasco de óleo extra concentrado de CBD"
       }
     ],
     "caption": "Óleo extra concentrado de CBD",
     "variantGroupLabel": "Presentación",
     "variants": [
       {
-        "id": "15-cc",
-        "label": "15 cc",
-        "price": 30000
+        "id": "30-cc",
+        "label": "30 cc",
+        "price": 40000
+      },
+      {
+        "id": "50-cc",
+        "label": "50 cc",
+        "price": 65000
       }
     ]
   },
@@ -181,7 +191,7 @@
       {
         "id": "unidad",
         "label": "Unidad",
-        "price": null
+        "price": 30000
       }
     ]
   },
@@ -254,22 +264,12 @@
       }
     ],
     "caption": "Cuatro vistas del vaporizador Puffco Peak",
-    "variantGroupLabel": "Acabado",
+    "variantGroupLabel": "Presentación",
     "variants": [
       {
-        "id": "onix",
-        "label": "Ónix",
-        "price": null
-      },
-      {
-        "id": "zest",
-        "label": "Zest",
-        "price": null
-      },
-      {
-        "id": "zafiro",
-        "label": "Zafiro",
-        "price": null
+        "id": "unidad",
+        "label": "Unidad",
+        "price": 440000
       }
     ]
   },
@@ -331,7 +331,7 @@
       {
         "id": "unidad",
         "label": "Unidad",
-        "price": null
+        "price": 750000
       }
     ]
   },
@@ -366,17 +366,12 @@
       }
     ],
     "caption": "Cuatro vistas del vaporizador Pivot",
-    "variantGroupLabel": "Acabado",
+    "variantGroupLabel": "Presentación",
     "variants": [
       {
-        "id": "onix",
-        "label": "Ónix",
-        "price": null
-      },
-      {
-        "id": "zafiro",
-        "label": "Zafiro",
-        "price": null
+        "id": "unidad",
+        "label": "Unidad",
+        "price": 300000
       }
     ]
   },
@@ -444,7 +439,7 @@
       {
         "id": "unidad",
         "label": "Unidad",
-        "price": null
+        "price": 425000
       }
     ]
   },
@@ -495,7 +490,7 @@
       {
         "id": "unidad",
         "label": "Unidad",
-        "price": null
+        "price": 650000
       }
     ]
   },
@@ -537,7 +532,7 @@
       {
         "id": "unidad",
         "label": "Unidad",
-        "price": null
+        "price": 155000
       }
     ]
   },
@@ -597,90 +592,7 @@
       {
         "id": "unidad",
         "label": "Unidad",
-        "price": null
-      }
-    ]
-  },
-  {
-    "id": "chamber-3d",
-    "category": "parafernalia",
-    "categoryLabel": "Parafernalia",
-    "type": "Cámara de repuesto",
-    "brand": "Puffco",
-    "name": "Cámara 3D Chamber",
-    "searchTerms": "puffco cámara 3d chamber repuesto sensores control temperatura cerámica terpenos",
-    "tagline": "A menudo imitada, nunca superada.",
-    "taglineEn": "Often imitated, never beaten.",
-    "description": "Nuestra cámara 3D patentada te ofrece mejor sabor y un golpe consistente cada vez. Sensores innovadores proporcionan control de temperatura en tiempo real, mientras que las trazas de calor incrustadas en las paredes de cerámica vaporizan el concentrado desde los lados, no desde el fondo. Esta tecnología de primera protege los terpenos y cannabinoides de degradarse, asegurando que obtengas efectos y sabor óptimos.",
-    "descriptionEn": "Our patented 3D Chamber gives you better flavor and a consistent hit every time. Innovative sensors provide real-time temperature control, while heat traces embedded in the ceramic walls vaporize concentrate from the sides – not the bottom. This top-tier technology protects the terpenes and cannabinoids from degrading, ensuring you get optimal effects and optimal flavor.",
-    "notes": [
-      "Este producto no es apto para usar con tabaco, líquidos con nicotina ni ningún tipo de nicotina sintética o sustituto de nicotina."
-    ],
-    "images": [
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3d/01.webp",
-        "alt": "Cámara 3D Chamber, vista del conjunto"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/chamber-3d/02.webp",
-        "alt": "Cámara 3D Chamber, segunda vista"
-      }
-    ],
-    "caption": "Dos vistas de la Cámara 3D Chamber",
-    "variantGroupLabel": "Presentación",
-    "variants": [
-      {
-        "id": "unidad",
-        "label": "Unidad",
-        "price": null
-      }
-    ]
-  },
-  {
-    "id": "travel-glass",
-    "category": "parafernalia",
-    "categoryLabel": "Parafernalia",
-    "type": "Accesorio de viaje",
-    "brand": "Puffco",
-    "name": "Travel Glass",
-    "searchTerms": "puffco travel glass tapa patentada peak pro agua boquilla viaje derrames",
-    "tagline": "Hacé un viaje.",
-    "taglineEn": "Take a trip.",
-    "description": "El Puffco Travel Glass es una tapa patentada para el Peak Pro y el Peak que te permite mantener el agua dentro de la cámara girando la boquilla. Menos derrames, mejor portabilidad, ahorra agua. Dabs mientras viajás.",
-    "descriptionEn": "Take a trip. The Puffco Travel Glass is a patented Top for the Peak Pro and Peak that allows you to lock water inside the chamber by twisting the mouthpiece. Less spills, better portability, saves water. Dab on the go.",
-    "images": [
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/black-01.webp",
-        "alt": "Travel Glass en negro, vista frontal"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/black-02.webp",
-        "alt": "Travel Glass en negro, vista lateral"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/03.webp",
-        "alt": "Travel Glass montado sobre el equipo"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/04.webp",
-        "alt": "Detalle de la boquilla giratoria del Travel Glass"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/05.webp",
-        "alt": "Travel Glass en ambiente"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/travel-glass/06.webp",
-        "alt": "Travel Glass, vista superior"
-      }
-    ],
-    "caption": "Seis vistas del Travel Glass",
-    "variantGroupLabel": "Presentación",
-    "variants": [
-      {
-        "id": "unidad",
-        "label": "Unidad",
-        "price": null
+        "price": 110000
       }
     ]
   },
@@ -747,46 +659,6 @@
       {
         "id": "zafiro",
         "label": "Zafiro",
-        "price": null
-      }
-    ]
-  },
-  {
-    "id": "joystick-cap",
-    "category": "parafernalia",
-    "categoryLabel": "Parafernalia",
-    "type": "Tapa de repuesto",
-    "brand": "Puffco",
-    "name": "Joystick Cap",
-    "searchTerms": "puffco joystick cap tapa peak pro flujo aire 360 acero inoxidable silicona",
-    "tagline": "Nunca se atasca. Menos mantenimiento. Siempre divertido.",
-    "taglineEn": "Never stuck. Less maintenance. Always fun.",
-    "description": "La tapa de joystick Peak Pro ofrece un flujo de aire direccional de 360º preciso para una calefacción más consistente, dándote nubes más grandes y mejor sabor. Hecha de acero inoxidable irrompible y silicona, el diseño del joystick es fácil de limpiar y evita que los residuos bloqueen tu flujo.",
-    "descriptionEn": "Never stuck. Less maintenance. Always fun. The Peak Pro Joystick Cap provides precise 360º directional airflow for more consistent heating, giving you bigger clouds and better flavor. Made of shatterproof stainless steel and silicone, the Joystick’s design is easy to clean and prevents reclaim from stopping your flow. And it’s fidget friendly.",
-    "images": [
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/01.webp",
-        "alt": "Joystick Cap, vista frontal"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/02.webp",
-        "alt": "Joystick Cap, vista lateral"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/03.webp",
-        "alt": "Joystick Cap montada sobre el equipo"
-      },
-      {
-        "src": "https://cdn.jsdelivr.net/gh/almatierraba/krepitar-assets@v4/img/joystick-cap/onyx-detalle.webp",
-        "alt": "Detalle de la Joystick Cap en acabado ónix"
-      }
-    ],
-    "caption": "Cuatro vistas de la Joystick Cap",
-    "variantGroupLabel": "Presentación",
-    "variants": [
-      {
-        "id": "unidad",
-        "label": "Unidad",
         "price": null
       }
     ]
