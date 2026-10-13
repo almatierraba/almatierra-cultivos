@@ -34,7 +34,7 @@
     "categoryLabel": "Bienestar",
     "type": "CBD",
     "name": "Óleo concentrado CBD",
-    "searchTerms": "óleo aceite concentrado cbd bienestar cuidado 30 cc 50 cc",
+    "searchTerms": "óleo aceite concentrado cbd bienestar cuidado 15 cc 30 cc 50 cc",
     "description": "Óleo formulado para acompañar rutinas de cuidado y bienestar.",
     "images": [
       {
@@ -45,6 +45,11 @@
     "caption": "Óleo concentrado de CBD",
     "variantGroupLabel": "Presentación",
     "variants": [
+      {
+        "id": "15-cc",
+        "label": "15 cc",
+        "price": 30000
+      },
       {
         "id": "30-cc",
         "label": "30 cc",
@@ -63,7 +68,7 @@
     "categoryLabel": "Bienestar",
     "type": "CBD",
     "name": "Óleo extra concentrado CBD",
-    "searchTerms": "óleo aceite extra concentrado cbd bienestar cuidado 30 cc 50 cc",
+    "searchTerms": "óleo aceite extra concentrado cbd bienestar cuidado 15 cc 30 cc 50 cc",
     "description": "Óleo de mayor concentración formulado para acompañar rutinas de cuidado y bienestar.",
     "images": [
       {
@@ -74,6 +79,11 @@
     "caption": "Óleo extra concentrado de CBD",
     "variantGroupLabel": "Presentación",
     "variants": [
+      {
+        "id": "15-cc",
+        "label": "15 cc",
+        "price": 35000
+      },
       {
         "id": "30-cc",
         "label": "30 cc",
@@ -191,7 +201,7 @@
       {
         "id": "unidad",
         "label": "Unidad",
-        "price": 30000
+        "price": 35000
       }
     ]
   },
