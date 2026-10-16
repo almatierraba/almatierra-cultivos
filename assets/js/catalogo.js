@@ -188,6 +188,31 @@
     }
   };
 
+  // Frame original photos with SVG viewports without altering source files.
+  const buildProductImage = (photo, eager = false) => {
+    if (!photo.frame) {
+      const image = document.createElement('img');
+      image.src = photo.src;
+      image.alt = photo.alt;
+      image.loading = eager ? 'eager' : 'lazy';
+      image.decoding = 'async';
+      return image;
+    }
+    const ns = 'http://www.w3.org/2000/svg';
+    const frame = document.createElementNS(ns, 'svg');
+    frame.classList.add('product-photo-frame');
+    frame.setAttribute('viewBox', photo.frame.join(' '));
+    frame.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    frame.setAttribute('role', 'img');
+    frame.setAttribute('aria-label', photo.alt);
+    const image = document.createElementNS(ns, 'image');
+    image.setAttribute('href', photo.src);
+    image.setAttribute('width', '1080');
+    image.setAttribute('height', '1920');
+    frame.append(image);
+    return frame;
+  };
+
   /* ---------- tarjetas ---------- */
 
   products.forEach((product) => {
@@ -213,11 +238,7 @@
       product.availability?.detail,
     ].filter(Boolean).join(' ');
 
-    const image = document.createElement('img');
-    image.src = cover.src;
-    image.alt = cover.alt;
-    image.loading = 'lazy';
-    image.decoding = 'async';
+    const image = buildProductImage(cover);
     media.insertBefore(image, media.lastElementChild);
     media.querySelector('figcaption').textContent = product.caption || product.name;
 
@@ -436,11 +457,7 @@
 
     images.forEach((image, index) => {
       const slide = document.createElement('li');
-      const element = document.createElement('img');
-      element.src = image.src;
-      element.alt = image.alt;
-      element.loading = index === 0 ? 'eager' : 'lazy';
-      element.decoding = 'async';
+      const element = buildProductImage(image, index === 0);
       if (index === 0) element.fetchPriority = 'high';
       slide.append(element);
       track.append(slide);

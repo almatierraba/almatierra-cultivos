@@ -710,5 +710,118 @@
         "price": null
       }
     ]
+  },
+  {
+    "id": "prensa-rosin-club-press-710",
+    "category": "parafernalia",
+    "categoryLabel": "Parafernalia",
+    "type": "Prensa para Rosin",
+    "brand": "Club Press 710",
+    "name": "Prensa para Rosin Club Press 710 — 15 toneladas",
+    "searchTerms": "prensa rosin club press 710 15 toneladas 220v uso mínimo",
+    "description": "Prensa para extracciones estilo Rosin Club Press 710, de 15 toneladas. Uso mínimo, prácticamente sin uso. Cuenta con placas de aluminio, control digital de temperatura y accionamiento manual de la presión.",
+    "specs": [
+      {
+        "label": "Fuerza de presión",
+        "value": "15 toneladas"
+      },
+      {
+        "label": "Voltaje",
+        "value": "220 V"
+      },
+      {
+        "label": "Ancho total",
+        "value": "30 cm"
+      },
+      {
+        "label": "Medidas",
+        "value": "44 × 34 × 13 cm"
+      },
+      {
+        "label": "Peso",
+        "value": "30 kg"
+      },
+      {
+        "label": "Placas de aluminio",
+        "value": "10 × 15 × 4 cm"
+      },
+      {
+        "label": "Control de temperatura",
+        "value": "Digital"
+      },
+      {
+        "label": "Control de presión",
+        "value": "Manual"
+      },
+      {
+        "label": "Resistencia",
+        "value": "150 W"
+      },
+      {
+        "label": "Aislantes de calor",
+        "value": "Teflón"
+      }
+    ],
+    "images": [
+      {
+        "src": "assets/products/club-press-710-1.png",
+        "alt": "Vista frontal completa de la prensa para Rosin Club Press 710",
+        "frame": [
+          135,
+          570,
+          820,
+          890
+        ]
+      },
+      {
+        "src": "assets/products/club-press-710-2.png",
+        "alt": "Detalle del manómetro de presión de la prensa para Rosin Club Press 710",
+        "frame": [
+          35,
+          75,
+          1010,
+          1770
+        ]
+      },
+      {
+        "src": "assets/products/club-press-710-3.png",
+        "alt": "Detalle de la marca Club Press 710 de la prensa para Rosin Club Press 710",
+        "frame": [
+          0,
+          465,
+          1080,
+          990
+        ]
+      },
+      {
+        "src": "assets/products/club-press-710-4.png",
+        "alt": "Vista lateral de la prensa de la prensa para Rosin Club Press 710",
+        "frame": [
+          85,
+          260,
+          900,
+          1390
+        ]
+      },
+      {
+        "src": "assets/products/club-press-710-5.png",
+        "alt": "Vista frontal de las placas y los controles de la prensa para Rosin Club Press 710",
+        "frame": [
+          50,
+          495,
+          990,
+          1060
+        ]
+      }
+    ],
+    "caption": "Cinco vistas de la prensa Club Press 710",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": 500000
+      }
+    ]
   }
 ]

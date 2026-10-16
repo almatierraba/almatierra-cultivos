@@ -1241,3 +1241,13 @@ body.has-cart-fab .status-message { bottom: 96px; }
   .gallery-track { scroll-behavior: auto; }
   .manifesto-text { transition: none; }
 }
+
+/* Center framed originals in cards and in the product gallery. */
+.product-photo-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+}
