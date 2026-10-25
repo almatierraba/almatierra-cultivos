@@ -178,6 +178,38 @@
     ]
   },
   {
+    "id": "molde-ovulos-vaginales",
+    "category": "bienestar",
+    "categoryLabel": "Bienestar",
+    "type": "Molde de silicona",
+    "name": "Molde para óvulos vaginales",
+    "searchTerms": "moldes silicona reutilizable óvulos vaginales supositorios",
+    "description": "Moldes de silicona reutilizables para elaborar óvulos o supositorios. Ideales para quienes buscan comodidad, precisión y facilidad de uso.",
+    "images": [
+      {
+        "src": "assets/products/molde-ovulos-vaginales-1.png",
+        "alt": "Molde de silicona negro con seis cavidades y tapas abiertas para elaborar óvulos o supositorios"
+      },
+      {
+        "src": "assets/products/molde-ovulos-vaginales-2.png",
+        "alt": "Detalle de una cavidad del molde de silicona sostenida entre los dedos, con medidas indicadas"
+      },
+      {
+        "src": "assets/products/molde-ovulos-vaginales-3.png",
+        "alt": "Vista del molde de silicona de seis cavidades, con medidas generales indicadas"
+      }
+    ],
+    "caption": "Tres vistas del molde de silicona para óvulos o supositorios",
+    "variantGroupLabel": "Presentación",
+    "variants": [
+      {
+        "id": "unidad",
+        "label": "Unidad",
+        "price": 15000
+      }
+    ]
+  },
+  {
     "id": "bandeja-blunt-rey",
     "category": "parafernalia",
     "categoryLabel": "Parafernalia",
