@@ -273,7 +273,7 @@
     }
   });
 
-  [{ id: 'all', label: labels.allCategories }, ...categories].forEach((category, index) => {
+  categories.forEach((category, index) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'category-button';
@@ -328,7 +328,7 @@
   const productDialogCart = document.querySelector('#product-dialog-cart');
   const productGallery = document.querySelector('#product-gallery');
 
-  let activeCategory = 'all';
+  let activeCategory = categories[0]?.id;
   let statusTimer;
   let galleryObserver;
 
@@ -410,7 +410,7 @@
     let visible = 0;
 
     productCards.forEach((card) => {
-      const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+      const matchesCategory = card.dataset.category === activeCategory;
       const matchesSearch = !query || normalizeSearch(card.dataset.search).includes(query);
       const shouldShow = matchesCategory && matchesSearch;
       card.hidden = !shouldShow;
